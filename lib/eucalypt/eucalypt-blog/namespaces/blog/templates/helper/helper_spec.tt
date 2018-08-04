@@ -1,0 +1,9 @@
+require_relative '../spec_helper'
+describe BlogHelper do
+  include BlogHelper
+
+  it "should expect true to be true" do
+    expect(true).to be false
+  end
+
+end

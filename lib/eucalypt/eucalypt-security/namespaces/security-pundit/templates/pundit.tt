@@ -1,0 +1,4 @@
+class ApplicationController < Sinatra::Base
+  # Include Pundit for authorization
+  include Pundit
+end

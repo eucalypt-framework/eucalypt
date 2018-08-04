@@ -1,0 +1,16 @@
+/* ----------------------------------------------------------------------------------------------- *
+ * This file simply imports all partial stylesheets in the /assets/stylesheets/partials directory. *
+ * Its purpose is to declutter stylesheets which require all of the partials, by eliminating the   *
+ * need to repeatedly require each partial file in every new stylesheet.                           *
+ *                                                                                                 *
+ * To use the partials listed below in a different stylesheet, simply import this file with:       *
+ *                                                                                                 *
+ * @import '__partials__'                                                                          *
+ *                                                                                                 *
+ * You'll have to manually add any new partial files to the list below, unless you decide to use   *
+ * the `sass-globbing` gem.                                                                        *
+ *                                                                                                 *
+ * This gem has not been included by default due to the gem only importing globbed files in        *
+ * alphabetical order, which won't always lead to the desired outcome in CSS, since order matters. *
+ * ----------------------------------------------------------------------------------------------- */
+@import 'partials/mixins';

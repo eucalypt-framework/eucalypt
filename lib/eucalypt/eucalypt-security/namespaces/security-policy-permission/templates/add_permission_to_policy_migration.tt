@@ -1,0 +1,5 @@
+class Add<%= config[:permission_constant] %>PermissionTo<%= config[:policy] %>Policy < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
+  def change
+    <%= config[:policy] %>Role.create(permission: '<%= config[:permission] %>')
+  end
+end

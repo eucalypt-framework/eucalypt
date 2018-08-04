@@ -1,0 +1,7 @@
+require 'eucalypt/eucalypt-blog/helpers'
+module BlogHelper
+  include Eucalypt::Blog::Helpers
+  Blog.articles = Dir[Eucalypt.path('app', 'views', 'blog', 'markdown', '**', '*.md')]
+
+  # Define your other helper methods here...
+end

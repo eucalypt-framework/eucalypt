@@ -1,0 +1,3 @@
+module ApplicationHelper
+  # Add your helper methods here...
+end

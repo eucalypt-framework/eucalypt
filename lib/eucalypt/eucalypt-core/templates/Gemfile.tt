@@ -1,0 +1,35 @@
+source 'https://rubygems.org'
+
+# Bundler
+gem 'bundler', '~> 1.16'
+# Sinatra DSL
+gem 'sinatra', '~> 2.0', require: 'sinatra/base'
+# Eucalypt CLI
+gem 'eucalypt', '<%= config[:version] %>'
+# Rake
+gem 'rake', '~> 12.3'
+# Server
+gem 'thin', '~> 1.7'
+
+# Test environment
+group :test, :production do
+  gem 'rack-test', '~> 1.0', require: 'rack/test'
+  gem 'rspec', '~> 3.7'
+  gem 'shoulda-matchers', '~> 3.1'
+end
+
+# Database adapters
+gem 'sqlite3', '~> 1.3', group: [:development, :test]
+gem 'pg', '~> 1.0', group: :production
+# ActiveRecord for models and records
+gem 'activerecord', '~> 5.2', require: ['active_support','active_support/core_ext']
+gem 'sinatra-activerecord', '~> 2.0', require: ['sinatra/activerecord','sinatra/activerecord/rake']
+# Logging library
+gem 'lumberjack', '~> 1.0'
+# Asset pipeline and preprocessors/compressors
+gem 'sprockets', '~> 3.7'
+gem 'sassc', '~> 1.12'
+gem 'uglifier', '~> 4.1'
+# Hanami HTML/asset helpers
+gem 'hanami-helpers', '~> 1.2', require: 'hanami/helpers'
+gem 'hanami-assets', '~> 1.2', require: ['hanami/assets','hanami/assets/helpers']

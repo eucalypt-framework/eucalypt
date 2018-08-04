@@ -1,0 +1,5 @@
+class Add<%= config[:role_constant] %>RoleTo<%= config[:policy_constant] %>Policy < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
+  def change
+    add_column :<%= config[:policy] %>_roles, :<%= config[:role] %>, :boolean, default: false
+  end
+end

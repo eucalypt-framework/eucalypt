@@ -1,0 +1,39 @@
+require_relative '../spec_helper'
+require 'front_matter_parser'
+describe BlogController do
+  def app() BlogController end
+
+  ARTICLES = Dir[Eucalypt.path('app', 'views', 'blog', 'markdown', '**', '*.md')].map do |md|
+    FrontMatterParser::Parser.parse_file(md).front_matter.symbolize_keys
+  end
+
+  describe 'blog page' do
+    it "should display all posts" do
+      expect(true).to eq false
+    end
+  end
+
+  ARTICLES.each do |post|
+    subpath = post[:time].split(' ').first.gsub(?-,?/)
+    describe "Post: #{post[:title]}" do
+      it "should have a timestamp" do
+        get "/#{subpath}/#{post[:urltitle]}"
+        expect(true).to eq false
+      end
+      it "should have a title" do
+        get "/#{subpath}/#{post[:urltitle]}"
+        expect(true).to eq false
+      end
+      it "should have a description" do
+        get "/#{subpath}/#{post[:urltitle]}"
+        expect(true).to eq false
+      end
+      it "should have tags" do
+        get "/#{subpath}/#{post[:urltitle]}"
+        post[:tags].each do |tag|
+          expect(true).to eq false
+        end
+      end
+    end
+  end
+end

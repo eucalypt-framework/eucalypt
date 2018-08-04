@@ -1,0 +1,7 @@
+class CreateRoles < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
+  def change
+    create_table :roles do |t|
+      t.integer :user_id, null: false
+    end
+  end
+end

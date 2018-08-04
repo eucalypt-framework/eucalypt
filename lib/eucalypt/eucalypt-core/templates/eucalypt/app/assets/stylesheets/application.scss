@@ -1,0 +1,17 @@
+/* -------------------------------------------------------------------------------------------- *
+ * This file contains `require` directives to stylesheet files.                                 *
+ * All of these stylesheet files will be compiled into a single stylesheet.                     *
+ * To use this combined stylesheet, include the following in the head section of your views:    *
+ *                                                                                              *
+ * <%= application :css %>           If including only application.css                          *
+ * <%= application :css, :js %>      If including application.js as well                        *
+ *                                                                                              *
+ * By default, every file in the /assets/stylesheets directory is required by `require_tree .`  *
+ * However, you may remove the `require_tree .` directive and instead specify individual files. *
+ *                                                                                              *
+ * Any global styles can be included directly in this file (Below the CSS reset).               *
+ * NOTE: Styles defined in this file will be overwritten by CSS written in other files.         *
+ * -------------------------------------------------------------------------------------------- *
+ *= require_self
+ *= require_tree .
+ */

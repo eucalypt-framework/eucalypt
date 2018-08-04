@@ -1,0 +1,4 @@
+language: ruby
+before_install: gem update --system
+script: bundle exec rake
+rvm: 2.5

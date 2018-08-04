@@ -1,0 +1,28 @@
+class <%= config[:class_name] %> < Eucalypt::Controller(route: '<%= config[:route] %>')
+  helpers <%= config[:class_name].gsub 'Controller', 'Helper' %> if defined? <%= config[:class_name].gsub 'Controller', 'Helper' %>
+
+  # GET - Browse
+  get '/' do
+
+  end
+
+  # GET - Read
+  get '/:id' do |id|
+
+  end
+
+  # POST - Edit
+  post '/:id/edit' do |id|
+
+  end
+
+  # POST - Add
+  post '/' do
+
+  end
+
+  # POST - Destroy
+  post '/:id/delete' do |id|
+
+  end
+end

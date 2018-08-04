@@ -1,0 +1,5 @@
+class Add<%= config[:policy].camelize %>ToRoles < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
+  def change
+    add_column :roles, :<%= config[:policy_name] %>, :string, default: 'default'
+  end
+end

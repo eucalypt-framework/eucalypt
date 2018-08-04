@@ -1,0 +1,3 @@
+class <%= config[:name] %> < ActiveRecord::Base
+  # Add your model methods here...
+end

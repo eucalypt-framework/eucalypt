@@ -1,0 +1,9 @@
+---
+title: "TODO"
+desc: "TODO"
+tags: ["TODO"]
+# Only change the below fields with `eucalypt blog article edit` commands!
+urltitle: "<%= config[:urltitle] %>"
+time: "<%= config[:datetime] %>"
+assetpath: "/assets/<%= config[:date].gsub(?-,?/) %>/<%= config[:urltitle] %>/"
+---

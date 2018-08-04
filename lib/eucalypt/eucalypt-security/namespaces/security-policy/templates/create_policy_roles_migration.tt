@@ -1,0 +1,9 @@
+class Create<%= config[:policy].camelize %>Roles < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
+  def change
+    create_table :<%= config[:policy] %>_roles do |t|
+      t.string :permission, null: false
+      t.boolean :admin, default: true
+      t.boolean :default, default: false
+    end
+  end
+end

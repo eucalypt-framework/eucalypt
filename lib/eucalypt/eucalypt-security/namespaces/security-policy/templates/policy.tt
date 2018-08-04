@@ -1,0 +1,16 @@
+class <%= config[:class_name] %>
+  attr_reader :user, :<%= config[:policy] %>
+
+  def initialize(user, <%= config[:policy] %>)
+    @user = user
+    @<%= config[:policy] %> = <%= config[:policy] %>
+  end
+
+  if ActiveRecord::Base.connection.table_exists?(:<%= config[:policy] %>_roles)
+    <%= config[:constant] %>Role.pluck(:permission).each do |permission|
+      define_method("#{permission}?") do
+        <%= config[:constant] %>Role.where(permission: permission).send(user.role.post)
+      end
+    end
+  end
+end
