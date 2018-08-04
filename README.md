@@ -1,8 +1,6 @@
-<center>
-
-<img src="./assets/eucalypt-logo.png" style="width:100px">
-
-</center>
+<p align="center">
+  <img width="100" src ="./assets/eucalypt-logo.png"/>
+</p>
 
 # Eucalypt
 
