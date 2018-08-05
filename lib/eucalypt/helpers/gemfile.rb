@@ -1,10 +1,11 @@
 require 'thor'
+require 'eucalypt/errors'
+
 module Eucalypt
   module Helpers
-    def add_to_gemfile(description, gems, directory)
-      gemfile = File.join directory, 'Gemfile'
-
-      File.open(gemfile) do |f|
+    def gemfile_add(description, gems, directory)
+      gemfile = File.join(directory, 'Gemfile')
+      File.open gemfile do |f|
         includes_gems = []
         contents = f.read
         gems.each do |gem, version|
@@ -24,9 +25,9 @@ module Eucalypt
     end
 
     def gemfile_include?(gems, directory)
-      gemfile = File.join directory, 'Gemfile'
       includes_gems = []
-      File.open(gemfile) do |f|
+      gemfile = File.join(directory, 'Gemfile')
+      File.open gemfile do |f|
         contents = f.read
         gems.each do |gem|
           if contents.include? "gem '#{gem}'"
@@ -39,8 +40,8 @@ module Eucalypt
       includes_gems.all? {|present| present == true}
     end
 
-    def gem_check(gems, command, directory)
-      if gemfile_include? gems, directory
+    def gemfile_check(gems, command, directory)
+      if gemfile_include?(gems, directory)
         true
       else
         Eucalypt::Error.no_gems(gems, command)

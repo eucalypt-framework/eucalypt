@@ -15,7 +15,7 @@ module Eucalypt
       if Eucalypt.app? directory
         Out.setup 'Setting up blog environment...'
 
-        add_to_gemfile(
+        gemfile_add(
           'Markdown and YAML front-matter parsing',
           {front_matter_parser: '0.2.0', rdiscount: '~> 2.2'},
           directory

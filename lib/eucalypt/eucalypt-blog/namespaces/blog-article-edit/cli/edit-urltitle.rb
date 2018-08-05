@@ -16,7 +16,7 @@ module Eucalypt
     def urltitle(urltitle = nil)
       directory = File.expand_path('.')
       if Eucalypt.app? directory
-        return unless gem_check(%w[front_matter_parser rdiscount], 'eucalypt blog setup', directory)
+        return unless gemfile_check(%w[front_matter_parser rdiscount], 'eucalypt blog setup', directory)
 
         article_base = File.join directory, 'app', 'views', 'blog', 'markdown'
         article_asset_base = File.join directory, 'app', 'assets', 'blog'

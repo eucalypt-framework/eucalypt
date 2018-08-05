@@ -27,7 +27,7 @@ module Eucalypt
         Out.setup "Setting up Pundit authorization..."
 
         # Add Pundit to Gemfile
-        add_to_gemfile('Authorization', {pundit: '~> 2.0'}, directory)
+        gemfile_add('Authorization', {pundit: '~> 2.0'}, directory)
 
         # Create Pundit config file
         create_config_file(:pundit, directory)

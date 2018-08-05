@@ -16,7 +16,7 @@ module Eucalypt
       directory = File.expand_path('.')
       if Eucalypt.app? directory
         # Check for authorization gems
-        return unless gem_check(%w[pundit], 'eucalypt security pundit setup', directory)
+        return unless gemfile_check(%w[pundit], 'eucalypt security pundit setup', directory)
 
         # Check for user model
         unless File.exist? File.join(directory, 'app', 'models', 'user.rb')

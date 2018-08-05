@@ -20,11 +20,7 @@ module Eucalypt
         Out.setup "Setting up Warden authentication..."
 
         # Add Warden and BCrypt to Gemfile
-        add_to_gemfile(
-          'Authentication and encryption',
-          {warden: '~> 1.2', bcrypt: '~> 3.1'},
-          directory
-        )
+        gemfile_add('Authentication and encryption', {warden: '~> 1.2', bcrypt: '~> 3.1'}, directory)
 
         # Create Warden config file
         create_config_file(:warden, directory)
