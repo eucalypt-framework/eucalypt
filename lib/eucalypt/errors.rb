@@ -1,15 +1,16 @@
 require 'eucalypt/helpers/messages'
+require 'eucalypt/helpers/app'
 
 module Eucalypt
   module Error
     include Eucalypt::Helpers::Messages
     class << self
       def wrong_directory
-        Out.error "Couldn't find #{'.eucalypt'.colorize(:bold)} file in current directory."
+        Out.error "Couldn't find #{Eucalypt::APP_FILE.colorize(:bold)} in current directory."
         Out.info 'Try:'
         puts " - Changing the current working directory to your application's root directory."
         puts " - Creating a new application with `#{'eucalypt init your-app-name'.colorize(:bold)}`."
-        puts " - Creating a .eucalypt file if you deleted it."
+        puts " - Creating a #{Eucalypt::APP_FILE.colorize(:bold)} if you deleted it."
       end
 
       def no_articles

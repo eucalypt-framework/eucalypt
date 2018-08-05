@@ -1,0 +1,25 @@
+class AuthenticationController < Eucalypt::Controller(route: '/auth')
+  helpers AuthenticationHelper if defined? AuthenticationHelper
+
+  get '/login' do
+    redirect '/' if current_user
+    erb :'authentication/login', layout: false
+  end
+
+  post '/login' do
+    redirect '/' if current_user
+    authenticate
+    redirect session[:return_to] || '/'
+  end
+
+  get '/logout' do
+    env['warden'].logout
+    redirect '/'
+  end
+
+  post '/invalid' do
+    session[:return_to] = env['warden.options'][:attempted_path]
+    status 403 # Unauthenticated
+    redirect to '/login'
+  end
+end

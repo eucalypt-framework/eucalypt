@@ -2,6 +2,7 @@ require 'thor'
 require 'eucalypt/helpers'
 require 'eucalypt/eucalypt-security/helpers'
 require 'eucalypt/eucalypt-security/namespaces/security-warden/generators/user'
+require 'eucalypt/eucalypt-security/namespaces/security-warden/generators/auth_controller'
 
 module Eucalypt
   class SecurityWarden < Thor
@@ -13,6 +14,7 @@ module Eucalypt
       File.join File.dirname(__dir__), 'templates'
     end
 
+    option :controller, type: :boolean, aliases: '-c', default: true, desc: "Include an authentication controller"
     desc "setup", "Set up Warden authentication"
     def setup
       directory = File.expand_path('.')
@@ -32,6 +34,12 @@ module Eucalypt
 
         # Create user model
         user.generate_model(directory)
+
+        if options[:controller]
+          auth_controller = Eucalypt::Generators::AuthController.new
+          auth_controller.destination_root = directory
+          auth_controller.generate
+        end
 
         Out.info "Ensure you run `#{'rake db:migrate'.colorize(:bold)}` to create the necessary tables for Warden."
       else

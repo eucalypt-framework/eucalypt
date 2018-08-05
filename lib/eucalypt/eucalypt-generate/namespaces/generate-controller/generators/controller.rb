@@ -1,17 +1,19 @@
 require 'active_support'
 require 'active_support/core_ext'
+require 'string/builder'
 require 'thor'
 
 module Eucalypt
   module Generators
     class Controller < Thor::Group
       include Thor::Actions
+      using String::Builder
 
       def self.source_root
         File.join File.dirname(__dir__), 'templates'
       end
 
-      def generate(spec: true, rest: false, name:)
+      def generate(spec: true, rest: false, policy: false, name:)
         name = name.to_s
         file_name = name.downcase.include?('controller') ? "#{name.underscore}.rb" : "#{name.singularize.underscore}_controller.rb"
         file_path = File.join 'app', 'controllers', file_name
@@ -23,9 +25,17 @@ module Eucalypt
         route_name = tokens.first(tokens.size-1)*?-
         route = "/#{rest ? route_name.pluralize : route_name}"
 
-        controller_template = "controller/#{rest ? 'rest_' : ''}controller.tt"
+        controller_file_name = String.build do |s|
+          s << 'policy_' if policy
+          s << 'rest_' if rest
+          s << 'controller.tt'
+        end
+        controller_template = File.join 'controller', controller_file_name
 
-        config = {route: route, class_name: class_name}
+        helper_name = class_name.gsub('Controller','Helper')
+        constant = class_name.gsub('Controller','')
+
+        config = {route: route, constant: constant, class_name: class_name, helper_name: helper_name, resource: route_name.gsub(?-,?_)}
         template(controller_template, file_path, config)
         template("controller_spec.tt", spec_path, config) if spec
       end

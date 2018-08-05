@@ -15,7 +15,7 @@ module Eucalypt
         def initialize(title:, template:)
           @title = title
           @template = template
-          @file = Time.now.strftime("%Y%m%d%H%M%S_#{title}.rb")
+          @file = Time.now.utc.strftime("%Y%m%d%H%M%S_#{title}.rb")
           @base = File.join 'db', 'migrate'
           @file_path = File.join @base, @file
         end

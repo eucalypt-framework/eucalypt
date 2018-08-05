@@ -1,5 +1,5 @@
 class <%= config[:class_name] %> < Eucalypt::Controller(route: '<%= config[:route] %>')
-  helpers <%= config[:class_name].gsub 'Controller', 'Helper' %> if defined? <%= config[:class_name].gsub 'Controller', 'Helper' %>
+  helpers <%= config[:helper_name] %> if defined? <%= config[:helper_name] %>
 
   # GET - Browse
   get '/' do
@@ -21,7 +21,7 @@ class <%= config[:class_name] %> < Eucalypt::Controller(route: '<%= config[:rout
 
   end
 
-  # POST - Destroy
+  # POST - Delete
   post '/:id/delete' do |id|
 
   end

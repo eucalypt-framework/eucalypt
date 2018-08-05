@@ -15,7 +15,8 @@ module Eucalypt
         controller.generate(
           name: name,
           spec: options[:spec],
-          rest: options[:rest]
+          rest: options[:rest],
+          policy: false
         )
       else
         Eucalypt::Error.wrong_directory
