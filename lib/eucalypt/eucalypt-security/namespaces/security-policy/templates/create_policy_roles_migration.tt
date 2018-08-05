@@ -1,4 +1,4 @@
-class Create<%= config[:policy].camelize %>Roles < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
+class <%= config[:migration_title] %> < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
   def change
     create_table :<%= config[:policy] %>_roles do |t|
       t.string :permission, null: false

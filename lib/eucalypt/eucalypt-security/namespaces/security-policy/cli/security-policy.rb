@@ -13,15 +13,18 @@ module Eucalypt
     method_option :permissions, type: :array, aliases: '-p', default: []
     desc "generate", "Create a new Pundit policy"
     def generate(name)
-      directory = File.expand_path ?.
-      if File.exist? File.join(directory, '.eucalypt')
+      directory = File.expand_path('.')
+      if Eucalypt.app? directory
+        # Check for authorization gems
         return unless gem_check(%w[pundit], 'eucalypt security pundit setup', directory)
 
+        # Check for user model
         unless File.exist? File.join(directory, 'app', 'models', 'user.rb')
           Eucalypt::Error.no_user_model
           return
         end
 
+        # Check for role model
         unless File.exist? File.join(directory, 'app', 'models', 'role.rb')
           Eucalypt::Error.no_role_model
           return
@@ -31,7 +34,11 @@ module Eucalypt
 
         policy = Eucalypt::Generators::Policy.new
         policy.destination_root = directory
+
+        # Generate policy file
         policy.generate(name: name)
+
+        # Create policy roles table
         policy.generate_policy_roles_migration(policy: policy_name)
 
         # Create policy role model

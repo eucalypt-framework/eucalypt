@@ -1,12 +1,13 @@
 require 'thor'
+require 'eucalypt/helpers/app'
 module Eucalypt
   class Generate < Thor
     option :no, aliases: '-n', type: :array, default: [], desc: "Omit specified scaffold files"
     option :rest, aliases: '-r', type: :boolean, default: false,  desc: "Generate REST routes for the controller"
     desc "scaffold [NAME]", "Generates a scaffold"
     def scaffold(name)
-      directory = File.expand_path ?.
-      if File.exist? File.join(directory, '.eucalypt')
+      directory = File.expand_path('.')
+      if Eucalypt.app? directory
         allowed = %i[
           helper h
           helper_spec hs

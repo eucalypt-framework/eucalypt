@@ -12,13 +12,13 @@ module Eucalypt
 
     desc "datetime [URLTITLE]", "Edits the datetime of a blog post"
     def datetime(urltitle = nil)
-      directory = File.expand_path ?.
-      if File.exist? File.join(directory, '.eucalypt')
+      directory = File.expand_path('.')
+      if Eucalypt.app? directory
         return unless gem_check(%w[front_matter_parser rdiscount], 'eucalypt blog setup', directory)
 
         article_base = File.join directory, 'app', 'views', 'blog', 'markdown'
         article_asset_base = File.join directory, 'app', 'assets', 'blog'
-        articles = Dir[File.join article_base, '**/*.md']
+        articles = Dir[File.join article_base, '**','*.md']
 
         if articles.empty?
           Eucalypt::Error.no_articles
@@ -40,18 +40,18 @@ module Eucalypt
         article = articles_hash[article_number.to_sym]
 
         current_datetime = article[:front_matter]['time']
-        puts "\n\tCurrent datetime: \e[1m#{current_datetime}\e[0m"
+        puts "\n\tCurrent datetime: #{current_datetime.colorize(:bold)}"
 
         new_datetime = ''
         loop do
-          new_datetime = ask("\nEnter the new datetime (format YYYY-MM-DD HH:MM:SS):")
+          new_datetime = ask "\nEnter the new datetime (format YYYY-MM-DD HH:MM:SS):"
           valid = false
           begin
             DateTime.strptime(new_datetime, "%Y-%m-%d %H:%M:%S").tap do |output|
               valid = output.strftime("%Y-%m-%d %H:%M:%S") == new_datetime
             end
           rescue ArgumentError
-            puts "\e[1;91mERROR\e[0m: Incorrect datetime format."
+            Out.error 'Incorrect datetime format.'
           end
           break if valid
         end
@@ -59,7 +59,7 @@ module Eucalypt
         new_date, new_time = new_datetime.split
         current_date, current_time = current_datetime.split
 
-        update = ask("\e[1;93mWARNING\e[0m: Change datetime from \e[1m#{current_datetime}\e[0m to \e[1m#{new_datetime}\e[0m?", limited_to: %w[y Y Yes YES n N No NO])
+        update = ask Out.warning_message("Change datetime from #{current_datetime.colorize(:bold)} to #{new_datetime.colorize(:bold)}?"), limited_to: %w[y Y Yes YES n N No NO]
         return unless %w[y Y Yes YES].include? update
 
         gsub_file(
@@ -76,7 +76,7 @@ module Eucalypt
 
         Dir.chdir(article_asset_base) do
           relative_from_urltitle = File.join
-          asset_files = Dir[File.join article[:identifier], '**/*']
+          asset_files = Dir[File.join article[:identifier], '**', '*']
           asset_files.each do |file|
             next unless File.file? file
             path_to_urltitle = File.join article_asset_base, article[:identifier]

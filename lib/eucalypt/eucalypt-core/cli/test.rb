@@ -3,8 +3,8 @@ module Eucalypt
   class CLI < Thor
     desc "test", "Run all application specs"
     def test
-      directory = File.expand_path ?.
-      if File.exist? File.join(directory, '.eucalypt')
+      directory = File.expand_path('.')
+      if Eucalypt.app? directory
         exec "rspec -fd spec"
       else
         Eucalypt::Error.wrong_directory

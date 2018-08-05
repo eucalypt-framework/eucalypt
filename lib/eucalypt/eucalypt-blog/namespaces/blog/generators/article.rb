@@ -19,7 +19,7 @@ module Eucalypt
         article_path = File.join article_base, dt[:date].gsub(?-,?/), "#{urltitle}.md"
 
         config = {datetime: dt[:full], date: dt[:date], urltitle: urltitle}
-        template("views/article_md.tt", article_path, config)
+        template File.join('views', 'article_md.tt'), article_path, config
       end
     end
   end

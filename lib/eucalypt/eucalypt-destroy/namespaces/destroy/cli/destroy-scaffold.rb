@@ -1,13 +1,14 @@
 require_relative 'destroy-controller'
 require_relative 'destroy-helper'
 require_relative 'destroy-model'
+require 'eucalypt/helpers/app'
 
 module Eucalypt
   class Destroy < Thor
     desc "scaffold [NAME]", "Destroys a scaffold"
     def scaffold(name = nil)
-      directory = File.expand_path ?.
-      if File.exist? File.join(directory, '.eucalypt')
+      directory = File.expand_path('.')
+      if Eucalypt.app? directory
         scaffolds = Dir[File.join directory, 'app', '{controllers,models,helpers}', '*.rb'].map do |f|
           File.basename(f).split(?_).first.split(?.).first
         end

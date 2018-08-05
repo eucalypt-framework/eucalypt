@@ -14,13 +14,13 @@ module Eucalypt
 
     desc "urltitle [URLTITLE]", "Edits the urltitle of a blog post"
     def urltitle(urltitle = nil)
-      directory = File.expand_path ?.
-      if File.exist? File.join(directory, '.eucalypt')
+      directory = File.expand_path('.')
+      if Eucalypt.app? directory
         return unless gem_check(%w[front_matter_parser rdiscount], 'eucalypt blog setup', directory)
 
         article_base = File.join directory, 'app', 'views', 'blog', 'markdown'
         article_asset_base = File.join directory, 'app', 'assets', 'blog'
-        articles = Dir[File.join article_base, '**/*.md']
+        articles = Dir[File.join article_base, '**', '*.md']
 
         if articles.empty?
           Eucalypt::Error.no_articles
@@ -43,8 +43,7 @@ module Eucalypt
 
         current_urltitle = article[:front_matter]['urltitle']
         new_urltitle = ask("Enter new urltitle:").parameterize
-        update = ask("\e[1;93mWARNING\e[0m: Change urltitle from \e[1m#{current_urltitle}\e[0m to \e[1m#{new_urltitle}\e[0m?", limited_to: %w[y Y Yes YES n N No NO])
-
+        update = ask Out.warning_message("Change urltitle from #{current_urltitle.colorize(:bold)} to #{new_urltitle.colorize(:bold)}?"), limited_to: %w[y Y Yes YES n N No NO]
         return unless %w[y Y Yes YES].include? update
 
         gsub_file(

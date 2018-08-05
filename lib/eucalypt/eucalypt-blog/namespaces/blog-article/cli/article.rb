@@ -19,8 +19,8 @@ module Eucalypt
     method_option :day, type: :string, aliases: '-D'
     desc "list", "Display the metadata of blog articles"
     def list
-      directory = File.expand_path ?.
-      if File.exist? File.join(directory, '.eucalypt')
+      directory = File.expand_path('.')
+      if Eucalypt.app? directory
         return unless gem_check(%w[front_matter_parser rdiscount], 'eucalypt blog setup', directory)
 
         generator = Eucalypt::Generators::Blog.new
@@ -37,8 +37,8 @@ module Eucalypt
 
     desc "generate [URLTITLE]", "Create a new blog article"
     def generate(urltitle)
-      directory = File.expand_path ?.
-      if File.exist? File.join(directory, '.eucalypt')
+      directory = File.expand_path('.')
+      if Eucalypt.app? directory
         return unless gem_check(%w[front_matter_parser rdiscount], 'eucalypt blog setup', directory)
 
         generator = Eucalypt::Generators::Blog.new
@@ -51,12 +51,12 @@ module Eucalypt
 
     desc "destroy [URLTITLE]", "Destroys a blog article"
     def destroy(urltitle = nil)
-      directory = File.expand_path ?.
-      if File.exist? File.join(directory, '.eucalypt')
+      directory = File.expand_path('.')
+      if Eucalypt.app? directory
         return unless gem_check(%w[front_matter_parser rdiscount], 'eucalypt blog setup', directory)
 
         markdown_base = File.join directory, 'app', 'views', 'blog', 'markdown'
-        articles_path = urltitle ? "**/#{urltitle}.md" : "**/*.md"
+        articles_path = File.join '**', (urltitle ? "#{urltitle}.md" : "*.md")
 
         articles = Dir[File.join markdown_base, articles_path]
         if articles.empty?
@@ -70,16 +70,17 @@ module Eucalypt
         articles_hash = {}
         article_numbers = []
         articles.each_with_index do |article, i|
-          article_numbers << (i+1).to_s
+          number = (i+1).to_s
+          article_numbers << number
           identifier = article.split(markdown_base.gsub(/\/$/,'')<<?/).last.split('.md').first
-          articles_hash[(i+1).to_s.to_sym] = identifier
+          articles_hash[number.to_sym] = identifier
           title = FrontMatterParser::Parser.parse_file(article).front_matter['title']
-          puts title ? "\e[1m#{i+1}\e[0m: #{identifier} - #{title}" : "\e[1m#{i+1}\e[0m: #{identifier}"
+          puts "#{number.colorize(:bold)}: #{identifier}#{title ? " - #{title}" : ''}"
         end
 
         article_number = ask("\nEnter the number of the article to delete:", limited_to: article_numbers)
         article = articles_hash[article_number.to_sym]
-        delete_article = ask("\e[1;93mWARNING\e[0m: Delete article \e[1m#{article}\e[0m?", limited_to: %w[y Y Yes YES n N No NO])
+        delete_article = ask Out.warning_message("Delete article #{article.colorize(:bold)}?"), limited_to: %w[y Y Yes YES n N No NO]
         return unless %w[y Y Yes YES].include? delete_article
         remove_file File.join(markdown_base, "#{article}.md")
         paths = article.rpartition ?/

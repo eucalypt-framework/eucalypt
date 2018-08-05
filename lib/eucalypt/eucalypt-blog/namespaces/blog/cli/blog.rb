@@ -11,9 +11,9 @@ module Eucalypt
     method_option :route, type: :string, aliases: '-r', default: 'blog'
     desc "setup", "Sets up the blog-aware environment"
     def setup
-      directory = File.expand_path ?.
-      if File.exist? File.join(directory, '.eucalypt')
-        puts "\n\e[94;4mSetting up blog environment...\e[0m"
+      directory = File.expand_path('.')
+      if Eucalypt.app? directory
+        Out.setup 'Setting up blog environment...'
 
         add_to_gemfile(
           'Markdown and YAML front-matter parsing',

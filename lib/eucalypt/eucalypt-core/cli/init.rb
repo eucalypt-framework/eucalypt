@@ -8,22 +8,23 @@ module Eucalypt
       current_directory = File.expand_path ?.
       root = File.join(current_directory, name)
       if Dir.exist? root
-        puts "\e[1;91mERROR\e[0m: Directory \e[1m#{name}\e[0m already exists."
+        Out.error "Directory #{name.colorize(:bold)} already exists."
         return
       else
-        puts "\n\e[94;4mSetting up Eucalypt application...\e[0m"
-        Eucalypt::CLI.source_root File.dirname(__dir__)
-        directory 'templates/eucalypt', root
+        Out.setup 'Setting up Eucalypt application...'
+        Eucalypt::CLI.source_root File.join(File.dirname(__dir__), 'templates')
+
+        directory 'eucalypt', root
 
         config = {version: Eucalypt::VERSION}
-        template 'templates/Gemfile.tt', File.join(root, 'Gemfile'), config
+        template 'Gemfile.tt', File.join(root, 'Gemfile'), config
 
-        return unless options[:blog]
-
-        Dir.chdir(root) do
-          args = %w[blog setup]
-          args << '-r' << options[:route] if options[:route]
-          Eucalypt::CLI.start(args)
+        if options[:blog]
+          Dir.chdir(root) do
+            args = %w[blog setup]
+            args << '-r' << options[:route] if options[:route]
+            Eucalypt::CLI.start(args)
+          end
         end
       end
     end

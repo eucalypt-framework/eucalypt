@@ -6,8 +6,8 @@ module Eucalypt
       def controller(route:)
         route = route[0] == ?/ ? route : "/#{route}"
         config = {route: route}
-        template("controller/controller.tt", "app/controllers/blog_controller.rb", config)
-        template("controller/controller_spec.tt", "spec/controllers/blog_controller_spec.rb")
+        template File.join('controller','controller.tt'), File.join('app','controllers','blog_controller.rb'), config
+        template File.join('controller','controller_spec.tt'), File.join('spec','controllers','blog_controller_spec.rb')
       end
     end
   end

@@ -10,15 +10,18 @@ module Eucalypt
 
     desc "generate", "Create a new Pundit policy permission"
     def generate(name, permission)
-      directory = File.expand_path ?.
-      if File.exist? File.join(directory, '.eucalypt')
+      directory = File.expand_path('.')
+      if Eucalypt.app? directory
+        # Check for authorization gems
         return unless gem_check(%w[pundit], 'eucalypt security pundit setup', directory)
 
+        # Check for user model
         unless File.exist? File.join(directory, 'app', 'models', 'user.rb')
           Eucalypt::Error.no_user_model
           return
         end
 
+        # Check for role model
         unless File.exist? File.join(directory, 'app', 'models', 'role.rb')
           Eucalypt::Error.no_role_model
           return
@@ -26,6 +29,7 @@ module Eucalypt
 
         policy_name = name.singularize.underscore.gsub(/\_policy$/,'')
 
+        # Check for policy file and policy role model
         policy_file = File.join(directory, 'app', 'policies', "#{policy_name}_policy.rb")
         policy_role_model = File.join(directory, 'app', 'models', "#{policy_name}_role.rb")
         unless File.exist?(policy_file) && File.exist?(policy_role_model)
@@ -35,6 +39,8 @@ module Eucalypt
 
         policy_permission = Eucalypt::Generators::PolicyPermission.new
         policy_permission.destination_root = directory
+
+        # Add permission record to policy role table
         policy_permission.generate(policy_name: policy_name, permission: permission.underscore)
       else
         Eucalypt::Error.wrong_directory

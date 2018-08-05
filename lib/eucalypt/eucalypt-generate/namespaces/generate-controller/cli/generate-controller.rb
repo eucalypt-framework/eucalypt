@@ -1,4 +1,5 @@
 require 'eucalypt/eucalypt-generate/namespaces/generate-controller/generators/controller'
+require 'eucalypt/helpers/app'
 require 'eucalypt/errors'
 
 module Eucalypt
@@ -7,8 +8,8 @@ module Eucalypt
     option :rest, aliases: '-r', type: :boolean, default: false,  desc: "Generate REST routes for the controller"
     desc "controller [NAME]", "Generates a controller"
     def controller(name)
-      directory = File.expand_path ?.
-      if File.exist? File.join(directory, '.eucalypt')
+      directory = File.expand_path('.')
+      if Eucalypt.app? directory
         controller = Eucalypt::Generators::Controller.new
         controller.destination_root = directory
         controller.generate(

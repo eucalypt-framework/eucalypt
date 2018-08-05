@@ -1,8 +1,12 @@
 require 'thor'
+require 'eucalypt/helpers'
 require 'eucalypt/eucalypt-security/helpers'
+require 'eucalypt/eucalypt-security/namespaces/security-pundit/generators/role'
+
 module Eucalypt
   class SecurityPundit < Thor
     include Thor::Actions
+    include Eucalypt::Helpers
     include Eucalypt::Security::Helpers
 
     def self.source_root
@@ -11,8 +15,8 @@ module Eucalypt
 
     desc "setup", "Set up Pundit authorization"
     def setup
-      directory = File.expand_path ?.
-      if File.exist? File.join(directory, '.eucalypt')
+      directory = File.expand_path('.')
+      if Eucalypt.app? directory
         # Check if user model exists
         user_model_file = File.join(directory, 'app', 'models', 'user.rb')
         unless File.file? user_model_file
@@ -20,29 +24,20 @@ module Eucalypt
           return
         end
 
-        puts "\n\e[94;4mSetting up Pundit authorization...\e[0m"
+        Out.setup "Setting up Pundit authorization..."
 
         # Add Pundit to Gemfile
         add_to_gemfile('Authorization', {pundit: '~> 2.0'}, directory)
+
         # Create Pundit config file
         create_config_file(:pundit, directory)
 
-        # Create user_roles migration
-        sleep 1
-        migration_file = Time.now.strftime("%Y%m%d%H%M%S_create_roles.rb")
-        migration_base = File.join directory, 'db', 'migrate'
-        migration_file_path = File.join migration_base, migration_file
-        if Dir[File.join migration_base, '*.rb'].any? {|f| f.include? 'create_roles'}
-          create_migration = ask("\e[1;93mWARNING\e[0m: A \e[1mcreate_roles\e[0m migration already exists. Create anyway?", limited_to: %w[y Y Yes YES n N No NO])
-          return unless %w[y Y Yes YES].include? create_migration
-          template 'create_roles_migration.tt', migration_file_path
-        else
-          template 'create_roles_migration.tt', migration_file_path
-        end
+        # Create roles migration
+        role = Eucalypt::Generators::Role.new.generate_roles_migration
 
         # Create Role model
         role_model_file = File.join(directory, 'app', 'models', 'role.rb')
-        puts "\e[1;93mWARNING\e[0m: Role model already exists." if File.file? role_model_file
+        Out.warning "Role model already exists." if File.file? role_model_file
         Dir.chdir(directory) do
           Eucalypt::CLI.start(%w[generate model role --no-spec])
         end
@@ -61,10 +56,10 @@ module Eucalypt
           insert = "  after_save :create_role"
           inject_into_class(user_model_file, 'User', "#{insert}\n") unless contents.include? insert
           insert = "\n  def create_role() self.role = Role.new end\n"
-          inject_into_file(user_model_file, insert, before: /^end/)
+          inject_into_file(user_model_file, insert, before: /^end/) unless contents.include? insert
         end
 
-        puts "\e[1mINFO\e[0m: Ensure you run `\e[1mrake db:migrate\e[0m` to create the necessary tables for Pundit."
+        Out.info "Ensure you run `#{'rake db:migrate'.colorize(:bold)}` to create the necessary tables for Pundit."
       else
         Eucalypt::Error.wrong_directory
       end

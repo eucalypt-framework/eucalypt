@@ -3,8 +3,8 @@ module Eucalypt
   class CLI < Thor
     desc "console", "Starts an interactive console with all application files loaded"
     def console
-      directory = File.expand_path ?.
-      if File.exist? File.join(directory, '.eucalypt')
+      directory = File.expand_path('.')
+      if Eucalypt.app? directory
         exec "chmod +x bin/console && bundle exec bin/console"
       else
         Eucalypt::Error.wrong_directory
