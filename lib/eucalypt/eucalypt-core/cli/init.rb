@@ -27,7 +27,7 @@ module Eucalypt
           s << "# #{msg} #\n"
           s << separator
           s << "# #{version_msg.center msg.size, ' '} #\n"
-          s << separator
+          s << separator.chomp
         end
 
         create_file File.join(root, Eucalypt::APP_FILE), app_file_content
