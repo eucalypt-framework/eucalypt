@@ -4,6 +4,8 @@ module Eucalypt
   module Generators
     class Blog < Thor::Group
       def article(urltitle:)
+        urltitle = Inflect.route(urltitle)
+
         dt = Hash.new
         dt[:full] = Time.now.strftime("%Y-%m-%d %H:%M:%S")
         dt[:date] = dt[:full].split(' ').first

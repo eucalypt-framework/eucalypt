@@ -1,3 +1,3 @@
-module <%= config[:module_name] %>
+module <%= config[:class_name] %>
   # Add your methods...
 end

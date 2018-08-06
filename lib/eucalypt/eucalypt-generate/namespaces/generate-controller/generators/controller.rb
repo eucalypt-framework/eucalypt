@@ -7,6 +7,7 @@ module Eucalypt
   module Generators
     class Controller < Thor::Group
       include Thor::Actions
+      include Eucalypt::Helpers
       using String::Builder
 
       def self.source_root
@@ -14,16 +15,9 @@ module Eucalypt
       end
 
       def generate(spec: true, rest: false, policy: false, name:)
-        name = name.to_s
-        file_name = name.downcase.include?('controller') ? "#{name.underscore}.rb" : "#{name.singularize.underscore}_controller.rb"
-        file_path = File.join 'app', 'controllers', file_name
-        class_name = name.downcase.include?('controller') ? name.camelize : "#{name.singularize.camelize}Controller"
-        spec_name = file_name.gsub('.rb','_spec.rb')
-        spec_path = File.join 'spec', 'controllers', spec_name
+        controller = Inflect.new(:controller, name)
 
-        tokens = file_name.split(?_)
-        route_name = tokens.first(tokens.size-1)*?-
-        route = "/#{rest ? route_name.pluralize : route_name}"
+        route = '/' << (rest ? controller.route_name.pluralize : controller.route_name)
 
         controller_file_name = String.build do |s|
           s << 'policy_' if policy
@@ -32,12 +26,19 @@ module Eucalypt
         end
         controller_template = File.join 'controller', controller_file_name
 
-        helper_name = class_name.gsub('Controller','Helper')
-        constant = class_name.gsub('Controller','')
+        helper = Inflect.new(:helper, controller.resource)
 
-        config = {route: route, constant: constant, class_name: class_name, helper_name: helper_name, resource: route_name.gsub(?-,?_)}
-        template(controller_template, file_path, config)
-        template("controller_spec.tt", spec_path, config) if spec
+        config = {
+          route: route,
+          constant: controller.constant,
+          class_name: controller.class_name,
+          helper_class_name: helper.class_name,
+          resource: controller.resource,
+          resources: controller.resources
+        }
+
+        template(controller_template, controller.file_path, config)
+        template("controller_spec.tt", controller.spec_path, config) if spec
       end
     end
   end

@@ -1,5 +1,5 @@
 require_relative '../spec_helper'
-describe <%= config[:name] %>, type: :model do
+describe <%= config[:class_name] %>, type: :model do
 
   it "should expect true to be true" do
     expect(true).to be false

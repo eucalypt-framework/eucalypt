@@ -26,7 +26,6 @@ module Eucalypt
         end
 
         if urltitle
-          urltitle = urltitle.downcase
           if articles.any? {|a| File.basename(a, '.md') == urltitle}
             articles = articles.select {|a| File.basename(a, '.md') == urltitle}
           else

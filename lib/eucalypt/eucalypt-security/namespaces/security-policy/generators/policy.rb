@@ -14,14 +14,9 @@ module Eucalypt
       end
 
       def generate(name:)
-        name = name.to_s.singularize
-        file_name = name.downcase.include?('policy') ? "#{name.underscore}.rb" : "#{name.underscore}_policy.rb"
-        file_path = File.join 'app', 'policies', file_name
-        class_name = name.downcase.include?('policy') ? name.camelize : "#{name.camelize}Policy"
-        policy = file_name.split("_policy.rb").first
-
-        config = {class_name: class_name, policy: policy, constant: class_name.gsub('Policy','')}
-        template('policy.tt', file_path, config)
+        policy = Inflect.new(:policy, name)
+        config = {class_name: policy.class_name, resource: policy.resource, constant: policy.constant}
+        template('policy.tt', policy.file_path, config)
       end
 
       def generate_policy_roles_migration(policy:)

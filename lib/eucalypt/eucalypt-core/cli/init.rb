@@ -9,12 +9,13 @@ module Eucalypt
     desc "init [NAME]", "Sets up the application"
     def init(name)
       current_directory = File.expand_path ?.
+      name = Inflect.route(name)
       root = File.join(current_directory, name)
       if Dir.exist? root
         Out.error "Directory #{name.colorize(:bold)} already exists."
         return
       else
-        Out.setup 'Setting up Eucalypt application...'
+        Out.setup "Setting up Eucalypt application..."
         Eucalypt::CLI.source_root File.join(File.dirname(__dir__), 'templates')
 
         directory 'eucalypt', root

@@ -1,11 +1,11 @@
 class <%= config[:class_name] %> < Eucalypt::Controller(route: '<%= config[:route] %>')
-  helpers <%= config[:helper_name] %> if defined? <%= config[:helper_name] %>
+  helpers <%= config[:helper_class_name] %> if defined? <%= config[:helper_class_name] %>
 
   # You can use the `current_user` helper provided by Warden in your views.
 
   # You can also use authorization helpers provided by Pundit in your views.
   # These are useful for conditional displays to users with the correct permissions.
-  # - e.g. Showing a form for editing <%= config[:resource].pluralize %>
+  # - e.g. Showing a form for editing <%= config[:resources] %>
 
   # Pundit authorization helpers are used in the following way:
   # - `policy(<%= config[:constant] %>).add?`
@@ -14,8 +14,8 @@ class <%= config[:class_name] %> < Eucalypt::Controller(route: '<%= config[:rout
 
   # GET - Browse
   get '/' do
-    @<%= config[:resource].pluralize %> = <%= config[:constant] %>.all
-    # Render a view here for displaying all <%= config[:resource].pluralize %>
+    @<%= config[:resources] %> = <%= config[:constant] %>.all
+    # Render a view here for displaying all <%= config[:resources] %>
   end
 
   # GET - Read

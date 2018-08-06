@@ -1,6 +1,6 @@
 require_relative '../spec_helper'
-describe <%= config[:module_name] %> do
-  include <%= config[:module_name] %>
+describe <%= config[:class_name] %> do
+  include <%= config[:class_name] %>
 
   it "should expect true to be true" do
     expect(true).to be false

@@ -41,6 +41,8 @@ module Eucalypt
       if Eucalypt.app? directory
         return unless gemfile_check(%w[front_matter_parser rdiscount], 'eucalypt blog setup', directory)
 
+        urltitle = Inflect.route(urltitle) if urltitle
+
         generator = Eucalypt::Generators::Blog.new
         generator.destination_root = directory
         generator.article(urltitle: urltitle)
