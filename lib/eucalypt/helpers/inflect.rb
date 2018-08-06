@@ -25,8 +25,16 @@ module Eucalypt
           route(string).gsub(?-,?_).pluralize
         end
 
+        def resource_keep_inflection(string)
+          route(string).gsub(?-,?_)
+        end
+
         def constant(string)
           resource(string).camelize
+        end
+
+        def constant_pluralize(string)
+          resources(string).camelize
         end
 
         %i[controller helper policy].each do |type|
