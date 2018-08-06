@@ -15,7 +15,7 @@ module Eucalypt
 
       def generate(policy_name:, permission:)
         sleep 1
-        migration = Migration[
+        migration = Eucalypt::Helpers::Migration[
           title: "add_#{permission}_permission_to_#{policy_name}_policy",
           template: 'add_permission_to_policy_migration.tt'
         ]

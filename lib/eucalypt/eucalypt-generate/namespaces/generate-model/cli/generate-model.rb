@@ -5,7 +5,7 @@ require 'eucalypt/errors'
 module Eucalypt
   class Generate < Thor
     option :spec, type: :boolean, default: true, desc: "Include a model spec file"
-    desc "model [NAME]", "Generates a model"
+    desc "model [NAME]", "Generates a model".colorize(:grey)
     def model(name)
       directory = File.expand_path('.')
       if Eucalypt.app? directory

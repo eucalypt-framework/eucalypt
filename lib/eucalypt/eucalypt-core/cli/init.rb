@@ -3,10 +3,9 @@ require 'string/builder'
 module Eucalypt
   class CLI < Thor
     using String::Builder
-
     method_option :blog, type: :boolean, default: false, aliases: '-b'
     method_option :route, type: :string, aliases: '-r'
-    desc "init [NAME]", "Sets up the application"
+    desc "init [NAME]", "Sets up the application".colorize(:grey)
     def init(name)
       current_directory = File.expand_path ?.
       name = Inflect.route(name)

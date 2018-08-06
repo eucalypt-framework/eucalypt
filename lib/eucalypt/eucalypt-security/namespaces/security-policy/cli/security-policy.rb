@@ -11,7 +11,7 @@ module Eucalypt
     include Eucalypt::Helpers
 
     method_option :permissions, type: :array, aliases: '-p', default: []
-    desc "generate", "Create a new Pundit policy"
+    desc "generate [NAME]", "Create a new Pundit policy".colorize(:grey)
     def generate(name)
       directory = File.expand_path('.')
       if Eucalypt.app? directory
@@ -30,31 +30,39 @@ module Eucalypt
           return
         end
 
-        policy_name = name.singularize.underscore.gsub(/\_policy$/,'')
+        policy = Inflect.new(:policy, name)
 
-        policy = Eucalypt::Generators::Policy.new
-        policy.destination_root = directory
+        policy_generator = Eucalypt::Generators::Policy.new
+        policy_generator.destination_root = directory
 
         # Generate policy file
-        policy.generate(name: name)
+        policy_generator.generate(name: name)
 
         # Create policy roles table
-        policy.generate_policy_roles_migration(policy: policy_name)
+        policy_generator.generate_policy_roles_migration(policy: policy.resource)
 
         # Create policy role model
         Dir.chdir(directory) do
-          Eucalypt::CLI.start(['generate', 'model', "#{policy_name}_role", '--no-spec'])
+          Eucalypt::CLI.start(['generate', 'model', "#{policy.resource}_role", '--no-spec'])
         end
 
         # Add validation to role model
-        role_model_file = File.join directory, 'app', 'models', "#{policy_name}_role.rb"
+        role_model_file = File.join directory, 'app', 'models', "#{policy.resource}_role.rb"
         File.open(role_model_file) do |f|
           insert = "  validates :permission, uniqueness: true"
-          inject_into_class(role_model_file, "#{policy_name}_role".camelize, "#{insert}\n") unless f.read.include? insert
+          inject_into_class(role_model_file, "#{policy.resource}_role".camelize, "#{insert}\n") unless f.read.include? insert
         end
 
-        # Add policy column to role model
-        policy.generate_policy_addition_migration(policy: name, policy_name: policy_name)
+        # Add policy column to user roles table
+        Dir.chdir(directory) do
+          args = %w[migration create column]
+          args << "roles"
+          args << policy.resource
+          args << 'string'
+          args << %w[-o default:default]
+          args.flatten!
+          Eucalypt::CLI.start(args)
+        end
 
         # Generate permissions
         options[:permissions].each do |permission|
@@ -72,7 +80,7 @@ module Eucalypt
       "#{basename} security #{task.formatted_usage(self, true, subcommand).split(':').join(' ')}"
     end
 
-    register(Eucalypt::SecurityPolicyPermission, 'permission', 'permission [COMMAND]', 'Pundit policy permission commands')
-    register(Eucalypt::SecurityPolicyRole, 'role', 'role [COMMAND]', 'Pundit policy role commands')
+    register(Eucalypt::SecurityPolicyPermission, 'permission', 'permission [COMMAND]', 'Pundit policy permission commands'.colorize(:grey))
+    register(Eucalypt::SecurityPolicyRole, 'role', 'role [COMMAND]', 'Pundit policy role commands'.colorize(:grey))
   end
 end

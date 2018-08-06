@@ -7,6 +7,6 @@ module Eucalypt
     end
   end
   class CLI < Thor
-    register(Destroy, 'destroy', 'destroy [COMMAND]', 'Destroy models, controllers and helpers')
+    register(Destroy, 'destroy', 'destroy [COMMAND]', 'Destroy models, controllers and helpers'.colorize(:grey))
   end
 end

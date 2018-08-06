@@ -10,7 +10,7 @@ module Eucalypt
     include Eucalypt::Helpers
     include Eucalypt::Blog::Helpers
 
-    desc "datetime [URLTITLE]", "Edits the datetime of a blog post"
+    desc "datetime [URLTITLE]", "Edits the datetime of a blog post".colorize(:grey)
     def datetime(urltitle = nil)
       directory = File.expand_path('.')
       if Eucalypt.app? directory

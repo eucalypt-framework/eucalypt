@@ -17,7 +17,7 @@ module Eucalypt
     method_option :year, type: :string, aliases: '-Y'
     method_option :month, type: :string, aliases: '-M'
     method_option :day, type: :string, aliases: '-D'
-    desc "list", "Display the metadata of blog articles"
+    desc "list", "Display the metadata of blog articles".colorize(:grey)
     def list
       directory = File.expand_path('.')
       if Eucalypt.app? directory
@@ -35,7 +35,7 @@ module Eucalypt
       end
     end
 
-    desc "generate [URLTITLE]", "Create a new blog article"
+    desc "generate [URLTITLE]", "Create a new blog article".colorize(:grey)
     def generate(urltitle)
       directory = File.expand_path('.')
       if Eucalypt.app? directory
@@ -51,7 +51,7 @@ module Eucalypt
       end
     end
 
-    desc "destroy [URLTITLE]", "Destroys a blog article"
+    desc "destroy [URLTITLE]", "Destroys a blog article".colorize(:grey)
     def destroy(urltitle = nil)
       directory = File.expand_path('.')
       if Eucalypt.app? directory
@@ -105,6 +105,6 @@ module Eucalypt
       end
     end
 
-    register(Eucalypt::BlogArticleEdit, 'edit', 'edit [COMMAND]', 'Edit blog articles')
+    register(Eucalypt::BlogArticleEdit, 'edit', 'edit [COMMAND]', 'Edit blog articles'.colorize(:grey))
   end
 end

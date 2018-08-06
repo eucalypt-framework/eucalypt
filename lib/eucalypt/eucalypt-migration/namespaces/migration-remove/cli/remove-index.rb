@@ -5,7 +5,7 @@ require 'eucalypt/errors'
 module Eucalypt
   class MigrationRemove < Thor
     option :name, aliases: '-n', type: :string, desc: "Index name"
-    desc "index [TABLE] [*COLUMNS]", "Removes an index"
+    desc "index [TABLE] [*COLUMNS]", "Removes an index".colorize(:grey)
     def index(table, *columns)
       directory = File.expand_path('.')
       if Eucalypt.app? directory

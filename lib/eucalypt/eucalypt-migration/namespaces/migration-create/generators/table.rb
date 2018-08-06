@@ -26,13 +26,23 @@ module Eucalypt
           config = {migration_class_name: migration_name.camelize}
           template 'migration_base.tt', migration.file_path, config
 
+          sanitized_options = []
+          options.each do |k,v|
+            if %w[true false].include? v
+              sanitized_options << [k,v]
+            elsif Eucalypt::Helpers::Numeric.string? v
+              sanitized_options << [k,v]
+            else
+              sanitized_options << [k,":#{v}"]
+            end
+          end
+
           insert_into_file migration.file_path, :after => "def change\n" do
             String.build do |s|
-              opts = []
-              options.each do |k,v|
-                opts << "#{k}: #{%w[true false].include?(v) ? v : ":#{v}"}"
-              end
-              s << "    create_table :#{name}#{", #{opts*', '}"} do |t|\n"
+              s << "    create_table :#{name}"
+              s << ', ' unless sanitized_options.empty?
+              s << sanitized_options.map{|opt| "#{opt.first}: #{opt.last}"}*', '
+              s << " do |t|\n"
               columns.each do |column|
                 n, t = column
                 s << "      t.#{t} :#{n}\n"

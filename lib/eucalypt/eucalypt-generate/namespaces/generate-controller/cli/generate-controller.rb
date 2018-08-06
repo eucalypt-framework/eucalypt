@@ -6,7 +6,7 @@ module Eucalypt
   class Generate < Thor
     option :spec, type: :boolean, default: true, desc: "Include a controller spec file"
     option :rest, aliases: '-r', type: :boolean, default: false,  desc: "Generate REST routes for the controller"
-    desc "controller [NAME]", "Generates a controller"
+    desc "controller [NAME]", "Generates a controller".colorize(:grey)
     def controller(name)
       directory = File.expand_path('.')
       if Eucalypt.app? directory

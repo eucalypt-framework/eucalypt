@@ -15,7 +15,7 @@ module Eucalypt
 
       def generate_roles_migration
         sleep 1
-        migration = Migration[title: "create_roles", template: 'create_roles_migration.tt']
+        migration = Eucalypt::Helpers::Migration[title: "create_roles", template: 'create_roles_migration.tt']
         return unless migration.create_anyway? if migration.exists?
         template migration.template, migration.file_path
       end

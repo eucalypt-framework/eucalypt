@@ -1,7 +1,7 @@
 require_relative '__base__'
 module Eucalypt
   class CLI < Thor
-    desc "test", "Run all application specs"
+    desc "test", "Run all application specs".colorize(:grey)
     def test
       directory = File.expand_path('.')
       if Eucalypt.app? directory

@@ -10,6 +10,6 @@ module Eucalypt
     end
   end
   class CLI < Thor
-    register(Generate, 'generate', 'generate [COMMAND]', 'Generate models, controllers and helpers')
+    register(Generate, 'generate', 'generate [COMMAND]', 'Generate models, controllers and helpers'.colorize(:grey))
   end
 end

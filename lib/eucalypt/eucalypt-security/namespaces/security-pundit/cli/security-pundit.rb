@@ -13,7 +13,7 @@ module Eucalypt
       File.join File.dirname(__dir__), 'templates'
     end
 
-    desc "setup", "Set up Pundit authorization"
+    desc "setup", "Set up Pundit authorization".colorize(:grey)
     def setup
       directory = File.expand_path('.')
       if Eucalypt.app? directory
@@ -33,7 +33,7 @@ module Eucalypt
         create_config_file(:pundit, directory)
 
         # Create roles migration
-        role = Eucalypt::Generators::Role.new.generate_roles_migration
+        Eucalypt::Generators::Role.new.generate_roles_migration
 
         # Create Role model
         role_model_file = File.join(directory, 'app', 'models', 'role.rb')

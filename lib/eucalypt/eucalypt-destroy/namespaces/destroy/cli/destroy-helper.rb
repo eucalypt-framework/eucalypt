@@ -5,7 +5,7 @@ module Eucalypt
     include Thor::Actions
     include Eucalypt::Destroy::Helpers
 
-    desc "helper [NAME]", "Destroys a helper"
+    desc "helper [NAME]", "Destroys a helper".colorize(:grey)
     def helper(name = nil)
       delete_mvc(:helper, name)
     end

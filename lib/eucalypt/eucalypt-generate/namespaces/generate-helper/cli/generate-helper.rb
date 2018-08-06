@@ -5,7 +5,7 @@ require 'eucalypt/errors'
 module Eucalypt
   class Generate < Thor
     option :spec, type: :boolean, default: true, desc: "Include a helper spec file"
-    desc "helper [NAME]", "Generates a helper"
+    desc "helper [NAME]", "Generates a helper".colorize(:grey)
     def helper(name)
       directory = File.expand_path('.')
       if Eucalypt.app? directory

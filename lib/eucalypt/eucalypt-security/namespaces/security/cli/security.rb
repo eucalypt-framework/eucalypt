@@ -11,12 +11,12 @@ module Eucalypt
       basename + ' ' + task.formatted_usage(self, true, subcommand).split(':').join(' ')
     end
 
-    register(Eucalypt::SecurityWarden, 'warden', 'warden [COMMAND]', 'Configure Warden authentication')
-    register(Eucalypt::SecurityPundit, 'pundit', 'pundit [COMMAND]', 'Configure Pundit authorization')
-    register(Eucalypt::SecurityPolicy, 'policy', 'policy [COMMAND]', 'Pundit policy commands')
+    register(Eucalypt::SecurityWarden, 'warden', 'warden [COMMAND]', 'Configure Warden authentication'.colorize(:grey))
+    register(Eucalypt::SecurityPundit, 'pundit', 'pundit [COMMAND]', 'Configure Pundit authorization'.colorize(:grey))
+    register(Eucalypt::SecurityPolicy, 'policy', 'policy [COMMAND]', 'Pundit policy commands'.colorize(:grey))
   end
 
   class CLI < Thor
-    register(Security, 'security', 'security [COMMAND]', 'Manage authentication and authorization')
+    register(Security, 'security', 'security [COMMAND]', 'Manage authentication and authorization'.colorize(:grey))
   end
 end

@@ -8,7 +8,7 @@ module Eucalypt
     option :no, aliases: '-n', type: :array, default: [], desc: "Omit specified scaffold files"
     option :rest, aliases: '-r', type: :boolean, default: false,  desc: "Generate REST routes for the controller"
     option :policy, aliases: '-p', type: :boolean, default: false, desc: "Generate a policy with the scaffold"
-    desc "scaffold [NAME]", "Generates a scaffold"
+    desc "scaffold [NAME]", "Generates a scaffold".colorize(:grey)
     def scaffold(name)
       directory = File.expand_path('.')
       if Eucalypt.app? directory

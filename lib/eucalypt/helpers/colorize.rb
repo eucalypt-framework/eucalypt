@@ -7,7 +7,8 @@ module Eucalypt
         yellow: '93',
         blue: '94',
         magenta: '95',
-        underline: '4'
+        underline: '4',
+        grey: '90'
       }
 
       def colorize(*opts)

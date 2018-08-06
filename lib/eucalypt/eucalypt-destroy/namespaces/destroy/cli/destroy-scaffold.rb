@@ -5,7 +5,7 @@ require 'eucalypt/helpers/app'
 
 module Eucalypt
   class Destroy < Thor
-    desc "scaffold [NAME]", "Destroys a scaffold"
+    desc "scaffold [NAME]", "Destroys a scaffold".colorize(:grey)
     def scaffold(name = nil)
       directory = File.expand_path('.')
       if Eucalypt.app? directory

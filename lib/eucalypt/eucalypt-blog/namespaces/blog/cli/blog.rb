@@ -9,7 +9,7 @@ module Eucalypt
     include Eucalypt::Helpers
 
     method_option :route, type: :string, aliases: '-r', default: 'blog'
-    desc "setup", "Sets up the blog-aware environment"
+    desc "setup", "Sets up the blog-aware environment".colorize(:grey)
     def setup
       directory = File.expand_path('.')
       if Eucalypt.app? directory
@@ -47,10 +47,10 @@ module Eucalypt
       basename + ' ' + task.formatted_usage(self, true, subcommand).split(':').join(' ')
     end
 
-    register(Eucalypt::BlogArticle, 'article', 'article [COMMAND]', 'Create, edit and destroy blog articles')
+    register(Eucalypt::BlogArticle, 'article', 'article [COMMAND]', 'Create, edit and destroy blog articles'.colorize(:grey))
   end
 
   class CLI < Thor
-    register(Blog, 'blog', 'blog [COMMAND]', 'Blog/article related commands')
+    register(Blog, 'blog', 'blog [COMMAND]', 'Blog/article related commands'.colorize(:grey))
   end
 end

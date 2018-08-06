@@ -1,14 +1,13 @@
 require 'thor'
 require 'eucalypt/errors'
 require 'eucalypt/helpers'
-require 'eucalypt/eucalypt-security/namespaces/security-policy-role/generators/policy-role'
 
 module Eucalypt
   class SecurityPolicyRole < Thor
     include Thor::Actions
     include Eucalypt::Helpers
 
-    desc "generate", "Create a new Pundit policy role"
+    desc "generate [POLICY] [ROLE]", "Create a new Pundit policy role".colorize(:grey)
     def generate(name, role)
       directory = File.expand_path('.')
       if Eucalypt.app? directory
@@ -27,21 +26,26 @@ module Eucalypt
           return
         end
 
-        policy_name = name.singularize.underscore.gsub(/\_policy$/,'')
+        policy = Inflect.new(:policy, name)
 
         # Check for policy file and policy role model
-        policy_file = File.join(directory, 'app', 'policies', "#{policy_name}_policy.rb")
-        policy_role_model = File.join(directory, 'app', 'models', "#{policy_name}_role.rb")
+        policy_file = File.join(directory, 'app', 'policies', policy.file_name)
+        policy_role_model = File.join(directory, 'app', 'models', "#{policy.resource}_role.rb")
         unless File.exist?(policy_file) && File.exist?(policy_role_model)
-          Eucalypt::Error.no_policy(policy_name)
+          Eucalypt::Error.no_policy(policy.resource)
           return
         end
 
-        policy_role = Eucalypt::Generators::PolicyRole.new
-        policy_role.destination_root = directory
-
-        # Add role to policy
-        policy_role.generate(policy_name: policy_name, role: role.underscore)
+        # Add role column to policy roles table
+        Dir.chdir(directory) do
+          args = %w[migration create column]
+          args << "#{policy.resource}_roles"
+          args << Inflect.resource(role)
+          args << 'boolean'
+          args << %w[-o default:false]
+          args.flatten!
+          Eucalypt::CLI.start(args)
+        end
       else
         Eucalypt::Error.wrong_directory
       end

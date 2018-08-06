@@ -12,7 +12,7 @@ module Eucalypt
     include Eucalypt::Helpers
     include Eucalypt::Blog::Helpers
 
-    desc "urltitle [URLTITLE]", "Edits the urltitle of a blog post"
+    desc "urltitle [URLTITLE]", "Edits the urltitle of a blog post".colorize(:grey)
     def urltitle(urltitle = nil)
       directory = File.expand_path('.')
       if Eucalypt.app? directory

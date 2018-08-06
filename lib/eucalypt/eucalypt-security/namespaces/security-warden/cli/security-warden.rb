@@ -15,7 +15,7 @@ module Eucalypt
     end
 
     option :controller, type: :boolean, aliases: '-c', default: true, desc: "Include an authentication controller"
-    desc "setup", "Set up Warden authentication"
+    desc "setup", "Set up Warden authentication".colorize(:grey)
     def setup
       directory = File.expand_path('.')
       if Eucalypt.app? directory

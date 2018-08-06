@@ -8,7 +8,7 @@ module Eucalypt
     include Thor::Actions
     include Eucalypt::Helpers
 
-    desc "generate", "Create a new Pundit policy permission"
+    desc "generate [POLICY] [PERMISSION]", "Create a new Pundit policy permission".colorize(:grey)
     def generate(name, permission)
       directory = File.expand_path('.')
       if Eucalypt.app? directory
@@ -27,13 +27,13 @@ module Eucalypt
           return
         end
 
-        policy_name = name.singularize.underscore.gsub(/\_policy$/,'')
+        policy = Inflect.new(:policy, name)
 
         # Check for policy file and policy role model
-        policy_file = File.join(directory, 'app', 'policies', "#{policy_name}_policy.rb")
-        policy_role_model = File.join(directory, 'app', 'models', "#{policy_name}_role.rb")
+        policy_file = File.join(directory, 'app', 'policies', policy.file_name)
+        policy_role_model = File.join(directory, 'app', 'models', "#{policy.resource}_role.rb")
         unless File.exist?(policy_file) && File.exist?(policy_role_model)
-          Eucalypt::Error.no_policy(policy_name)
+          Eucalypt::Error.no_policy(policy.resource)
           return
         end
 
@@ -41,7 +41,7 @@ module Eucalypt
         policy_permission.destination_root = directory
 
         # Add permission record to policy role table
-        policy_permission.generate(policy_name: policy_name, permission: permission.underscore)
+        policy_permission.generate(policy_name: policy.resource, permission: Inflect.resource_keep_inflection(permission))
       else
         Eucalypt::Error.wrong_directory
       end

@@ -5,7 +5,7 @@ module Eucalypt
     include Thor::Actions
     include Eucalypt::Destroy::Helpers
 
-    desc "controller [NAME]", "Destroys a controller"
+    desc "controller [NAME]", "Destroys a controller".colorize(:grey)
     def controller(name = nil)
       delete_mvc(:controller, name)
     end

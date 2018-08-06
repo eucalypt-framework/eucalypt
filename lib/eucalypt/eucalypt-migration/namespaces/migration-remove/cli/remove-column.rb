@@ -4,7 +4,7 @@ require 'eucalypt/errors'
 
 module Eucalypt
   class MigrationRemove < Thor
-    desc "column [TABLE] [NAME]", "Removes a column"
+    desc "column [TABLE] [NAME]", "Removes a column".colorize(:grey)
     def column(table, name)
       directory = File.expand_path('.')
       if Eucalypt.app? directory

@@ -1,14 +1,14 @@
-require 'eucalypt/eucalypt-migration/namespaces/migration-remove/generators/table'
+require 'eucalypt/eucalypt-migration/namespaces/migration-blank/generators/blank'
 require 'eucalypt/helpers/app'
 require 'eucalypt/errors'
 
 module Eucalypt
-  class MigrationRemove < Thor
-    desc "table [NAME]", "Removes a table".colorize(:grey)
-    def table(name)
+  class Migration < Thor
+    desc "blank [NAME]", "Creates a blank migration".colorize(:grey)
+    def blank(name)
       directory = File.expand_path('.')
       if Eucalypt.app? directory
-        migration = Eucalypt::Generators::Remove::Table.new
+        migration = Eucalypt::Generators::Blank.new
         migration.destination_root = directory
         migration.generate(name: name)
       else
