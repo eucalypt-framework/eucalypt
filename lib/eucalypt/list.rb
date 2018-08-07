@@ -1,8 +1,11 @@
 require 'thor'
+require 'eucalypt/helpers/app'
 require 'eucalypt/helpers/colorize'
 
 module Eucalypt
   module List
+    INDENT = 2.freeze
+
     def help(shell, subcommand = false)
       list = printable_commands(true, subcommand)
       Thor::Util.thor_classes_in(self).each do |klass|
@@ -11,6 +14,7 @@ module Eucalypt
 
       #list.reject! {|l| l[0].split[1] == 'help'}
       list.reject! {|l| l.first.include? 'help'}
+      list.map {|l| l.last.sub!(?#, '·'.colorize(:pale_blue, :bold)+'›')}
 
       if defined?(@package_name) && @package_name
         shell.say "#{@package_name} commands:"
@@ -19,11 +23,9 @@ module Eucalypt
         shell.say "#{"Commands".colorize(:bold)}:"
       end
 
-      shell.print_table(list, :indent => 2, :truncate => true)
-      shell.say
+      shell.print_table(list, indent: INDENT, :truncate => true)
+      #shell.say
       class_options_help(shell)
-
-      shell.say "All commands can be run with #{'-h'.colorize(:pale_blue)} (or #{'--help'.colorize(:pale_blue)}) for more information."
     end
   end
 end

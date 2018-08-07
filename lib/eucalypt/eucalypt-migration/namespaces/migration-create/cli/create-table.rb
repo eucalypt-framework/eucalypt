@@ -5,7 +5,7 @@ require 'eucalypt/errors'
 module Eucalypt
   class MigrationCreate < Thor
     option :options, aliases: '-o', type: :hash, default: {}, desc: "Table options"
-    desc "table [NAME] *[COLUMN ꞉TYPE]", "Creates a table".colorize(:grey)
+    desc "table [NAME] *[COLUMN∶TYPE]", "Creates a table".colorize(:grey)
     def table(name, *columns)
       directory = File.expand_path('.')
       if Eucalypt.app? directory
