@@ -5,14 +5,12 @@ require 'eucalypt/eucalypt-generate/namespaces/generate/cli/generate'
 require 'eucalypt/eucalypt-destroy/namespaces/destroy/cli/destroy'
 require 'eucalypt/eucalypt-security/namespaces/security/cli/security'
 require 'eucalypt/eucalypt-migration/namespaces/migration/cli/migration'
-require 'eucalypt/list'
-require 'eucalypt/help'
 
 module Eucalypt
   class CLI < Thor
     class << self
+      require 'eucalypt/list'
       include Eucalypt::List
-      include Eucalypt::Help
     end
   end
 end
