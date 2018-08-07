@@ -7,6 +7,7 @@ module Eucalypt
         yellow: '93',
         blue: '94',
         magenta: '95',
+        pale_blue: '34',
         underline: '4',
         grey: '90'
       }

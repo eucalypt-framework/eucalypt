@@ -21,7 +21,7 @@ module Eucalypt
           end
 
           def setup(message = String.new)
-            puts "\n#{message.colorize(:underline, :blue)}"
+            puts "\n#{message.colorize(:bold, :blue)}"
           end
         end
       end

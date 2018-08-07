@@ -2,7 +2,7 @@ require_relative '__base__'
 module Eucalypt
   class CLI < Thor
     method_option :port, type: :numeric, aliases: '-p'
-    desc "launch [ENV]", "Serves your application".colorize(:grey)
+    desc "launch [ENV]", "Launches your application".colorize(:grey)
     def launch(env = ENV['RACK_ENV']||'development')
       directory = File.expand_path('.')
       if Eucalypt.app? directory

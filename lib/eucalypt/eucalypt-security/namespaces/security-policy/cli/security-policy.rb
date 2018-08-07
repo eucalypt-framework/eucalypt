@@ -66,7 +66,7 @@ module Eucalypt
 
         # Generate permissions
         options[:permissions].each do |permission|
-          Eucalypt::CLI.start(['security', 'policy', 'permission', 'generate', policy_name, permission])
+          Eucalypt::CLI.start(['security', 'policy', 'permission', 'generate', policy.resource, permission])
         end
       else
         Eucalypt::Error.wrong_directory
