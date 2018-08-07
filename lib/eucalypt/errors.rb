@@ -14,6 +14,15 @@ module Eucalypt
         puts " - Creating a #{Eucalypt::APP_FILE.colorize(:bold)} if you deleted it."
       end
 
+      def found_app_file
+        Out.warning "Found #{Eucalypt::APP_FILE.colorize(:bold)} in the current directory."
+        Out.info
+        puts " - The current directory might already be a Eucalypt application."
+        puts " - Proceeding with the initialization will create a new nested application."
+        puts " - This shouldn't be a problem, but is it really what you intended?"
+        puts
+      end
+
       def no_articles
         Out.error "Couldn't find any blog articles"
       end

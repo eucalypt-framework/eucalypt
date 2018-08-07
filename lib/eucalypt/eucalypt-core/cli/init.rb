@@ -14,6 +14,12 @@ module Eucalypt
         Out.error "Directory #{name.colorize(:bold)} already exists."
         return
       else
+        if File.file? File.join(current_directory, Eucalypt::APP_FILE)
+          Eucalypt::Error.found_app_file
+          initialize_anyway = ask "Initialize application anyway?", limited_to: %w[y Y Yes YES n N No NO]
+          return unless %w[y Y Yes YES].include? initialize_anyway
+        end
+
         Out.setup "Setting up Eucalypt application..."
         Eucalypt::CLI.source_root File.join(File.dirname(__dir__), 'templates')
 
