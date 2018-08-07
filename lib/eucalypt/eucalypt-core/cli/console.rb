@@ -1,7 +1,7 @@
 require_relative '__base__'
 module Eucalypt
   class CLI < Thor
-    desc "console", "Starts an interactive console with all application files loaded".colorize(:grey)
+    desc "console", "Interactive console with all files loaded".colorize(:grey)
     def console
       directory = File.expand_path('.')
       if Eucalypt.app? directory

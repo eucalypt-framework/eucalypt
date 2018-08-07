@@ -19,6 +19,6 @@ module Eucalypt
     register(Eucalypt::MigrationChange, 'change', 'change [COMMAND]', 'Generate change migrations'.colorize(:grey))
   end
   class CLI < Thor
-    register(Migration, 'migration', 'migration [COMMAND]', 'Generate database/model migrations'.colorize(:grey))
+    register(Migration, 'migration', 'migration [COMMAND]', 'Generate ActiveRecord migrations'.colorize(:grey))
   end
 end

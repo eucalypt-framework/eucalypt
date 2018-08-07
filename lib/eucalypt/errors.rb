@@ -6,6 +6,7 @@ module Eucalypt
     include Eucalypt::Helpers::Messages
     class << self
       def wrong_directory
+        puts
         Out.error "Couldn't find #{Eucalypt::APP_FILE.colorize(:bold)} in current directory."
         Out.info 'Try:'
         puts " - Changing the current working directory to your application's root directory."

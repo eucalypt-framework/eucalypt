@@ -51,6 +51,6 @@ module Eucalypt
   end
 
   class CLI < Thor
-    register(Blog, 'blog', 'blog [COMMAND]', 'Blog/article related commands'.colorize(:grey))
+    register(Blog, 'blog', 'blog [COMMAND]', 'Manage blog environment'.colorize(:grey))
   end
 end

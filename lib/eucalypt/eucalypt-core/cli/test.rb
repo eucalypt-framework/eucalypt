@@ -1,11 +1,12 @@
 require_relative '__base__'
 module Eucalypt
   class CLI < Thor
-    desc "test", "Run all application specs".colorize(:grey)
+    method_option :summarized, type: :boolean, default: false, aliases: '-s'
+    desc "test", "Run all application tests".colorize(:grey)
     def test
       directory = File.expand_path('.')
       if Eucalypt.app? directory
-        exec "rspec -fd spec"
+        exec (options[:summarized] ? "rspec -fd spec" : "rspec spec")
       else
         Eucalypt::Error.wrong_directory
       end
