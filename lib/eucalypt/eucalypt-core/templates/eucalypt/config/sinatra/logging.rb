@@ -15,6 +15,8 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do
-    define_method(:l) { settings.logger }
+    def logger
+      settings.logger
+    end
   end
 end
