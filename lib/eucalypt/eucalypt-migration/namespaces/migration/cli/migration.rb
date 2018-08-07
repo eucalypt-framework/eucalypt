@@ -9,8 +9,12 @@ module Eucalypt
     include Thor::Actions
     include Eucalypt::Helpers
 
-    def self.banner(task, namespace = false, subcommand = true)
-      basename + ' ' + task.formatted_usage(self, true, subcommand).split(':').join(' ')
+    class << self
+      require 'eucalypt/list'
+      include Eucalypt::List
+      def banner(task, namespace = false, subcommand = true)
+        basename + ' ' + task.formatted_usage(self, true, subcommand).split(':').join(' ')
+      end
     end
 
     register(Eucalypt::MigrationCreate, 'create', 'create [COMMAND]', 'Generate creation migrations'.colorize(:grey))

@@ -2,14 +2,15 @@ require 'thor'
 require 'eucalypt/helpers/colorize'
 
 module Eucalypt
-  class CLI < Thor
-    def self.help(shell, subcommand = false)
+  module List
+    def help(shell, subcommand = false)
       list = printable_commands(true, subcommand)
       Thor::Util.thor_classes_in(self).each do |klass|
         list += klass.printable_commands(false)
       end
 
-      list.reject! {|l| l[0].split[1] == 'help'}
+      #list.reject! {|l| l[0].split[1] == 'help'}
+      list.reject! {|l| l.first.include? 'help'}
 
       if defined?(@package_name) && @package_name
         shell.say "#{@package_name} commands:"

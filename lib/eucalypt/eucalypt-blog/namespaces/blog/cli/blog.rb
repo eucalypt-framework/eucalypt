@@ -43,8 +43,12 @@ module Eucalypt
       end
     end
 
-    def self.banner(task, namespace = false, subcommand = true)
-      basename + ' ' + task.formatted_usage(self, true, subcommand).split(':').join(' ')
+    class << self
+      require 'eucalypt/list'
+      include Eucalypt::List
+      def banner(task, namespace = false, subcommand = true)
+        basename + ' ' + task.formatted_usage(self, true, subcommand).split(':').join(' ')
+      end
     end
 
     register(Eucalypt::BlogArticle, 'article', 'article [COMMAND]', 'Create, edit and destroy blog articles'.colorize(:grey))

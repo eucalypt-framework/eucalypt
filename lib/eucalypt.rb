@@ -6,3 +6,11 @@ require 'eucalypt/eucalypt-destroy/namespaces/destroy/cli/destroy'
 require 'eucalypt/eucalypt-security/namespaces/security/cli/security'
 require 'eucalypt/eucalypt-migration/namespaces/migration/cli/migration'
 require 'eucalypt/list'
+
+module Eucalypt
+  class CLI < Thor
+    class << self
+      include Eucalypt::List
+    end
+  end
+end

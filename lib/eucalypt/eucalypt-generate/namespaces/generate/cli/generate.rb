@@ -5,8 +5,12 @@ require_relative 'generate-scaffold'
 
 module Eucalypt
   class Generate < Thor
-    def self.banner(task, namespace = false, subcommand = true)
-      basename + ' ' + task.formatted_usage(self, true, subcommand).split(':').join(' ')
+    class << self
+      require 'eucalypt/list'
+      include Eucalypt::List
+      def banner(task, namespace = false, subcommand = true)
+        basename + ' ' + task.formatted_usage(self, true, subcommand).split(':').join(' ')
+      end
     end
   end
   class CLI < Thor

@@ -50,8 +50,12 @@ module Eucalypt
     # def destroy()
     # end
 
-    def self.banner(task, namespace = false, subcommand = true)
-      "#{basename} security policy #{task.formatted_usage(self, true, subcommand).split(':').join(' ')}"
+    class << self
+      require 'eucalypt/list'
+      include Eucalypt::List
+      def banner(task, namespace = false, subcommand = true)
+        "#{basename} security policy #{task.formatted_usage(self, true, subcommand).split(':').join(' ')}"
+      end
     end
   end
 end
