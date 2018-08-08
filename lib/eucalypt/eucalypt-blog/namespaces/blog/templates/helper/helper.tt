@@ -1,6 +1,5 @@
 module BlogHelper
   include Eucalypt::Blog::Helpers
   Blog.articles = Eucalypt.glob 'app', 'views', 'blog', 'markdown', '**', '*.md'
-
-  # Define your other helper methods here...
+  # Add your helper methods here...
 end
