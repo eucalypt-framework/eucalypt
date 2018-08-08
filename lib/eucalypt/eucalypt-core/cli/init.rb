@@ -3,6 +3,8 @@ require 'string/builder'
 module Eucalypt
   class CLI < Thor
     using String::Builder
+    method_option :git, type: :boolean, default: true
+    method_option :bundle, type: :boolean, default: true
     method_option :blog, type: :boolean, default: false, aliases: '-b'
     method_option :route, type: :string, aliases: '-r'
     desc "init [NAME]", "Sets up your application".colorize(:grey)
@@ -41,12 +43,19 @@ module Eucalypt
         config = {version: Eucalypt::VERSION}
         template 'Gemfile.tt', File.join(root, 'Gemfile'), config
 
+        inside(root) { run('git init') } if options[:git]
+
         if options[:blog]
-          Dir.chdir(root) do
+          inside(root) do
             args = %w[blog setup]
             args << '-r' << options[:route] if options[:route]
             Eucalypt::CLI.start(args)
           end
+        end
+
+        if options[:bundle]
+          Out.setup "Installing gem dependencies..."
+          inside(root) { run('bundle install') }
         end
       end
     end

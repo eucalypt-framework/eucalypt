@@ -5,7 +5,8 @@ module Eucalypt
     def console
       directory = File.expand_path('.')
       if Eucalypt.app? directory
-        exec "chmod +x bin/console && bundle exec bin/console"
+        inside(directory) { chmod('bin/console', '+x') }
+        exec "bundle exec bin/console"
       else
         Eucalypt::Error.wrong_directory
       end
