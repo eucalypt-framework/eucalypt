@@ -1,3 +1,5 @@
+require 'sinatra'
+class ApplicationController < Sinatra::Base; end
 module Eucalypt
   def self.Controller(route:)
     name = File.basename(caller[0][/[^:]+/],'.*').camelize

@@ -1,8 +1,19 @@
 require 'bundler'
 Bundler.require :default
-require_relative 'config/root'
 
-Eucalypt.glob('config', 'initializers', '*.rb').each{|file| require file}
+Eucalypt::ROOT = __dir__.freeze
+
+module Eucalypt
+  class << self
+    def root() ROOT end
+    def path(*args) File.join(ROOT, *args) end
+    def glob(*args, &block) Dir.glob(self.path(*args), &block) end
+  end
+end
+
+Eucalypt.glob 'config', 'initializers', '*.rb', &method(:require)
+
+Static = Eucalypt::Static.new(Eucalypt.path('app', 'structured'), symbolize: true).freeze
 
 class ApplicationController < Sinatra::Base
   # Set server
@@ -12,7 +23,7 @@ class ApplicationController < Sinatra::Base
   set :app_file, __FILE__
 
   # Set application root directory
-  set :root, Eucalypt::ROOT
+  set :root, Eucalypt.root
 
   # Set views directory
   set :views, Eucalypt.path('app', 'views')
@@ -24,13 +35,8 @@ class ApplicationController < Sinatra::Base
   helpers Hanami::Helpers, Hanami::Assets::Helpers
 end
 
-Eucalypt.glob('config', '*.rb').each{|file| require file}
-
-require Eucalypt.path('config', 'sinatra', 'logging')
-Eucalypt.glob('config', 'sinatra', '*.rb').each{|file| require file}
-
-if File.file?(file = Eucalypt.path('app', 'helpers', 'application_helper.rb'))
-  require file
-end
-require Eucalypt.path('app', 'controllers', 'application_controller')
-Eucalypt.glob('app', '{models,policies,helpers,controllers}', '*.rb').each{|file| require file}
+require Eucalypt.path 'config', 'logging'
+Eucalypt.glob 'config', '*.rb', &method(:require)
+Eucalypt.glob 'app', 'helpers', '{application_helper.rb}', &method(:require)
+require Eucalypt.path 'app', 'controllers', 'application_controller'
+Eucalypt.glob 'app', '{models,policies,helpers,controllers}', '*.rb', &method(:require)

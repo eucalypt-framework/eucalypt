@@ -28,6 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "activerecord", "~> 5.2"
   spec.add_runtime_dependency "front_matter_parser", "0.2.0"
   spec.add_runtime_dependency "thor", "~> 0.20"
+  spec.add_runtime_dependency "sinatra", "~> 2.0"
 
   spec.metadata = {
     "documentation_uri" => "https://eucalypt.gitbook.io/eucalypt/",

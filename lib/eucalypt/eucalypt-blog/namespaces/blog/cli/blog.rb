@@ -27,15 +27,15 @@ module Eucalypt
         generator.controller(route: options[:route])
         generator.views
 
-        asset_pipeline_file = File.join(directory, 'config', 'sinatra', 'asset_pipeline.rb')
+        asset_pipeline_file = File.join(directory, 'config', 'asset_pipeline.rb')
 
         File.open(asset_pipeline_file) do |f|
-          return if f.read.include? "environment.append_path Eucalypt.path('app', 'assets', 'blog')"
+          return if f.read.include? "environment.append_path Eucalypt.path 'app', 'assets', 'blog'"
         end
 
         insert_into_file(
           asset_pipeline_file,
-          "\tenvironment.append_path Eucalypt.path('app', 'assets', 'blog')\n",
+          "\tenvironment.append_path Eucalypt.path 'app', 'assets', 'blog'\n",
           after: "set :environment, Sprockets::Environment.new\n"
         )
       else

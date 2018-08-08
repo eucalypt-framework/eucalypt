@@ -1,0 +1,30 @@
+# -------------------------------------------------------------------------------------------------------- #
+# DESCRIPTION:                                                                                             #
+# The `structured` directory should contain structured data in the YAML or JSON formats.                   #
+# Currently supported extensions are .yaml, .yml, .json and .geojson.                                      #
+#                                                                                                          #
+# The `Static` helper constant can be accessed from anywhere within your application.                      #
+# This constant acts as a link to the `structured` directory, allowing you to access data.                 #
+# -------------------------------------------------------------------------------------------------------- #
+# EXAMPLES:                                                                                                #
+# - The data in a JSON file at `structured/service-centers.json` can be accessed with:                     #
+#   `Static.service_centers`                                                                               #
+# - The data in a YAML file at `structured/hobbies/sports/golf.yml` can be accessed with:                  #
+#   `Static.hobbies.sports.golf`                                                                           #
+# -------------------------------------------------------------------------------------------------------- #
+# VIEWING DEFINED SUBDIRECTORY AND FILE METHODS:                                                           #
+# The `Object#methods` method can be used to check for defined subdirectory and file methods.              #
+# Consider a structure like the following:                                                                 #
+#                                                                                                          #
+# structured                      Static.methods(false) #=> [:hobbies, :main]                              #
+# ├── hobbies                     Static.hobbies.methods(false) #=> [:academic, :non_academic]             #
+# │   ├── academic                Static.hobbies.academic.methods(false) #=> [:ruby]                       #
+# │   │   └── ruby.yml                                                                                     #
+# │   └── non-academic            Static.hobbies.non_academic.methods(false) #=> [:games, :sports]         #
+# │       ├── games               Static.hobbies.non_academic.games.methods(false)  #=> [:chess]           #
+# │       │   └── chess.yml                                                                                #
+# │       └── sports                                                                                       #
+# │           ├── climbing.json   Static.hobbies.non_academic.sports.methods(false) #=> [:climbing, :golf] #
+# │           └── golf.yml                                                                                 #
+# └── main.yml                                                                                             #
+# -------------------------------------------------------------------------------------------------------- #
