@@ -23,7 +23,7 @@ module Eucalypt
         shell.say "#{"Commands".colorize(:bold)}:"
       end
 
-      shell.print_table(list, indent: INDENT, :truncate => true)
+      shell.print_table(list, indent: INDENT, truncate: false)
       #shell.say
       class_options_help(shell)
     end
