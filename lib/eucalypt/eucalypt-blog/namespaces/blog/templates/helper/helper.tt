@@ -1,6 +1,6 @@
 module BlogHelper
   include Eucalypt::Blog::Helpers
-  Blog.articles = Dir[Eucalypt.path('app', 'views', 'blog', 'markdown', '**', '*.md')]
+  Blog.articles = Eucalypt.glob 'app', 'views', 'blog', 'markdown', '**', '*.md'
 
   # Define your other helper methods here...
 end

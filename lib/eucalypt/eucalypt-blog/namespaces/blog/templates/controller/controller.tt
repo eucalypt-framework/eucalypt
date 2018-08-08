@@ -19,15 +19,15 @@ class BlogController < Eucalypt::Controller(route: '<%= config[:route] %>')
   end
 
   # Search for blog articles by tag at this route
-  query = Proc.new do
+  get '/search/:query' do
     @query = params[:query]
     redirect to('/') unless @query.match /^[a-zA-Z]*[a-zA-Z0-9\\-_.]*[a-zA-Z0-9]$/
     @articles = Blog.search(@query).sort_by_date(order: :descending)
     erb :'blog/search', layout: :'layouts/blog/articles'
   end
-  get "/search/:query", &query
-  post "/search/:query", &query
 
   # Redirect all other blog routes
-  get(%r{/.*}) {redirect to('/')}
+  get %r{/.*} do
+    redirect to('/')
+  end
 end
