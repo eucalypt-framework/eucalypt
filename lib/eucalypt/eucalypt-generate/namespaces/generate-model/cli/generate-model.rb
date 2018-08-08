@@ -4,14 +4,15 @@ require 'eucalypt/errors'
 
 module Eucalypt
   class Generate < Thor
+    option :table, type: :boolean, default: true, desc: "Generate table migration"
     option :spec, type: :boolean, default: true, desc: "Include a model spec file"
-    desc "model [NAME]", "Generates a model".colorize(:grey)
-    def model(name)
+    desc "model [NAME] *[COLUMN∶TYPE]", "Generates a model".colorize(:grey)
+    def model(name, *columns)
       directory = File.expand_path('.')
       if Eucalypt.app? directory
         model = Eucalypt::Generators::Model.new
         model.destination_root = directory
-        model.generate(name: name, spec: options[:spec])
+        model.generate(name: name, spec: options[:spec], table: options[:table], columns: columns)
       else
         Eucalypt::Error.wrong_directory
       end

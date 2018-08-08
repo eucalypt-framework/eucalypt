@@ -39,7 +39,7 @@ module Eucalypt
         role_model_file = File.join(directory, 'app', 'models', 'role.rb')
         Out.warning "Role model already exists." if File.file? role_model_file
         Dir.chdir(directory) do
-          Eucalypt::CLI.start(%w[generate model role --no-spec])
+          Eucalypt::CLI.start(%w[generate model role --no-spec --no-table])
         end
 
         # Add belongs_to to Role model

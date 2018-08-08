@@ -26,7 +26,7 @@ module Eucalypt
         Out.warning 'User model already exists.' if File.file? model_file
 
         Dir.chdir(directory) do
-          Eucalypt::CLI.start(%w[generate model user])
+          Eucalypt::CLI.start(%w[generate model user --no-table])
         end
 
         File.open(model_file) do |f|

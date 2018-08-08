@@ -43,7 +43,7 @@ module Eucalypt
 
         # Create policy role model
         Dir.chdir(directory) do
-          Eucalypt::CLI.start(['generate', 'model', "#{policy.resource}_role", '--no-spec'])
+          Eucalypt::CLI.start(['generate', 'model', "#{policy.resource}_role", '--no-spec', '--no-table'])
         end
 
         # Add validation to role model

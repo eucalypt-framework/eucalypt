@@ -13,11 +13,12 @@ module Eucalypt
         File.join File.dirname(__dir__), 'templates'
       end
 
-      def generate(spec: true, name:)
+      def generate(spec: true, columns: [], table: true, name:)
         model = Inflect.new(:model, name)
         config = {class_name: model.class_name}
         template("model.tt", model.file_path, config)
         template("model_spec.tt", model.spec_path, config) if spec
+        Eucalypt::CLI.start(['migration', 'create', 'table', Inflect.resources(name), *columns]) if table
       end
     end
   end

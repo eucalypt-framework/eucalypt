@@ -24,7 +24,7 @@ module Eucalypt
           migration = Eucalypt::Helpers::Migration[title: migration_name, template: 'migration_base.tt']
           return unless migration.create_anyway? if migration.exists?
           config = {migration_class_name: migration_name.camelize}
-          template 'migration_base.tt', migration.file_path, config
+          template migration.template, migration.file_path, config
 
           insert_into_file migration.file_path, :after => "def change\n" do
             String.build do |s|
