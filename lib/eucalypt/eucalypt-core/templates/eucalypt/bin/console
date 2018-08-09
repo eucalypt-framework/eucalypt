@@ -1,4 +1,0 @@
-#!/usr/bin/env ruby
-require 'irb'
-require './app'
-IRB.start

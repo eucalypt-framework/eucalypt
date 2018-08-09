@@ -32,6 +32,8 @@ module Eucalypt
         controller_spec = !(legal & %i[controller_spec cs]).present?
 
         if model
+          validation = Eucalypt::Helpers::Migration::Validation.new columns
+          return if validation.any_invalid?
           model = Eucalypt::Generators::Model.new
           model.destination_root = directory
           model.generate(name: name, spec: model_spec, table: options[:table], columns: columns)

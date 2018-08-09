@@ -4,7 +4,7 @@
 
 # Eucalypt
 
-Rework of the Simplatra template and CLI.
+Micro-framework and CLI for the generation and maintenance of structured Sinatra web applications.
 
 ## Installation
 
@@ -19,17 +19,11 @@ $ gem install eucalypt
 Initialize a new application with:
 
 ```bash
-$ eucalypt init eucalypt
-```
-
-Move into your new application's directory and run:
-
-```bash
-$ bundle install
+$ eucalypt init my-application
 ```
 
 And you're ready to go!
 
 ## Notes
 
-**Still in pre-release phases (currently alpha)!**
+Still in pre-release phases!

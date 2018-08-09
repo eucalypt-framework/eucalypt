@@ -1,9 +1,13 @@
 require 'eucalypt/helpers/messages'
 require 'eucalypt/helpers/app'
+require 'eucalypt/helpers/migration'
+require 'string/builder'
 
 module Eucalypt
   module Error
     include Eucalypt::Helpers::Messages
+    using String::Builder
+
     class << self
       def wrong_directory
         puts
@@ -70,6 +74,27 @@ module Eucalypt
         Out.info
         command = "eucalypt security policy g #{policy_name}"
         puts " - Ensure you have run the setup command `#{command.colorize(:bold)}`."
+      end
+
+      def invalid_columns(invalid_declarations, invalid_types)
+        puts if invalid_declarations.any? || invalid_types.any?
+        if invalid_declarations.any?
+          Out.error "Invalid column declaration(s): #{invalid_declarations.inspect}"
+          Out.info "Column declarations should match the regex: #{Eucalypt::Helpers::Migration::Validation::DECLARATION_REGEX.inspect}"
+          puts " - Examples: name:string, price:decimal, elo:primary_key"
+        end
+        if invalid_types.any?
+          output = String.build "Invalid column type(s): " do |s|
+            invalid_types.each_with_index do |obj, i|
+              type, column = obj[:type], obj[:column]
+              s << "#{column}:#{type.colorize(:bold)}"
+              s << ', ' unless i == invalid_types.size-1
+            end
+          end
+          puts if invalid_declarations.any? && invalid_types.any?
+          Out.error output
+          Out.info "To list all permitted column types, run the command `#{"eucalypt migration -t".colorize(:bold)}`"
+        end
       end
     end
   end

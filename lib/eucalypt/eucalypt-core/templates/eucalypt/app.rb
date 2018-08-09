@@ -13,7 +13,7 @@ end
 
 Eucalypt.glob 'config', 'initializers', '*.rb', &method(:require)
 
-Static = Eucalypt::Static.new(Eucalypt.path('app', 'structured'), symbolize: true).freeze
+Static = Eucalypt::Static.new(Eucalypt.path('app', 'static'), symbolize: true).freeze
 
 class ApplicationController < Sinatra::Base
   # Set server
