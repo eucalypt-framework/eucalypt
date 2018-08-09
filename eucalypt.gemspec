@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Edwin Onuonga"]
   spec.email         = ["edwinonuonga@gmail.com"]
 
-  spec.summary       = %q{A simple MVC Sinatra template and CLI for creating dynamic web applications.}
+  spec.summary       = %q{Micro-framework and CLI for the generation and maintenance of structured Sinatra web applications.}
   spec.homepage      = "https://eucalypt.gitbook.io/eucalypt/"
   spec.license       = "MIT"
   spec.files         = Dir.glob('lib/**/*', File::FNM_DOTMATCH) + %w[Gemfile LICENSE README.md Rakefile eucalypt.gemspec bin/eucalypt]
