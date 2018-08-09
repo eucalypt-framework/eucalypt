@@ -5,8 +5,8 @@ require 'thor'
 
 module Eucalypt
   module Generators
-    module Remove
-      class Table < Thor::Group
+    module Drop
+      class Column < Thor::Group
         include Thor::Actions
         include Eucalypt::Helpers
         using String::Builder
@@ -15,11 +15,12 @@ module Eucalypt
           File.join File.dirname(File.dirname(File.dirname __dir__))
         end
 
-        def generate(name:)
+        def generate(table:, name:)
+          table = Inflect.resource_keep_inflection(table.to_s)
           name = Inflect.resource_keep_inflection(name.to_s)
 
           sleep 1
-          migration_name = "remove_#{name}"
+          migration_name = "drop_#{name}_from_#{table}"
           migration = Eucalypt::Helpers::Migration[title: migration_name, template: 'migration_base.tt']
           return unless migration.create_anyway? if migration.exists?
           config = {migration_class_name: migration_name.camelize}
@@ -27,7 +28,7 @@ module Eucalypt
 
           insert_into_file migration.file_path, :after => "def change\n" do
             String.build do |s|
-              s << "    drop_table :#{name}\n"
+              s << "    remove_column :#{table}, :#{name}\n"
             end
           end
         end

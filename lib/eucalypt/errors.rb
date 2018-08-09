@@ -93,8 +93,14 @@ module Eucalypt
           end
           puts if invalid_declarations.any? && invalid_types.any?
           Out.error output
-          Out.info "To list all permitted column types, run the command `#{"eucalypt migration -t".colorize(:bold)}`"
+          Out.info "To list all permitted column types, run the command `#{"eucalypt migration types".colorize(:bold)}`"
         end
+      end
+
+      def invalid_type(type)
+        puts
+        Out.error "Invalid column type: #{type.colorize(:bold)}"
+        Out.info "To list all permitted column types, run the command `#{"eucalypt migration types".colorize(:bold)}`"
       end
     end
   end

@@ -1,15 +1,16 @@
-require 'eucalypt/eucalypt-migration/namespaces/migration-create/generators/column'
+require 'eucalypt/eucalypt-migration/namespaces/migration-add/generators/column'
 require 'eucalypt/helpers/app'
 require 'eucalypt/errors'
 
 module Eucalypt
-  class MigrationCreate < Thor
+  class MigrationAdd < Thor
     option :options, aliases: '-o', type: :hash, default: {}, desc: "Column options"
-    desc "column [TABLE] [COLUMN] [TYPE]", "Creates a column".colorize(:grey)
+    desc "column [TABLE] [COLUMN] [TYPE]", "Adds a column".colorize(:grey)
     def column(table, column, type)
       directory = File.expand_path('.')
       if Eucalypt.app? directory
-        migration = Eucalypt::Generators::Create::Column.new
+        return unless Eucalypt::Helpers::Migration::Validation.valid_type? type
+        migration = Eucalypt::Generators::Add::Column.new
         migration.destination_root = directory
         migration.generate(table: table, column: column, type: type, options: options[:options])
       else

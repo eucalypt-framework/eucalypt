@@ -1,9 +1,11 @@
 require 'thor'
 require 'eucalypt/helpers'
-require_relative 'create-table'
+require_relative 'drop-table'
+require_relative 'drop-index'
+require_relative 'drop-column'
 
 module Eucalypt
-  class MigrationCreate < Thor
+  class MigrationDrop < Thor
     include Thor::Actions
 
     class << self

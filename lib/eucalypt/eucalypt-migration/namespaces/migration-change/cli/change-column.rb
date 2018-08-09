@@ -10,6 +10,7 @@ module Eucalypt
     def column(table, column, type)
       directory = File.expand_path('.')
       if Eucalypt.app? directory
+        return unless Eucalypt::Helpers::Migration::Validation.valid_type? type
         migration = Eucalypt::Generators::Change::Column.new
         migration.destination_root = directory
         migration.generate(table: table, column: column, type: type, options: options[:options])

@@ -63,6 +63,12 @@ module Eucalypt
           Eucalypt::Error.invalid_columns(@invalid_declarations, @invalid_types) if any_invalid
           return any_invalid
         end
+
+        def self.valid_type?(type)
+          valid_type = COLUMN_TYPES.include? type.to_sym
+          Eucalypt::Error.invalid_type(type)
+          return valid_type
+        end
       end
 
       private

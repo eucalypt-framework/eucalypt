@@ -38,7 +38,7 @@ module Eucalypt
 
         # Add role column to policy roles table
         Dir.chdir(directory) do
-          args = %w[migration create column]
+          args = %w[migration add column]
           args << "#{policy.resource}_roles"
           args << Inflect.resource(role)
           args << 'boolean'

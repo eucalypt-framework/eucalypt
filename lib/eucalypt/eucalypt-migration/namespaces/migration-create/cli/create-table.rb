@@ -1,6 +1,7 @@
 require 'eucalypt/eucalypt-migration/namespaces/migration-create/generators/table'
 require 'eucalypt/helpers/app'
 require 'eucalypt/errors'
+require 'eucalypt/helpers'
 
 module Eucalypt
   class MigrationCreate < Thor
@@ -9,6 +10,8 @@ module Eucalypt
     def table(name, *columns)
       directory = File.expand_path('.')
       if Eucalypt.app? directory
+        validation = Eucalypt::Helpers::Migration::Validation.new columns
+        return if validation.any_invalid?
         migration = Eucalypt::Generators::Create::Table.new
         migration.destination_root = directory
         migration.generate(name: name, columns: columns, options: options[:options])

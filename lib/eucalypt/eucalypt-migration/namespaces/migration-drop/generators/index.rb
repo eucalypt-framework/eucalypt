@@ -5,7 +5,7 @@ require 'thor'
 
 module Eucalypt
   module Generators
-    module Remove
+    module Drop
       class Index < Thor::Group
         include Thor::Actions
         include Eucalypt::Helpers
@@ -15,12 +15,12 @@ module Eucalypt
           File.join File.dirname(File.dirname(File.dirname __dir__))
         end
 
-        def generate(table:, columns: [], name:)
+        def generate(table:, columns: [], name: 'index')
           table = Inflect.resource_keep_inflection(table.to_s)
           name = Inflect.resource_keep_inflection(name.to_s)
 
           sleep 1
-          migration_name = "remove_#{name.empty? ? '' : "#{name}_"}index_from_#{table}"
+          migration_name = "drop_#{name}_from_#{table}"
           migration = Eucalypt::Helpers::Migration[title: migration_name, template: 'migration_base.tt']
           return unless migration.create_anyway? if migration.exists?
           config = {migration_class_name: migration_name.camelize}

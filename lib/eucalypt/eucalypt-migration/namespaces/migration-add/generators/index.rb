@@ -6,8 +6,8 @@ require 'eucalypt/eucalypt-migration/helpers'
 
 module Eucalypt
   module Generators
-    module Create
-      class Column < Thor::Group
+    module Add
+      class Index < Thor::Group
         include Thor::Actions
         include Eucalypt::Helpers
         include Eucalypt::Migration::Helpers
@@ -17,13 +17,13 @@ module Eucalypt
           File.join File.dirname(File.dirname(File.dirname __dir__))
         end
 
-        def generate(table:, column:, type:, options: {})
+        def generate(table:, columns: [], options: {}, name: 'index')
+          name = Inflect.resource_keep_inflection(name.to_s)
           table = Inflect.resource_keep_inflection(table.to_s)
-          column = Inflect.resource_keep_inflection(column.to_s)
-          type = Inflect.resource_keep_inflection(type.to_s)
+          columns.map!{|i| Inflect.resource_keep_inflection(i)}
 
           sleep 1
-          migration_name = "create_#{column}_column_on_#{table}"
+          migration_name = "add_#{name}_to_#{table}"
           migration = Eucalypt::Helpers::Migration[title: migration_name, template: 'migration_base.tt']
           return unless migration.create_anyway? if migration.exists?
           config = {migration_class_name: migration_name.camelize}
@@ -33,7 +33,17 @@ module Eucalypt
 
           insert_into_file migration.file_path, :after => "def change\n" do
             String.build do |s|
-              s << "    add_column :#{table}, :#{column}, :#{type}"
+              s << "    add_index :#{table}, "
+              unless columns.empty?
+                columns.map!(&:to_sym)
+                if columns.size == 1
+                  s << ":#{columns.first}"
+                else
+                  s << "#{columns.inspect}"
+                end
+                s << ', ' unless name.empty?
+              end
+              s << "name: :#{name}" unless name.empty?
               s << ', ' unless sanitized_options.empty?
               s << sanitized_options.map{|opt| "#{opt.first}: #{opt.last}"}*', '
               s << "\n"

@@ -1,11 +1,10 @@
 require 'thor'
 require 'eucalypt/helpers'
-require_relative 'remove-table'
-require_relative 'remove-index'
-require_relative 'remove-column'
+require_relative 'add-index'
+require_relative 'add-column'
 
 module Eucalypt
-  class MigrationRemove < Thor
+  class MigrationAdd < Thor
     include Thor::Actions
 
     class << self

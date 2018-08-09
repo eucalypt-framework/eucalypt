@@ -55,8 +55,8 @@ module Eucalypt
 
         # Add policy column to user roles table
         Dir.chdir(directory) do
-          args = %w[migration create column]
-          args << "roles"
+          args = %w[migration add column]
+          args << 'roles'
           args << policy.resource
           args << 'string'
           args << %w[-o default:default]

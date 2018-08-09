@@ -1,14 +1,14 @@
-require 'eucalypt/eucalypt-migration/namespaces/migration-remove/generators/column'
+require 'eucalypt/eucalypt-migration/namespaces/migration-drop/generators/column'
 require 'eucalypt/helpers/app'
 require 'eucalypt/errors'
 
 module Eucalypt
-  class MigrationRemove < Thor
-    desc "column [TABLE] [NAME]", "Removes a column".colorize(:grey)
+  class MigrationDrop < Thor
+    desc "column [TABLE] [NAME]", "Removes a column from a table".colorize(:grey)
     def column(table, name)
       directory = File.expand_path('.')
       if Eucalypt.app? directory
-        migration = Eucalypt::Generators::Remove::Column.new
+        migration = Eucalypt::Generators::Drop::Column.new
         migration.destination_root = directory
         migration.generate(table: table, name: name)
       else
