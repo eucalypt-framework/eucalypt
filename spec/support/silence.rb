@@ -1,5 +1,4 @@
 require 'stringio'
-
 def silence
   $stdout = temp_out = StringIO.new
   yield

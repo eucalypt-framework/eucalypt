@@ -26,6 +26,7 @@ module Eucalypt
       raise TypeError.new("Unsupported extension: .#{extension}") if file_type.nil?
       define_singleton_method Inflect.resource_keep_inflection(file_name) do
         hash = parse(file_type, file)
+        hash = hash ? hash : {}
         symbolize ? hash.deep_symbolize_keys : hash
       end
     end
