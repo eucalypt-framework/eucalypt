@@ -4,7 +4,7 @@ require 'eucalypt/errors'
 
 module Eucalypt
   class MigrationAdd < Thor
-    option :options, aliases: '-o', type: :hash, default: {}, desc: "Column options"
+    option :options, aliases: '-o', type: :hash, default: {}, enum: %w[limit default null precision scale], desc: "Column options"
     desc "column [TABLE] [COLUMN] [TYPE]", "Adds a column".colorize(:grey)
     def column(table, column, type)
       directory = File.expand_path('.')

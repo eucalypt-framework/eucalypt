@@ -5,7 +5,7 @@ module Eucalypt
   class Generate < Thor
     include Eucalypt::Helpers
 
-    option :no, aliases: '-n', type: :array, default: [], desc: "Omit specified scaffold files"
+    option :no, aliases: '-n', type: :array, default: [], enum: %w[m ms c cs h hs], desc: "Omit specified scaffold files"
     option :rest, aliases: '-r', type: :boolean, default: false,  desc: "Generate REST routes for the controller"
     option :policy, aliases: '-p', type: :boolean, default: false, desc: "Generate a policy with the scaffold"
     option :table, type: :boolean, default: true, desc: "Generate a table migration"
@@ -13,23 +13,12 @@ module Eucalypt
     def scaffold(name, *columns)
       directory = File.expand_path('.')
       if Eucalypt.app? directory
-        allowed = %i[
-          helper h
-          helper_spec hs
-          model m
-          model_spec ms
-          controller c
-          controller_spec cs
-        ]
-        opts = options[:no].map{|opt|opt.gsub(?-,?_).to_sym}
-        legal = opts & allowed
-
-        model = !(legal & %i[model m]).present?
-        helper = !(legal & %i[helper h]).present?
-        controller = !(legal & %i[controller c]).present?
-        helper_spec = !(legal & %i[helper_spec hs]).present?
-        model_spec = !(legal & %i[model_spec ms]).present?
-        controller_spec = !(legal & %i[controller_spec cs]).present?
+        model = !options[:no].include?('m')
+        helper = !options[:no].include?('h')
+        controller = !options[:no].include?('c')
+        model_spec = !options[:no].include?('ms')
+        helper_spec = !options[:no].include?('hs')
+        controller_spec = !options[:no].include?('cs')
 
         if model
           validation = Eucalypt::Helpers::Migration::Validation.new columns

@@ -24,8 +24,11 @@ module Eucalypt
       end
 
       shell.print_table(list, indent: INDENT, truncate: false)
-      #shell.say
+      shell.say
       class_options_help(shell)
+
+      shell.say "For more information about a specific command, use #{"eucalypt -H".colorize(:pale_blue)}."
+      shell.say "Example: eucalypt -H generate scaffold".colorize(:grey)
     end
   end
 end

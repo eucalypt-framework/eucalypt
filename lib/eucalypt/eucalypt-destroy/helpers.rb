@@ -23,12 +23,13 @@ module Eucalypt
 
           if name
             # If name given
-            unless file_names.include? name
+            file_name = mvc_file == :model ? "#{name}.rb" : "#{name}_#{mvc_file}.rb"
+            spec_file_name = mvc_file == :model ? "#{name}_spec.rb" : "#{name}_#{mvc_file}_spec.rb"
+
+            unless file_names.include? file_name
               Eucalypt::Error.no_mvc(mvc_file)
               return
             end
-            file_name = mvc_file == :model ? "#{name}.rb" : "#{name}_#{mvc_file}.rb"
-            spec_file_name = mvc_file == :model ? "#{name}_spec.rb" : "#{name}_#{mvc_file}_spec.rb"
           else
             # If name not given
             files = Dir[File.join directory, 'app', "#{mvc_file}s", "*.rb"].reject{|f| File.basename(f).include? 'application'}
@@ -52,6 +53,8 @@ module Eucalypt
             file_name = files_hash[file_number.to_sym]
             spec_file_name = file_name.gsub('.rb','_spec.rb')
           end
+
+          Out.info "This command #{"will not".colorize(:bold)} delete any associated table." if mvc_file == :model
 
           # Deleting MVC file
           file_path = File.join directory, "app", "#{mvc_file}s", file_name

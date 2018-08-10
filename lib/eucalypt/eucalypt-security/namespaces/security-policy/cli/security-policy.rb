@@ -10,7 +10,7 @@ module Eucalypt
     include Thor::Actions
     include Eucalypt::Helpers
 
-    method_option :permissions, type: :array, aliases: '-p', default: []
+    method_option :permissions, type: :array, aliases: '-p', default: [], desc: "Permissions to generate along with the policy"
     desc "generate [NAME]", "Create a new Pundit policy".colorize(:grey)
     def generate(name)
       directory = File.expand_path('.')

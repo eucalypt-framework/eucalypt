@@ -3,10 +3,10 @@ require 'string/builder'
 module Eucalypt
   class CLI < Thor
     using String::Builder
-    method_option :git, type: :boolean, default: true
-    method_option :bundle, type: :boolean, default: true
-    method_option :blog, type: :boolean, default: false, aliases: '-b'
-    method_option :route, type: :string, aliases: '-r'
+    method_option :git, type: :boolean, default: true, desc: 'Initialize a Git repository'
+    method_option :bundle, type: :boolean, default: true, desc: 'Install gems after application generation'
+    method_option :blog, type: :boolean, default: false, aliases: '-b', desc: 'Initialize a blog application'
+    method_option :route, type: :string, aliases: '-r', desc: 'Specify a route for the blog application'
     desc "init [NAME]", "Sets up your application".colorize(:grey)
     def init(name)
       current_directory = File.expand_path ?.
