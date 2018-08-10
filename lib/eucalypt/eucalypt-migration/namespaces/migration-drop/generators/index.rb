@@ -35,11 +35,7 @@ module Eucalypt
                 unless columns.empty?
                   columns.map!(&:to_sym)
                   s << ", column: "
-                  if columns.size == 1
-                    s << ":#{columns.first}"
-                  else
-                    s << "#{columns.inspect}"
-                  end
+                  s << (columns.size == 1 ? ":#{columns.first}" : "#{columns.inspect}")
                 end
               end
               s << "\n"

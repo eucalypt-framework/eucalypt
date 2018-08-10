@@ -58,40 +58,39 @@ describe Static do
       end
     end
     context 'content' do
-      let(:unsymbolized) { Static.new valid, symbolize: false }
-      let(:symbolized) { Static.new valid, symbolize: true }
-
       context "unsymbolized keys" do
+        subject { Static.new valid, symbolize: false }
         %w[yaml json].each do |type|
           context type.upcase do
             context 'top-level keys' do
-              it { expect(unsymbolized.content.send(type).keys).to all be_a String }
+              it { expect(subject.content.send(type).keys).to all be_a String }
             end
             context 'nested array keys' do
-              it { expect(unsymbolized.content.send(type)['array'].map(&:keys).flatten).to all be_a String }
+              it { expect(subject.content.send(type)['array'].map(&:keys).flatten).to all be_a String }
             end
             context 'nested hash keys' do
               it {
-                expect(unsymbolized.content.send(type)['hash'].keys).to all be_a String
-                expect(unsymbolized.content.send(type)['hash']['1'].keys).to all be_a String
+                expect(subject.content.send(type)['hash'].keys).to all be_a String
+                expect(subject.content.send(type)['hash']['1'].keys).to all be_a String
               }
             end
           end
         end
       end
       context "symbolized keys" do
+        subject { Static.new valid, symbolize: true }
         %w[yaml json].each do |type|
           context type.upcase do
             context 'top-level keys' do
-              it { expect(symbolized.content.send(type).keys).to all be_a Symbol }
+              it { expect(subject.content.send(type).keys).to all be_a Symbol }
             end
             context 'nested array keys' do
-              it { expect(symbolized.content.send(type)[:array].map(&:keys).flatten).to all be_a Symbol }
+              it { expect(subject.content.send(type)[:array].map(&:keys).flatten).to all be_a Symbol }
             end
             context 'nested hash keys' do
               it {
-                expect(symbolized.content.send(type)[:hash].keys).to all be_a Symbol
-                expect(symbolized.content.send(type)[:hash][:'1'].keys).to all be_a Symbol
+                expect(subject.content.send(type)[:hash].keys).to all be_a Symbol
+                expect(subject.content.send(type)[:hash][:'1'].keys).to all be_a Symbol
               }
             end
           end

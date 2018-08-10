@@ -28,19 +28,22 @@ module Eucalypt
           config = {migration_class_name: migration_name.camelize}
           template migration.template, migration.file_path, config
 
-          sanitized_options = sanitize_options(options, type: :symbol)
+          sanitized_options = sanitize_table_options(options)
 
           insert_into_file migration.file_path, :after => "def change\n" do
             String.build do |s|
               s << "    create_table :#{name}"
               s << ', ' unless sanitized_options.empty?
               s << sanitized_options.map{|opt| "#{opt.first}: #{opt.last}"}*', '
-              s << " do |t|\n"
-              columns.each do |column|
-                n, t = column
-                s << "      t.#{t} :#{n}\n"
+              unless columns.empty?
+                s << " do |t|\n"
+                columns.each do |column|
+                  n, t = column
+                  s << "      t.#{t} :#{n}\n"
+                end
+                s << "    end"
               end
-              s << "    end\n"
+              s << "\n"
             end
           end
         end

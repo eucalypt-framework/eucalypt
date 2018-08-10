@@ -17,7 +17,7 @@ module Eucalypt
           File.join File.dirname(File.dirname(File.dirname __dir__))
         end
 
-        def generate(table:, columns: [], options: {}, name: 'index')
+        def generate(table:, columns: [], options: {}, name:)
           name = Inflect.resource_keep_inflection(name.to_s)
           table = Inflect.resource_keep_inflection(table.to_s)
           columns.map!{|i| Inflect.resource_keep_inflection(i)}
@@ -29,18 +29,14 @@ module Eucalypt
           config = {migration_class_name: migration_name.camelize}
           template migration.template, migration.file_path, config
 
-          sanitized_options = sanitize_options(options)
+          sanitized_options = sanitize_index_options(options)
 
           insert_into_file migration.file_path, :after => "def change\n" do
             String.build do |s|
               s << "    add_index :#{table}, "
               unless columns.empty?
                 columns.map!(&:to_sym)
-                if columns.size == 1
-                  s << ":#{columns.first}"
-                else
-                  s << "#{columns.inspect}"
-                end
+                s << (columns.size == 1 ? ":#{columns.first}" : "%i[#{columns*' '}]"
                 s << ', ' unless name.empty?
               end
               s << "name: :#{name}" unless name.empty?

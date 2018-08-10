@@ -4,7 +4,7 @@ require 'eucalypt/errors'
 
 module Eucalypt
   class MigrationAdd < Thor
-    option :name, aliases: '-n', type: :string, desc: "Index name"
+    option :name, aliases: '-n', type: :string, default: 'index', desc: "Index name"
     option :options, aliases: '-o', type: :hash, default: {}, desc: "Index options"
     desc "index [TABLE] *[COLUMNS]", "Adds an index".colorize(:grey)
     def index(table, *columns)

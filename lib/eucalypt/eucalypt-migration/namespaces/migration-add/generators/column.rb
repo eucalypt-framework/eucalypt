@@ -29,7 +29,7 @@ module Eucalypt
           config = {migration_class_name: migration_name.camelize}
           template migration.template, migration.file_path, config
 
-          sanitized_options = sanitize_options(options)
+          sanitized_options = sanitize_column_options(options)
 
           insert_into_file migration.file_path, :after => "def change\n" do
             String.build do |s|
