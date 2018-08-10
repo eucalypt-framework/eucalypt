@@ -36,7 +36,7 @@ module Eucalypt
               s << "    add_index :#{table}, "
               unless columns.empty?
                 columns.map!(&:to_sym)
-                s << (columns.size == 1 ? ":#{columns.first}" : "%i[#{columns*' '}]"
+                s << (columns.size == 1 ? ":#{columns.first}" : "%i[#{columns*' '}]")
                 s << ', ' unless name.empty?
               end
               s << "name: :#{name}" unless name.empty?
