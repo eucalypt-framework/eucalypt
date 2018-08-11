@@ -4,12 +4,13 @@ require 'eucalypt/eucalypt-migration/namespaces/migration-drop/cli/drop'
 require 'eucalypt/eucalypt-migration/namespaces/migration-rename/cli/rename'
 require 'eucalypt/eucalypt-migration/namespaces/migration-change/cli/change'
 require 'eucalypt/eucalypt-migration/namespaces/migration-blank/cli/blank'
-require 'eucalypt/helpers/migration'
+require 'eucalypt/helpers'
 
 module Eucalypt
   class Migration < Thor
     include Thor::Actions
     include Eucalypt::Helpers
+    using Colorize
 
     desc "types", "Display permitted column types".colorize(:grey)
     def types
@@ -31,6 +32,8 @@ module Eucalypt
     register(Eucalypt::MigrationChange, 'change', 'change [COMMAND]', 'Change column definitions'.colorize(:grey))
   end
   class CLI < Thor
+    include Eucalypt::Helpers
+    using Colorize
     register(Migration, 'migration', 'migration [COMMAND]', 'Generate ActiveRecord migrations'.colorize(:grey))
   end
 end

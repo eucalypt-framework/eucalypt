@@ -2,9 +2,13 @@ require_relative 'destroy-controller'
 require_relative 'destroy-helper'
 require_relative 'destroy-model'
 require 'eucalypt/app'
+require 'eucalypt/helpers'
 
 module Eucalypt
   class Destroy < Thor
+    include Eucalypt::Helpers
+    using Colorize
+
     desc "scaffold [NAME]", "Destroys a scaffold".colorize(:grey)
     def scaffold(name = nil)
       directory = File.expand_path('.')

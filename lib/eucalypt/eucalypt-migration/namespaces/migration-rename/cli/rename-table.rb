@@ -5,6 +5,8 @@ require 'eucalypt/errors'
 module Eucalypt
   class MigrationRename < Thor
     include Eucalypt::Helpers
+    include Eucalypt::Helpers::Messages
+    using Colorize
 
     desc "table [OLD] [NEW]", "Renames a table".colorize(:grey)
     def table(old_name, new_name)

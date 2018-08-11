@@ -6,6 +6,7 @@ module Eucalypt
   class SecurityPolicyRole < Thor
     include Thor::Actions
     include Eucalypt::Helpers
+    using Colorize
 
     desc "generate [POLICY] [ROLE]", "Create a new Pundit policy role".colorize(:grey)
     def generate(name, role)

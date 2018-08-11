@@ -7,6 +7,7 @@ module Eucalypt
   class SecurityPolicyPermission < Thor
     include Thor::Actions
     include Eucalypt::Helpers
+    using Colorize
 
     desc "generate [POLICY] [PERMISSION]", "Create a new Pundit policy permission".colorize(:grey)
     def generate(name, permission)

@@ -1,9 +1,12 @@
 require 'eucalypt/eucalypt-migration/namespaces/migration-drop/generators/table'
 require 'eucalypt/app'
 require 'eucalypt/errors'
+require 'eucalypt/helpers'
 
 module Eucalypt
   class MigrationDrop < Thor
+    include Eucalypt::Helpers
+    using Colorize
     desc "table [NAME]", "Removes a table".colorize(:grey)
     def table(name)
       directory = File.expand_path('.')

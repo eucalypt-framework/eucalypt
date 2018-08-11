@@ -9,6 +9,7 @@ module Eucalypt
   class SecurityPolicy < Thor
     include Thor::Actions
     include Eucalypt::Helpers
+    using Colorize
 
     method_option :permissions, type: :array, aliases: '-p', default: [], desc: "Permissions to generate along with the policy"
     desc "generate [NAME]", "Create a new Pundit policy".colorize(:grey)

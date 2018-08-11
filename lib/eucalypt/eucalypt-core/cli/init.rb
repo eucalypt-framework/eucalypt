@@ -2,7 +2,9 @@ require_relative '__base__'
 require 'string/builder'
 module Eucalypt
   class CLI < Thor
+    include Eucalypt::Helpers::Messages
     using String::Builder
+    using Colorize
     method_option :git, type: :boolean, default: true, desc: 'Initialize a Git repository'
     method_option :bundle, type: :boolean, default: true, desc: 'Install gems after application generation'
     method_option :blog, type: :boolean, default: false, aliases: '-b', desc: 'Initialize a blog application'
@@ -28,7 +30,7 @@ module Eucalypt
         directory 'eucalypt', root
 
         app_file_content = String.build do |s|
-          msg = "This file should be placed at the root directory of a Eucalypt application."
+          msg = "This file should be placed in the root directory of a Eucalypt application."
           version_msg = "Generated with Eucalypt version: #{Eucalypt::VERSION}"
           separator = "# #{?=*msg.size} #\n"
           s << separator

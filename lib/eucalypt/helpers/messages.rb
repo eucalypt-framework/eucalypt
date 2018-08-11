@@ -3,6 +3,7 @@ module Eucalypt
   module Helpers
     module Messages
       module Out
+        using Eucalypt::Helpers::Colorize
         METHODS = {
           warning: [:bold, :yellow],
           error: [:bold, :red],
@@ -28,4 +29,3 @@ module Eucalypt
     end
   end
 end
-include Eucalypt::Helpers::Messages

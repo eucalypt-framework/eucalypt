@@ -7,6 +7,8 @@ module Eucalypt
   class Blog < Thor
     include Thor::Actions
     include Eucalypt::Helpers
+    include Eucalypt::Helpers::Messages
+    using Colorize
 
     method_option :route, type: :string, aliases: '-r', default: 'blog', desc: "The route at which the blog lies"
     desc "setup", "Sets up the blog-aware environment".colorize(:grey)
@@ -55,6 +57,8 @@ module Eucalypt
   end
 
   class CLI < Thor
+    include Eucalypt::Helpers
+    using Colorize
     register(Blog, 'blog', 'blog [COMMAND]', 'Manage blog environment'.colorize(:grey))
   end
 end

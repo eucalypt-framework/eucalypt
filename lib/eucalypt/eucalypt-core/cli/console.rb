@@ -1,6 +1,7 @@
 require_relative '__base__'
 module Eucalypt
   class CLI < Thor
+    using Colorize
     desc "console", "Interactive console with all files loaded".colorize(:grey)
     def console
       directory = File.expand_path('.')

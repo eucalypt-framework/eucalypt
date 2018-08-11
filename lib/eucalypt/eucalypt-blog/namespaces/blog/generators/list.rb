@@ -1,10 +1,13 @@
+require 'eucalypt/helpers'
 require 'eucalypt/eucalypt-blog/namespaces/blog/__base__'
 
 module Eucalypt
   module Generators
     class Blog < Thor::Group
+      include Eucalypt::Helpers
       using Array::DateSort
       using String::Builder
+      using Colorize
 
       def list(tag, order, date)
         chars = {corner: ?+, vertical: ?║, horizontal: ?═}

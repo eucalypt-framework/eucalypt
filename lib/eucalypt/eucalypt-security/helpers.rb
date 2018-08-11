@@ -8,6 +8,8 @@ module Eucalypt
   class Security < Thor
     module Helpers
       include Eucalypt::Helpers
+      include Eucalypt::Helpers::Messages
+      using Colorize
 
       def create_config_file(type, directory)
         config_relative = File.join 'config', 'sinatra', "#{type}.rb"

@@ -2,9 +2,12 @@ require 'eucalypt/eucalypt-generate/namespaces/generate-controller/cli/generate-
 require 'eucalypt/eucalypt-generate/namespaces/generate-helper/cli/generate-helper'
 require 'eucalypt/eucalypt-generate/namespaces/generate-model/cli/generate-model'
 require_relative 'generate-scaffold'
+require 'eucalypt/helpers'
 
 module Eucalypt
   class Generate < Thor
+    include Eucalypt::Helpers
+    using Colorize
     class << self
       require 'eucalypt/list'
       include Eucalypt::List
@@ -14,6 +17,8 @@ module Eucalypt
     end
   end
   class CLI < Thor
+    include Eucalypt::Helpers
+    using Colorize
     register(Generate, 'generate', 'generate [COMMAND]', 'Generate individual MVC files or scaffolds'.colorize(:grey))
   end
 end

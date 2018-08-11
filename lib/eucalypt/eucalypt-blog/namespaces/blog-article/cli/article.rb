@@ -9,7 +9,9 @@ module Eucalypt
   class BlogArticle < Thor
     include Thor::Actions
     include Eucalypt::Helpers
+    include Eucalypt::Helpers::Messages
     include Eucalypt::Blog::Helpers
+    using Colorize
 
     method_option :descending, type: :boolean, aliases: '-d', default: true, desc: 'Descending chronological order'
     method_option :ascending, type: :boolean, aliases: '-a', default: false, desc: 'Ascending chronological order'

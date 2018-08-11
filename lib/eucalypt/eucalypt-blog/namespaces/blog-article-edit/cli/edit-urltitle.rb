@@ -10,7 +10,9 @@ module Eucalypt
   class BlogArticleEdit < Thor
     include Thor::Actions
     include Eucalypt::Helpers
+    include Eucalypt::Helpers::Messages
     include Eucalypt::Blog::Helpers
+    using Colorize
 
     desc "urltitle [URLTITLE]", "Edits the urltitle of a blog post".colorize(:grey)
     def urltitle(urltitle = nil)

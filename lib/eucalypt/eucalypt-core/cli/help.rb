@@ -1,6 +1,7 @@
 require_relative '__base__'
 module Eucalypt
   class CLI < Thor
+    using Colorize
     map %[-H] => :__help
     desc "-H [COMMAND]", "Show additional information for a command".colorize(:grey)
     def __help(*args)

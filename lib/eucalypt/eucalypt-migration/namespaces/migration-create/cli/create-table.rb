@@ -5,6 +5,8 @@ require 'eucalypt/helpers'
 
 module Eucalypt
   class MigrationCreate < Thor
+    include Eucalypt::Helpers
+    using Colorize
     option :options, aliases: '-o', type: :hash, default: {}, enum: %w[primary_key id temporary force], desc: "Table options"
     desc "table [NAME] *[COLUMN∶TYPE]", "Creates a table".colorize(:grey)
     def table(name, *columns)

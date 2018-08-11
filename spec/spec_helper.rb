@@ -3,6 +3,7 @@ require 'bundler/setup'
 require 'eucalypt'
 require 'fileutils'
 require 'regexp-examples'
+require 'colorize'
 
 Dir.glob File.join(__dir__, 'support', '*.rb'), &method(:require)
 

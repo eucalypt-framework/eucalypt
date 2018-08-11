@@ -6,6 +6,8 @@ module Eucalypt
   class Destroy < Thor
     module Helpers
       include Eucalypt::Helpers
+      include Eucalypt::Helpers::Messages
+      using Colorize
 
       def delete_mvc(mvc_file, name)
         directory = File.expand_path('.')

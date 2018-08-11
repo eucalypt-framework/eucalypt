@@ -5,6 +5,7 @@ require 'eucalypt/errors'
 module Eucalypt
   class MigrationRename < Thor
     include Eucalypt::Helpers
+    using Colorize
 
     desc "index [TABLE] [OLD] [NEW]", "Renames an index".colorize(:grey)
     def index(table, old_name, new_name)

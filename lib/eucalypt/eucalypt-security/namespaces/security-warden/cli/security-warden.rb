@@ -8,7 +8,9 @@ module Eucalypt
   class SecurityWarden < Thor
     include Thor::Actions
     include Eucalypt::Helpers
+    include Eucalypt::Helpers::Messages
     include Eucalypt::Security::Helpers
+    using Colorize
 
     def self.source_root
       File.join File.dirname(__dir__), 'templates'

@@ -1,12 +1,13 @@
-require 'eucalypt/helpers/messages'
 require 'eucalypt/app'
-require 'eucalypt/helpers/migration'
+require 'eucalypt/helpers'
 require 'string/builder'
 
 module Eucalypt
   module Error
+    include Eucalypt::Helpers
     include Eucalypt::Helpers::Messages
     using String::Builder
+    using Colorize
 
     class << self
       def wrong_directory

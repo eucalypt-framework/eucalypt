@@ -1,9 +1,12 @@
 require 'eucalypt/eucalypt-generate/namespaces/generate-model/generators/model'
 require 'eucalypt/app'
 require 'eucalypt/errors'
+require 'eucalypt/helpers'
 
 module Eucalypt
   class Generate < Thor
+    include Eucalypt::Helpers
+    using Colorize
     option :table, type: :boolean, default: true, desc: "Generate table migration"
     option :spec, type: :boolean, default: true, desc: "Include a model spec file"
     desc "model [NAME] *[COLUMN∶TYPE]", "Generates a model".colorize(:grey)

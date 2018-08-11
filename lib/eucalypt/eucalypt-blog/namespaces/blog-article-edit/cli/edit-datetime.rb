@@ -1,5 +1,4 @@
 require 'thor'
-
 require 'eucalypt/errors'
 require 'eucalypt/helpers'
 require 'eucalypt/eucalypt-blog/helpers'
@@ -8,7 +7,9 @@ module Eucalypt
   class BlogArticleEdit < Thor
     include Thor::Actions
     include Eucalypt::Helpers
+    include Eucalypt::Helpers::Messages
     include Eucalypt::Blog::Helpers
+    using Colorize
 
     desc "datetime [URLTITLE]", "Edits the datetime of a blog post".colorize(:grey)
     def datetime(urltitle = nil)

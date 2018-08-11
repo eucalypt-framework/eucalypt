@@ -1,6 +1,8 @@
 require_relative '__base__'
 module Eucalypt
   class CLI < Thor
+    using Colorize
+    include Eucalypt::Helpers::Messages
     method_option :port, type: :numeric, aliases: '-p', desc: 'Port to serve the application on'
     desc "launch [ENV]", "Launches your application".colorize(:grey)
     def launch(env = ENV['RACK_ENV']||'development')

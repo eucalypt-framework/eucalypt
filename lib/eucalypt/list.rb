@@ -4,6 +4,9 @@ require 'eucalypt/helpers/colorize'
 
 module Eucalypt
   module List
+    include Eucalypt::Helpers
+    using Colorize
+
     INDENT = 2.freeze
 
     def help(shell, subcommand = false)
@@ -12,8 +15,10 @@ module Eucalypt
         list += klass.printable_commands(false)
       end
 
-      #list.reject! {|l| l[0].split[1] == 'help'}
-      list.reject! {|l| l.first.include? 'help'}
+      list.reject! do |l|
+        cmd = l.first
+        cmd.include?('help') || cmd.include?('-H')
+      end
       list.map {|l| l.last.sub!(?#, '·'.colorize(:pale_blue, :bold)+'›')}
 
       if defined?(@package_name) && @package_name

@@ -1,7 +1,10 @@
 require_relative 'destroy-scaffold'
+require 'eucalypt/helpers'
 
 module Eucalypt
   class Destroy < Thor
+    include Eucalypt::Helpers
+    using Colorize
     class << self
       require 'eucalypt/list'
       include Eucalypt::List
@@ -11,6 +14,8 @@ module Eucalypt
     end
   end
   class CLI < Thor
+    include Eucalypt::Helpers
+    using Colorize
     register(Destroy, 'destroy', 'destroy [COMMAND]', 'Destroy individual MVC files or scaffolds'.colorize(:grey))
   end
 end

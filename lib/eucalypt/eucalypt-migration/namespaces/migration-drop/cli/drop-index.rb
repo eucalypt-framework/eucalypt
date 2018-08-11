@@ -1,9 +1,12 @@
 require 'eucalypt/eucalypt-migration/namespaces/migration-drop/generators/index'
 require 'eucalypt/app'
 require 'eucalypt/errors'
+require 'eucalypt/helpers'
 
 module Eucalypt
   class MigrationDrop < Thor
+    include Eucalypt::Helpers
+    using Colorize
     option :name, aliases: '-n', type: :string, desc: "Index name"
     desc "index [TABLE] [*COLUMNS]", "Removes an index from a table".colorize(:grey)
     def index(table, *columns)

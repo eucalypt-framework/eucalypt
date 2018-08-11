@@ -5,6 +5,7 @@ require 'eucalypt/errors'
 module Eucalypt
   class MigrationRename < Thor
     include Eucalypt::Helpers
+    using Colorize
 
     desc "column [TABLE] [OLD] [NEW]", "Renames a column".colorize(:grey)
     def column(table, old_name, new_name)

@@ -1,6 +1,7 @@
 require_relative '__base__'
 module Eucalypt
   class CLI < Thor
+    using Colorize
     method_option :summarized, type: :boolean, default: false, aliases: '-s', desc: 'rspec -fd spec'
     desc "test", "Run all application tests".colorize(:grey)
     def test

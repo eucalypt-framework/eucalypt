@@ -1,11 +1,15 @@
 require 'thor'
 require_relative 'messages'
 require 'eucalypt/errors'
+require 'eucalypt/helpers'
 
 module Eucalypt
   module Helpers
     class Migration < Thor
       include Thor::Actions
+      include Eucalypt::Helpers
+      include Eucalypt::Helpers::Messages
+      using Colorize
       attr_reader :title, :template, :file, :base, :file_path
 
       class << self

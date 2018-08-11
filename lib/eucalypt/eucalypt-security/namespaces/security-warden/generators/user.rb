@@ -9,6 +9,7 @@ module Eucalypt
     class User < Thor::Group
       include Thor::Actions
       include Eucalypt::Helpers
+      include Eucalypt::Helpers::Messages
 
       def self.source_root
         File.join File.dirname(__dir__), 'templates'

@@ -2,10 +2,13 @@ require 'eucalypt/errors'
 require 'eucalypt/eucalypt-security/namespaces/security-warden/cli/security-warden'
 require 'eucalypt/eucalypt-security/namespaces/security-pundit/cli/security-pundit'
 require 'eucalypt/eucalypt-security/namespaces/security-policy/cli/security-policy'
+require 'eucalypt/helpers'
 
 module Eucalypt
   class Security < Thor
     include Thor::Actions
+    include Eucalypt::Helpers
+    using Colorize
 
     class << self
       require 'eucalypt/list'
@@ -21,6 +24,8 @@ module Eucalypt
   end
 
   class CLI < Thor
+    include Eucalypt::Helpers
+    using Colorize
     register(Security, 'security', 'security [COMMAND]', 'Manage authentication and authorization'.colorize(:grey))
   end
 end

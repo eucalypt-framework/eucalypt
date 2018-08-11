@@ -12,16 +12,16 @@ module Eucalypt
         grey: '90'
       }
 
-      def colorize(*opts)
-        "\e[#{opts.map{|o| ANSI[o]}*?;}m#{self}\e[0m"
-      end
+      refine String do
+        def colorize(*opts)
+          "\e[#{opts.map{|o| ANSI[o]}*?;}m#{self}\e[0m"
+        end
 
-      def uncolorize
-        result = self.gsub /\e(\[|\])[0-9]+[0-9;]*m/, ''
-        result.nil? ? self : result
+        def uncolorize
+          result = self.gsub /\e(\[|\])[0-9]+[0-9;]*m/, ''
+          result.nil? ? self : result
+        end
       end
     end
   end
 end
-
-String.include(Eucalypt::Helpers::Colorize)

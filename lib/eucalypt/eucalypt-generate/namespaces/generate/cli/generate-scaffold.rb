@@ -4,6 +4,8 @@ require 'eucalypt/app'
 module Eucalypt
   class Generate < Thor
     include Eucalypt::Helpers
+    include Eucalypt::Helpers::Messages
+    using Colorize
 
     option :no, aliases: '-n', type: :array, default: [], enum: %w[m ms c cs h hs], desc: "Omit specified scaffold files"
     option :rest, aliases: '-r', type: :boolean, default: false,  desc: "Generate REST routes for the controller"
