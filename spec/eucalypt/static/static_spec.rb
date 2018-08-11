@@ -1,7 +1,6 @@
 require 'spec_helper'
-require 'eucalypt/static'
 
-describe Static do
+describe Eucalypt::Static do
   let(:resources) { File.join __dir__, 'resources' }
 
   context 'when not all file types are valid' do

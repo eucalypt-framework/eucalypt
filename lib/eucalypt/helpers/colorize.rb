@@ -15,6 +15,11 @@ module Eucalypt
       def colorize(*opts)
         "\e[#{opts.map{|o| ANSI[o]}*?;}m#{self}\e[0m"
       end
+
+      def uncolorize
+        result = self.gsub /\e(\[|\])[0-9]+[0-9;]*m/, ''
+        result.nil? ? self : result
+      end
     end
   end
 end

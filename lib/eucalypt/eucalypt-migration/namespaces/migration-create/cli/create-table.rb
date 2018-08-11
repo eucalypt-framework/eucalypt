@@ -1,5 +1,5 @@
 require 'eucalypt/eucalypt-migration/namespaces/migration-create/generators/table'
-require 'eucalypt/helpers/app'
+require 'eucalypt/app'
 require 'eucalypt/errors'
 require 'eucalypt/helpers'
 

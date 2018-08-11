@@ -1,7 +1,7 @@
 require_relative 'destroy-controller'
 require_relative 'destroy-helper'
 require_relative 'destroy-model'
-require 'eucalypt/helpers/app'
+require 'eucalypt/app'
 
 module Eucalypt
   class Destroy < Thor

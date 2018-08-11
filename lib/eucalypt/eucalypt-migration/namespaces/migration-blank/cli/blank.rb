@@ -1,5 +1,5 @@
 require 'eucalypt/eucalypt-migration/namespaces/migration-blank/generators/blank'
-require 'eucalypt/helpers/app'
+require 'eucalypt/app'
 require 'eucalypt/errors'
 
 module Eucalypt

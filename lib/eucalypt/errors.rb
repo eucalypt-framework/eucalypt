@@ -1,5 +1,5 @@
 require 'eucalypt/helpers/messages'
-require 'eucalypt/helpers/app'
+require 'eucalypt/app'
 require 'eucalypt/helpers/migration'
 require 'string/builder'
 

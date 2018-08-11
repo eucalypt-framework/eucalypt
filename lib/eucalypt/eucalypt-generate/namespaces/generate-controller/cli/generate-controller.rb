@@ -1,5 +1,5 @@
 require 'eucalypt/eucalypt-generate/namespaces/generate-controller/generators/controller'
-require 'eucalypt/helpers/app'
+require 'eucalypt/app'
 require 'eucalypt/errors'
 
 module Eucalypt

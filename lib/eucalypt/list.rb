@@ -1,5 +1,5 @@
 require 'thor'
-require 'eucalypt/helpers/app'
+require 'eucalypt/app'
 require 'eucalypt/helpers/colorize'
 
 module Eucalypt

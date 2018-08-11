@@ -1,5 +1,5 @@
 require 'eucalypt/eucalypt-migration/namespaces/migration-drop/generators/column'
-require 'eucalypt/helpers/app'
+require 'eucalypt/app'
 require 'eucalypt/errors'
 
 module Eucalypt

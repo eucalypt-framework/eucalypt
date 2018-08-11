@@ -1,6 +1,6 @@
 require 'thor'
 require 'eucalypt/helpers'
-require 'eucalypt/helpers/app'
+require 'eucalypt/app'
 module Eucalypt
   class Generate < Thor
     include Eucalypt::Helpers
