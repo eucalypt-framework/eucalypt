@@ -40,7 +40,7 @@ describe Helpers::Migration::Validation do
     end
     context 'when the column declaration is invalid' do
       let :all_valid do
-        columns = %w[, . : ? -]
+        columns = %w[, . ; -]
         declarations = columns.map {|c| subject::COLUMN_TYPES.map {|t| "#{c}:#{t}"}}.flatten
         declarations.map {|d| subject.valid_declaration? d}
       end
