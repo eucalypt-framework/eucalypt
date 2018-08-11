@@ -3,49 +3,45 @@ require 'eucalypt/errors'
 
 module Eucalypt
   module Helpers
-    def gemfile_add(description, gems, directory)
-      gemfile = File.join(directory, 'Gemfile')
-      File.open gemfile do |f|
-        includes_gems = []
-        contents = f.read
-        gems.each do |gem, version|
-          if contents.include? "gem '#{gem}'"
-            includes_gems << true
+    module Gemfile
+      def gemfile_add(description, gems, directory)
+        gemfile = File.join(directory, 'Gemfile')
+        File.open gemfile do |f|
+          includes_gems = []
+          contents = f.read
+          gems.each do |gem, _|
+            includes_gems << true if contents.include? "gem '#{gem}'"
           end
+          return unless includes_gems.empty?
         end
-        return unless includes_gems.empty?
+
+        append_to_file gemfile, "\n# #{description}\n"
+        gems.each_with_index do |gemdata, i|
+          gem, version = gemdata
+          gem_string = "gem '#{gem}', '#{version}'" << (i==gems.size-1 ? '' : "\n")
+          append_to_file gemfile, gem_string
+        end
       end
 
-      append_to_file gemfile, "\n# #{description}\n"
-      gems.each_with_index do |gemdata, i|
-        gem, version = gemdata
-        gem_string = "gem '#{gem}', '#{version}'" << (i==gems.size-1 ? '' : "\n")
-        append_to_file gemfile, gem_string
-      end
-    end
+      class << self
+        def include?(gems, directory)
+          includes_gems = []
+          gemfile = File.join(directory, 'Gemfile')
+          File.open gemfile do |f|
+            contents = f.read
+            gems.each {|gem| includes_gems << contents.include?("gem '#{gem}'") }
+          end
+          includes_gems.all? {|present| present == true}
+        end
 
-    def gemfile_include?(gems, directory)
-      includes_gems = []
-      gemfile = File.join(directory, 'Gemfile')
-      File.open gemfile do |f|
-        contents = f.read
-        gems.each do |gem|
-          if contents.include? "gem '#{gem}'"
-            includes_gems << true
+        def check(gems, command, directory)
+          if include?(gems, directory)
+            true
           else
-            includes_gems << false
+            Eucalypt::Error.no_gems(gems, command)
+            false
           end
         end
-      end
-      includes_gems.all? {|present| present == true}
-    end
-
-    def gemfile_check(gems, command, directory)
-      if gemfile_include?(gems, directory)
-        true
-      else
-        Eucalypt::Error.no_gems(gems, command)
-        false
       end
     end
   end

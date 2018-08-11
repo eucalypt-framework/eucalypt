@@ -4,6 +4,8 @@ require 'eucalypt'
 require 'fileutils'
 require 'regexp-examples'
 require 'colorize'
+require 'string/builder'
+require 'thor'
 
 Dir.glob File.join(__dir__, 'support', '*.rb'), &method(:require)
 

@@ -23,7 +23,7 @@ module Eucalypt
     def list
       directory = File.expand_path('.')
       if Eucalypt.app? directory
-        return unless gemfile_check(%w[front_matter_parser rdiscount], 'eucalypt blog setup', directory)
+        return unless Gemfile.check(%w[front_matter_parser rdiscount], 'eucalypt blog setup', directory)
 
         generator = Eucalypt::Generators::Blog.new
         generator.destination_root = directory
@@ -41,7 +41,7 @@ module Eucalypt
     def generate(urltitle)
       directory = File.expand_path('.')
       if Eucalypt.app? directory
-        return unless gemfile_check(%w[front_matter_parser rdiscount], 'eucalypt blog setup', directory)
+        return unless Gemfile.check(%w[front_matter_parser rdiscount], 'eucalypt blog setup', directory)
 
         urltitle = Inflect.route(urltitle) if urltitle
 
@@ -57,7 +57,7 @@ module Eucalypt
     def destroy(urltitle = nil)
       directory = File.expand_path('.')
       if Eucalypt.app? directory
-        return unless gemfile_check(%w[front_matter_parser rdiscount], 'eucalypt blog setup', directory)
+        return unless Gemfile.check(%w[front_matter_parser rdiscount], 'eucalypt blog setup', directory)
 
         markdown_base = File.join directory, 'app', 'views', 'blog', 'markdown'
         articles_path = File.join '**', (urltitle ? "#{urltitle}.md" : "*.md")

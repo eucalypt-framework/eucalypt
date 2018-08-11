@@ -59,7 +59,7 @@ describe Helpers::Migration::Validation do
     end
     context 'when the given type is invalid' do
       let :results do
-        types = 1000.times.map { /([a-z_]+){4}/.random_example }
+        types = 1000.times.map { /[a-z_][a-z_][a-z_]+/.random_example }
         types.reject! {|t| subject::COLUMN_TYPES.map(&:to_s).include? t}
         results = []
         types.map {|t| silence { results << subject.valid_type?(t) } }

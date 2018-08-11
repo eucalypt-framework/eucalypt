@@ -8,6 +8,7 @@ module Eucalypt
     include Thor::Actions
     include Eucalypt::Helpers
     include Eucalypt::Helpers::Messages
+    include Eucalypt::Helpers::Gemfile
     using Colorize
 
     method_option :route, type: :string, aliases: '-r', default: 'blog', desc: "The route at which the blog lies"

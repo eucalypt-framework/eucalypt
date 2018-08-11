@@ -8,6 +8,7 @@ module Eucalypt
     include Thor::Actions
     include Eucalypt::Helpers
     include Eucalypt::Helpers::Messages
+    include Eucalypt::Helpers::Gemfile
     include Eucalypt::Security::Helpers
     using Colorize
 
