@@ -23,8 +23,8 @@ describe Eucalypt::Static do
 
     context 'top-level' do
       it 'should recognize directories' do
-        objects = %i[override nested empty].map &static.method(:send)
-        objects.each {|object| expect(object).to be_a Static}
+        objects = %i[override nested empty]
+        expect(objects.map &static.method(:send)).to all be_a Static
       end
 
       it 'should recognize files' do

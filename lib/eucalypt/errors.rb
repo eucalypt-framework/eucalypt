@@ -10,6 +10,7 @@ module Eucalypt
     using Colorize
 
     class << self
+      include Eucalypt::Helpers::Messages
       def wrong_directory
         puts
         Out.error "Couldn't find #{Eucalypt::APP_FILE.colorize(:bold)} in current directory."

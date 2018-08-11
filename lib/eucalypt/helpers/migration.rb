@@ -49,7 +49,7 @@ module Eucalypt
           @invalid_types = []
 
           columns.each do |column|
-            if valid_declaration? column
+            if self.class.valid_declaration? column
               col, type = column.split ?:
               @invalid_types << {column: col, type: type} unless COLUMN_TYPES.include? type.to_sym
             else
@@ -58,19 +58,19 @@ module Eucalypt
           end
         end
 
-        def valid_declaration?(column)
-          DECLARATION_REGEX.match? column
-        end
-
         def any_invalid?
           any_invalid = @invalid_declarations.any? || @invalid_types.any?
           Eucalypt::Error.invalid_columns(@invalid_declarations, @invalid_types) if any_invalid
           return any_invalid
         end
 
+        def self.valid_declaration?(column)
+          DECLARATION_REGEX.match? column
+        end
+
         def self.valid_type?(type)
           valid_type = COLUMN_TYPES.include? type.to_sym
-          Eucalypt::Error.invalid_type(type)
+          Eucalypt::Error.invalid_type(type) unless valid_type
           return valid_type
         end
       end
