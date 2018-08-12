@@ -5,14 +5,16 @@ include Eucalypt::Helpers
 describe Eucalypt do
   describe Generate do
     describe 'Controller' do
-      let(:name) { 'controller_test' }
-      subject { Inflect.new :controller, name }
-      before { Temporary.create_app }
-      after { Temporary.clear }
+      before(:all) { @name = 'controller_test' }
+      subject { Inflect.new :controller, @name }
 
       describe 'files' do
         context 'controller' do
-          before { tmp { execute "generate controller #{name} --no-spec" } }
+          before(:all) do
+            Temporary.create_app
+            tmp { execute "generate controller #{@name} --no-spec" }
+          end
+          after(:all) { Temporary.clear }
 
           it 'should generate a controller' do
             expect(tmp { File.file? subject.file_path }).to be true
@@ -23,7 +25,11 @@ describe Eucalypt do
           end
         end
         context 'controller + spec' do
-          before { tmp { execute "generate controller #{name}" } }
+          before(:all) do
+            Temporary.create_app
+            tmp { execute "generate controller #{@name}" }
+          end
+          after(:all) { Temporary.clear }
 
           it 'should generate a controller' do
             expect(tmp { File.file? subject.file_path }).to be true
@@ -35,7 +41,11 @@ describe Eucalypt do
         end
       end
       context '--rest, -r' do
-        before { tmp { execute "generate controller #{name} -r" } }
+        before(:all) do
+          Temporary.create_app
+          tmp { execute "generate controller #{@name} -r" }
+        end
+        after(:all) { Temporary.clear }
 
         it 'should generate a controller' do
           expect(tmp { File.file? subject.file_path }).to be true
