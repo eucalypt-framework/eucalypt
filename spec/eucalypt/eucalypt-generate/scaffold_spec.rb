@@ -1108,7 +1108,7 @@ describe Eucalypt do
           context 'cs m h' do
             before(:all) do
               Temporary.create_app
-              tmp { execute "generate scaffold #{@name} -n cs m h hs" }
+              tmp { execute "generate scaffold #{@name} -n cs m h" }
             end
             after(:all) { Temporary.clear }
 
