@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Eucalypt do
+describe Eucalypt::CLI do
   describe 'Init' do
     after { Temporary.clear }
 
