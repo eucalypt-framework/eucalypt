@@ -4,13 +4,13 @@ class BlogController < Eucalypt::Controller(route: '<%= config[:route] %>')
 
   # Display all blog articles at this route
   get '/' do
-    @articles = Blog.all.sort_by_date(order: :descending)
+    @articles = Blog.all.sort_by_date order: :descending
     erb :'blog/articles', layout: :'layouts/blog/articles'
   end
 
   # Display a single blog article at this route
   Blog.articles.each do |md|
-    article = Blog::Article.new(md)
+    article = Blog::Article.new md
     get article.route do
       @front_matter = article.front_matter
       locals = {content: markdown(article.content), article: article}
@@ -21,13 +21,13 @@ class BlogController < Eucalypt::Controller(route: '<%= config[:route] %>')
   # Search for blog articles by tag at this route
   get '/search/:tag' do
     @tag = params[:tag]
-    redirect to('/') unless @tag.match /^[a-zA-Z]*[a-zA-Z0-9\\-_.]*[a-zA-Z0-9]$/
-    @articles = Blog.search(@tag).sort_by_date(order: :descending)
+    redirect to '/' unless @tag.match /\A[a-zA-Z]*[a-zA-Z0-9\\-_.]*[a-zA-Z0-9]\Z/
+    @articles = Blog.search(@tag).sort_by_date order: :descending
     erb :'blog/search', layout: :'layouts/blog/articles'
   end
 
   # Redirect all other blog routes
   get %r{/.*} do
-    redirect to('/')
+    redirect to '/'
   end
 end

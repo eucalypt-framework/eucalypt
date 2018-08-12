@@ -7,8 +7,11 @@ module Eucalypt
     using Colorize
     method_option :git, type: :boolean, default: true, desc: 'Initialize a Git repository'
     method_option :bundle, type: :boolean, default: true, desc: 'Install gems after application generation'
-    method_option :blog, type: :boolean, default: false, aliases: '-b', desc: 'Initialize a blog application'
-    method_option :route, type: :string, aliases: '-r', desc: 'Specify a route for the blog application'
+    method_option :blog, type: :boolean, default: false, aliases: '-b', desc: 'Set up the blog environment'
+    method_option :route, type: :string, default: 'blog', aliases: '-r', desc: 'Specify a route for the blog application'
+    method_option :silence, type: :boolean, default: false, aliases: '-s', desc: 'Silence `git init` and `bundle install` commands'
+    method_option :warden, type: :boolean, default: false, aliases: '-w', desc: 'Set up Warden authentication'
+    method_option :pundit, type: :boolean, default: false, aliases: '-p', desc: 'Set up Pundit authorization'
     desc "init [NAME]", "Sets up your application".colorize(:grey)
     def init(name)
       current_directory = File.expand_path ?.
@@ -45,8 +48,6 @@ module Eucalypt
         config = {version: Eucalypt::VERSION}
         template 'Gemfile.tt', File.join(root, 'Gemfile'), config
 
-        inside(root) { run('git init') } if options[:git]
-
         if options[:blog]
           inside(root) do
             args = %w[blog setup]
@@ -55,10 +56,15 @@ module Eucalypt
           end
         end
 
-        if options[:bundle]
-          Out.setup "Installing gem dependencies..."
-          inside(root) { run('bundle install') }
+        inside(root) do
+          Eucalypt::CLI.start %w[security warden setup] if options[:warden]
+          Eucalypt::CLI.start %w[security pundit setup] if options[:warden] && options[:pundit]
         end
+
+        puts if options[:git] || options[:bundle]
+        inside(root) { run(options[:silence] ? 'git init --quiet' : 'git init') } if options[:git]
+        puts if options[:git] && options[:bundle]
+        inside(root) { run(options[:silence] ? 'bundle install --quiet' : 'bundle install') } if options[:bundle]
       end
     end
   end

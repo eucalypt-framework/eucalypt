@@ -14,7 +14,7 @@ class AuthenticationController < Eucalypt::Controller(route: '/auth')
 
   get '/logout' do
     env['warden'].logout
-    redirect '/'
+    redirect to '/login'
   end
 
   post '/invalid' do
