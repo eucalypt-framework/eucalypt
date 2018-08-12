@@ -18,7 +18,7 @@ module Eucalypt
             opts = value.split(?,).map{|v| Inflect.resource_keep_inflection(v)}
             opts.reject! &:empty?
             next if opts.empty?
-            sanitize_options << (opts.size == 1 ? [option, ":#{opts.first}"] : [option, "%i[#{(opts.map {|v| "#{v}"}*' ')}]"])
+            sanitized_options << (opts.size == 1 ? [option, ":#{opts.first}"] : [option, "%i[#{(opts.map {|v| "#{v}"}*' ')}]"])
           when :id
             id = Inflect.resource_keep_inflection(value)
             next if id.empty?
