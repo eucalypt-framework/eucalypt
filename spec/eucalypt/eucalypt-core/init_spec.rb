@@ -64,13 +64,22 @@ describe Eucalypt do
         end
       end
       context '--warden, -w' do
-
+        it 'should set up Warden' do
+          Temporary.create_app '-w'
+          expect(tmp { Helpers::Gemfile.include? %w[warden], '.' }).to be true
+        end
       end
       context '--pundit, -p' do
-
+        it "shouldn't set up Pundit" do
+          Temporary.create_app '-p'
+          expect(tmp { Helpers::Gemfile.include? %w[pundit], '.' }).to be false
+        end
       end
       context '--warden --pundit, -wp' do
-
+        it 'should set up Warden and Pundit' do
+          Temporary.create_app '-wp'
+          expect(tmp { Helpers::Gemfile.include? %w[warden pundit], '.' }).to be true
+        end
       end
       context '--git' do
         let(:args) { %w[init tmp -s --no-bundle --git] }
