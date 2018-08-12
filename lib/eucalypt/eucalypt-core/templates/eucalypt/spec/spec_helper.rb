@@ -1,5 +1,6 @@
 require './app'
 Bundler.require :test
+
 ENV['RACK_ENV'] = 'test'
 
 Shoulda::Matchers.configure do |config|
@@ -11,7 +12,7 @@ Shoulda::Matchers.configure do |config|
 end
 
 RSpec.configure do |config|
-  config.include(Rack::Test::Methods)
-  config.include(Shoulda::Matchers::ActiveModel, type: :model)
-  config.include(Shoulda::Matchers::ActiveRecord, type: :model)
+  config.include Rack::Test::Methods
+  config.include Shoulda::Matchers::ActiveModel, type: :model
+  config.include Shoulda::Matchers::ActiveRecord, type: :model
 end
