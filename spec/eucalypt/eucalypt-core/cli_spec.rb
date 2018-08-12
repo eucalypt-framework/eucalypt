@@ -63,6 +63,15 @@ describe Eucalypt do
           end
         end
       end
+      context '--warden, -w' do
+
+      end
+      context '--pundit, -p' do
+
+      end
+      context '--warden --pundit, -wp' do
+
+      end
       context '--git' do
         let(:args) { %w[init tmp -s --no-bundle --git] }
 
