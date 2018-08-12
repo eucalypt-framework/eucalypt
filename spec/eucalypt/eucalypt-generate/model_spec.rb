@@ -40,7 +40,6 @@ describe Eucalypt do
           end
         end
       end
-
       describe '--table' do
         context 'without columns' do
           before(:all) do
@@ -63,7 +62,6 @@ describe Eucalypt do
             expect(@contents.lines.count).to be 5
           end
         end
-
         context 'with columns' do
           before(:all) do
             Temporary.create_app
@@ -92,7 +90,6 @@ describe Eucalypt do
           end
         end
       end
-
       context '--no-table' do
         before(:all) do
           Temporary.create_app

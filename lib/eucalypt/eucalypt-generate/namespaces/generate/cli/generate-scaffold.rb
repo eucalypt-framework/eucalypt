@@ -39,17 +39,7 @@ module Eucalypt
         if controller
           controller = Eucalypt::Generators::Controller.new
           controller.destination_root = directory
-          policy = if options[:rest] && options[:policy]
-            if model
-              true
-            else
-              Out.error "Unable to create controller with policy routes without a model"
-              Out.info "Creating REST-style controller instead..."
-              false
-            end
-          else
-            false
-          end
+          policy = options[:rest] && options[:policy]
           controller.generate(
             name: name,
             spec: controller_spec,
