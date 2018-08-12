@@ -55,7 +55,7 @@ describe Eucalypt do
           end
 
           it 'should create a table' do
-            expect(@contents).to include 'create_table'
+            expect(@contents).to include "create_table :#{Inflect.resources @name}"
           end
 
           it "should not have any columns" do
