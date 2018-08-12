@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-include Eucalypt::Helpers
-
 describe Eucalypt do
   describe Generate do
     describe 'Controller' do

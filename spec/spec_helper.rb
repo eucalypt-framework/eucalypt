@@ -16,3 +16,4 @@ RSpec.configure do |config|
 end
 
 include Eucalypt
+include Eucalypt::Helpers
