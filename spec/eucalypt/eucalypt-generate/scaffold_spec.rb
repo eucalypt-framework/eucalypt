@@ -559,6 +559,422 @@ describe Eucalypt do
               expect(tmp { File.file? subject[:helper].spec_path }).to be true
             end
           end
+          context 'c m ms h hs' do
+            before(:all) do
+              Temporary.create_app
+              tmp { execute "generate scaffold #{@name} -n c m ms h hs" }
+            end
+            after(:all) { Temporary.clear }
+
+            it "shouldn't generate a controller" do
+              expect(tmp { File.file? subject[:controller].file_path }).to be false
+            end
+            it "shouldn't generate a controller spec" do
+              expect(tmp { File.file? subject[:controller].spec_path }).to be false
+            end
+            it "shouldn't generate a model" do
+              expect(tmp { File.file? subject[:model].file_path }).to be false
+            end
+            it "shouldn't generate a model spec" do
+              expect(tmp { File.file? subject[:model].spec_path }).to be false
+            end
+            it "shouldn't generate a helper" do
+              expect(tmp { File.file? subject[:helper].file_path }).to be false
+            end
+            it "shouldn't generate a helper spec" do
+              expect(tmp { File.file? subject[:helper].spec_path }).to be false
+            end
+          end
+          context 'c m ms h' do
+            before(:all) do
+              Temporary.create_app
+              tmp { execute "generate scaffold #{@name} -n c m ms h" }
+            end
+            after(:all) { Temporary.clear }
+
+            it "shouldn't generate a controller" do
+              expect(tmp { File.file? subject[:controller].file_path }).to be false
+            end
+            it "shouldn't generate a controller spec" do
+              expect(tmp { File.file? subject[:controller].spec_path }).to be false
+            end
+            it "shouldn't generate a model" do
+              expect(tmp { File.file? subject[:model].file_path }).to be false
+            end
+            it "shouldn't generate a model spec" do
+              expect(tmp { File.file? subject[:model].spec_path }).to be false
+            end
+            it "shouldn't generate a helper" do
+              expect(tmp { File.file? subject[:helper].file_path }).to be false
+            end
+            it "shouldn't generate a helper spec" do
+              expect(tmp { File.file? subject[:helper].spec_path }).to be false
+            end
+          end
+          context 'c m ms hs' do
+            before(:all) do
+              Temporary.create_app
+              tmp { execute "generate scaffold #{@name} -n c m ms hs" }
+            end
+            after(:all) { Temporary.clear }
+
+            it "shouldn't generate a controller" do
+              expect(tmp { File.file? subject[:controller].file_path }).to be false
+            end
+            it "shouldn't generate a controller spec" do
+              expect(tmp { File.file? subject[:controller].spec_path }).to be false
+            end
+            it "shouldn't generate a model" do
+              expect(tmp { File.file? subject[:model].file_path }).to be false
+            end
+            it "shouldn't generate a model spec" do
+              expect(tmp { File.file? subject[:model].spec_path }).to be false
+            end
+            it "should generate a helper" do
+              expect(tmp { File.file? subject[:helper].file_path }).to be true
+            end
+            it "shouldn't generate a helper spec" do
+              expect(tmp { File.file? subject[:helper].spec_path }).to be false
+            end
+          end
+          context 'c m ms' do
+            before(:all) do
+              Temporary.create_app
+              tmp { execute "generate scaffold #{@name} -n c m ms" }
+            end
+            after(:all) { Temporary.clear }
+
+            it "shouldn't generate a controller" do
+              expect(tmp { File.file? subject[:controller].file_path }).to be false
+            end
+            it "shouldn't generate a controller spec" do
+              expect(tmp { File.file? subject[:controller].spec_path }).to be false
+            end
+            it "shouldn't generate a model" do
+              expect(tmp { File.file? subject[:model].file_path }).to be false
+            end
+            it "shouldn't generate a model spec" do
+              expect(tmp { File.file? subject[:model].spec_path }).to be false
+            end
+            it "should generate a helper" do
+              expect(tmp { File.file? subject[:helper].file_path }).to be true
+            end
+            it "should generate a helper spec" do
+              expect(tmp { File.file? subject[:helper].spec_path }).to be true
+            end
+          end
+          context 'c m h hs' do
+            before(:all) do
+              Temporary.create_app
+              tmp { execute "generate scaffold #{@name} -n c m h hs" }
+            end
+            after(:all) { Temporary.clear }
+
+            it "shouldn't generate a controller" do
+              expect(tmp { File.file? subject[:controller].file_path }).to be false
+            end
+            it "shouldn't generate a controller spec" do
+              expect(tmp { File.file? subject[:controller].spec_path }).to be false
+            end
+            it "shouldn't generate a model" do
+              expect(tmp { File.file? subject[:model].file_path }).to be false
+            end
+            it "shouldn't generate a model spec" do
+              expect(tmp { File.file? subject[:model].spec_path }).to be false
+            end
+            it "shouldn't generate a helper" do
+              expect(tmp { File.file? subject[:helper].file_path }).to be false
+            end
+            it "shouldn't generate a helper spec" do
+              expect(tmp { File.file? subject[:helper].spec_path }).to be false
+            end
+          end
+          context 'c m h' do
+            before(:all) do
+              Temporary.create_app
+              tmp { execute "generate scaffold #{@name} -n c m h" }
+            end
+            after(:all) { Temporary.clear }
+
+            it "shouldn't generate a controller" do
+              expect(tmp { File.file? subject[:controller].file_path }).to be false
+            end
+            it "shouldn't generate a controller spec" do
+              expect(tmp { File.file? subject[:controller].spec_path }).to be false
+            end
+            it "shouldn't generate a model" do
+              expect(tmp { File.file? subject[:model].file_path }).to be false
+            end
+            it "shouldn't generate a model spec" do
+              expect(tmp { File.file? subject[:model].spec_path }).to be false
+            end
+            it "shouldn't generate a helper" do
+              expect(tmp { File.file? subject[:helper].file_path }).to be false
+            end
+            it "shouldn't generate a helper spec" do
+              expect(tmp { File.file? subject[:helper].spec_path }).to be false
+            end
+          end
+          context 'c m hs' do
+            before(:all) do
+              Temporary.create_app
+              tmp { execute "generate scaffold #{@name} -n c m hs" }
+            end
+            after(:all) { Temporary.clear }
+
+            it "shouldn't generate a controller" do
+              expect(tmp { File.file? subject[:controller].file_path }).to be false
+            end
+            it "shouldn't generate a controller spec" do
+              expect(tmp { File.file? subject[:controller].spec_path }).to be false
+            end
+            it "shouldn't generate a model" do
+              expect(tmp { File.file? subject[:model].file_path }).to be false
+            end
+            it "shouldn't generate a model spec" do
+              expect(tmp { File.file? subject[:model].spec_path }).to be false
+            end
+            it "should generate a helper" do
+              expect(tmp { File.file? subject[:helper].file_path }).to be true
+            end
+            it "shouldn't generate a helper spec" do
+              expect(tmp { File.file? subject[:helper].spec_path }).to be false
+            end
+          end
+          context 'c m' do
+            before(:all) do
+              Temporary.create_app
+              tmp { execute "generate scaffold #{@name} -n c m" }
+            end
+            after(:all) { Temporary.clear }
+
+            it "shouldn't generate a controller" do
+              expect(tmp { File.file? subject[:controller].file_path }).to be false
+            end
+            it "shouldn't generate a controller spec" do
+              expect(tmp { File.file? subject[:controller].spec_path }).to be false
+            end
+            it "shouldn't generate a model" do
+              expect(tmp { File.file? subject[:model].file_path }).to be false
+            end
+            it "shouldn't generate a model spec" do
+              expect(tmp { File.file? subject[:model].spec_path }).to be false
+            end
+            it "should generate a helper" do
+              expect(tmp { File.file? subject[:helper].file_path }).to be true
+            end
+            it "should generate a helper spec" do
+              expect(tmp { File.file? subject[:helper].spec_path }).to be true
+            end
+          end
+          context 'c ms h hs' do
+            before(:all) do
+              Temporary.create_app
+              tmp { execute "generate scaffold #{@name} -n c ms h hs" }
+            end
+            after(:all) { Temporary.clear }
+
+            it "shouldn't generate a controller" do
+              expect(tmp { File.file? subject[:controller].file_path }).to be false
+            end
+            it "shouldn't generate a controller spec" do
+              expect(tmp { File.file? subject[:controller].spec_path }).to be false
+            end
+            it "should generate a model" do
+              expect(tmp { File.file? subject[:model].file_path }).to be true
+            end
+            it "shouldn't generate a model spec" do
+              expect(tmp { File.file? subject[:model].spec_path }).to be false
+            end
+            it "shouldn't generate a helper" do
+              expect(tmp { File.file? subject[:helper].file_path }).to be false
+            end
+            it "shouldn't generate a helper spec" do
+              expect(tmp { File.file? subject[:helper].spec_path }).to be false
+            end
+          end
+          context 'c ms h' do
+            before(:all) do
+              Temporary.create_app
+              tmp { execute "generate scaffold #{@name} -n c ms h" }
+            end
+            after(:all) { Temporary.clear }
+
+            it "shouldn't generate a controller" do
+              expect(tmp { File.file? subject[:controller].file_path }).to be false
+            end
+            it "shouldn't generate a controller spec" do
+              expect(tmp { File.file? subject[:controller].spec_path }).to be false
+            end
+            it "should generate a model" do
+              expect(tmp { File.file? subject[:model].file_path }).to be true
+            end
+            it "shouldn't generate a model spec" do
+              expect(tmp { File.file? subject[:model].spec_path }).to be false
+            end
+            it "shouldn't generate a helper" do
+              expect(tmp { File.file? subject[:helper].file_path }).to be false
+            end
+            it "shouldn't generate a helper spec" do
+              expect(tmp { File.file? subject[:helper].spec_path }).to be false
+            end
+          end
+          context 'c ms hs' do
+            before(:all) do
+              Temporary.create_app
+              tmp { execute "generate scaffold #{@name} -n c ms hs" }
+            end
+            after(:all) { Temporary.clear }
+
+            it "shouldn't generate a controller" do
+              expect(tmp { File.file? subject[:controller].file_path }).to be false
+            end
+            it "shouldn't generate a controller spec" do
+              expect(tmp { File.file? subject[:controller].spec_path }).to be false
+            end
+            it "should generate a model" do
+              expect(tmp { File.file? subject[:model].file_path }).to be true
+            end
+            it "shouldn't generate a model spec" do
+              expect(tmp { File.file? subject[:model].spec_path }).to be false
+            end
+            it "should generate a helper" do
+              expect(tmp { File.file? subject[:helper].file_path }).to be true
+            end
+            it "shouldn't generate a helper spec" do
+              expect(tmp { File.file? subject[:helper].spec_path }).to be false
+            end
+          end
+          context 'c ms' do
+            before(:all) do
+              Temporary.create_app
+              tmp { execute "generate scaffold #{@name} -n c ms" }
+            end
+            after(:all) { Temporary.clear }
+
+            it "shouldn't generate a controller" do
+              expect(tmp { File.file? subject[:controller].file_path }).to be false
+            end
+            it "shouldn't generate a controller spec" do
+              expect(tmp { File.file? subject[:controller].spec_path }).to be false
+            end
+            it "should generate a model" do
+              expect(tmp { File.file? subject[:model].file_path }).to be true
+            end
+            it "shouldn't generate a model spec" do
+              expect(tmp { File.file? subject[:model].spec_path }).to be false
+            end
+            it "should generate a helper" do
+              expect(tmp { File.file? subject[:helper].file_path }).to be true
+            end
+            it "should generate a helper spec" do
+              expect(tmp { File.file? subject[:helper].spec_path }).to be true
+            end
+          end
+          context 'c h hs' do
+            before(:all) do
+              Temporary.create_app
+              tmp { execute "generate scaffold #{@name} -n c h hs" }
+            end
+            after(:all) { Temporary.clear }
+
+            it "shouldn't generate a controller" do
+              expect(tmp { File.file? subject[:controller].file_path }).to be false
+            end
+            it "shouldn't generate a controller spec" do
+              expect(tmp { File.file? subject[:controller].spec_path }).to be false
+            end
+            it "should generate a model" do
+              expect(tmp { File.file? subject[:model].file_path }).to be true
+            end
+            it "should generate a model spec" do
+              expect(tmp { File.file? subject[:model].spec_path }).to be true
+            end
+            it "shouldn't generate a helper" do
+              expect(tmp { File.file? subject[:helper].file_path }).to be false
+            end
+            it "shouldn't generate a helper spec" do
+              expect(tmp { File.file? subject[:helper].spec_path }).to be false
+            end
+          end
+          context 'c h' do
+            before(:all) do
+              Temporary.create_app
+              tmp { execute "generate scaffold #{@name} -n c h" }
+            end
+            after(:all) { Temporary.clear }
+
+            it "shouldn't generate a controller" do
+              expect(tmp { File.file? subject[:controller].file_path }).to be false
+            end
+            it "shouldn't generate a controller spec" do
+              expect(tmp { File.file? subject[:controller].spec_path }).to be false
+            end
+            it "should generate a model" do
+              expect(tmp { File.file? subject[:model].file_path }).to be true
+            end
+            it "should generate a model spec" do
+              expect(tmp { File.file? subject[:model].spec_path }).to be true
+            end
+            it "shouldn't generate a helper" do
+              expect(tmp { File.file? subject[:helper].file_path }).to be false
+            end
+            it "shouldn't generate a helper spec" do
+              expect(tmp { File.file? subject[:helper].spec_path }).to be false
+            end
+          end
+          context 'c hs' do
+            before(:all) do
+              Temporary.create_app
+              tmp { execute "generate scaffold #{@name} -n c hs" }
+            end
+            after(:all) { Temporary.clear }
+
+            it "shouldn't generate a controller" do
+              expect(tmp { File.file? subject[:controller].file_path }).to be false
+            end
+            it "shouldn't generate a controller spec" do
+              expect(tmp { File.file? subject[:controller].spec_path }).to be false
+            end
+            it "should generate a model" do
+              expect(tmp { File.file? subject[:model].file_path }).to be true
+            end
+            it "should generate a model spec" do
+              expect(tmp { File.file? subject[:model].spec_path }).to be true
+            end
+            it "should generate a helper" do
+              expect(tmp { File.file? subject[:helper].file_path }).to be true
+            end
+            it "shouldn't generate a helper spec" do
+              expect(tmp { File.file? subject[:helper].spec_path }).to be false
+            end
+          end
+          context 'c' do
+            before(:all) do
+              Temporary.create_app
+              tmp { execute "generate scaffold #{@name} -n c" }
+            end
+            after(:all) { Temporary.clear }
+
+            it "shouldn't generate a controller" do
+              expect(tmp { File.file? subject[:controller].file_path }).to be false
+            end
+            it "shouldn't generate a controller spec" do
+              expect(tmp { File.file? subject[:controller].spec_path }).to be false
+            end
+            it "should generate a model" do
+              expect(tmp { File.file? subject[:model].file_path }).to be true
+            end
+            it "should generate a model spec" do
+              expect(tmp { File.file? subject[:model].spec_path }).to be true
+            end
+            it "should generate a helper" do
+              expect(tmp { File.file? subject[:helper].file_path }).to be true
+            end
+            it "should generate a helper spec" do
+              expect(tmp { File.file? subject[:helper].spec_path }).to be true
+            end
+          end
         end
         context '--rest, -r' do
           before(:all) do
