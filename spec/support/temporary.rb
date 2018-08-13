@@ -17,6 +17,11 @@ module Temporary
     end
   end
 
+  def delete(file)
+    raise 'Must be in tmp directory' unless File.basename(Dir.pwd) == 'tmp'
+    FileUtils.rm file
+  end
+
   def execute_many(silent: true)
     raise 'Must be in tmp directory' unless File.basename(Dir.pwd) == 'tmp'
     yield builder = []

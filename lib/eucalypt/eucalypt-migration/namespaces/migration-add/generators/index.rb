@@ -37,9 +37,9 @@ module Eucalypt
               unless columns.empty?
                 columns.map!(&:to_sym)
                 s << (columns.size == 1 ? ":#{columns.first}" : "%i[#{columns*' '}]")
-                s << ', ' unless name.empty?
+                s << ', ' unless name.empty? || name == 'index'
               end
-              s << "name: :#{name}" unless name.empty?
+              s << "name: :#{name}" unless name.empty? || name == 'index'
               s << ', ' unless sanitized_options.empty?
               s << sanitized_options.map{|opt| "#{opt.first}: #{opt.last}"}*', '
               s << "\n"

@@ -7,6 +7,7 @@ module Eucalypt
   class MigrationAdd < Thor
     include Eucalypt::Helpers
     using Colorize
+
     option :name, aliases: '-n', type: :string, desc: "Index name"
     option :options, aliases: '-o', type: :hash, default: {}, enum: %w[unique length where using type], desc: "Index options"
     desc "index [TABLE] *[COLUMNS]", "Adds an index".colorize(:grey)
