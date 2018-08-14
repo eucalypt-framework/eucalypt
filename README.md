@@ -26,7 +26,7 @@ And you're ready to go!
 
 ## Specs
 
-I haven't figured out a way to stub `STDIN` for testing parts of the CLI that require user input. This means the following namespaces or commands are still missing specs:
+I haven't figured out a way to stub `STDIN` for testing parts of the CLI that require user input. This means the following CLI namespaces or tasks are still missing specs:
 
 - [ ] `eucalypt blog article edit`
 - [ ] `eucalypt blog article destroy`
