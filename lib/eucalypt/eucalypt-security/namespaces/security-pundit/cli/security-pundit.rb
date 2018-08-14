@@ -54,11 +54,11 @@ module Eucalypt
         # Add has_one to User model
         File.open(user_model_file) do |f|
           contents = f.read
-          insert = "  has_one :role, dependent: :destroy"
-          inject_into_class(user_model_file, 'User', "#{insert}\n") unless contents.include? insert
-          insert = "  after_save :create_role"
-          inject_into_class(user_model_file, 'User', "#{insert}\n") unless contents.include? insert
-          insert = "\n  private \\\n  def create_role() self.role = Role.new end\n"
+          insert = "  has_one :role, dependent: :destroy\n"
+          inject_into_file(user_model_file, insert, before: /  include BCrypt/) unless contents.include? insert
+          insert = "  after_save :create_role\n\n"
+          inject_into_file(user_model_file, insert, before: /  include BCrypt/) unless contents.include? insert
+          insert = "\n  private\n\n  def create_role\n    self.role = Role.new\n  end\n"
           inject_into_file(user_model_file, insert, before: /^end/) unless contents.include? insert
         end
 

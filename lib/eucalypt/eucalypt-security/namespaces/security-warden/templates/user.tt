@@ -1,0 +1,16 @@
+require 'eucalypt/eucalypt-security/namespaces/security-warden/user_confirm'
+class User < ActiveRecord::Base
+  validates :username, presence: true, uniqueness: true
+  validates :encrypted_password, presence: true
+
+  include BCrypt
+
+  def authenticate(attempt)
+    Password.new(self.encrypted_password) == attempt
+  end
+
+  def password=(entered_password)
+    @password = Password.create(entered_password)
+    self.encrypted_password = @password
+  end
+end
