@@ -5,5 +5,7 @@ class <%= config[:migration_title] %> < ActiveRecord::Migration[<%= ActiveRecord
       t.boolean :admin, default: true
       t.boolean :default, default: false
     end
+
+    add_index :<%= config[:policy] %>_roles, :permission, unique: true
   end
 end

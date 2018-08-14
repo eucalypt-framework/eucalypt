@@ -60,6 +60,6 @@ module Eucalypt
   class CLI < Thor
     include Eucalypt::Helpers
     using Colorize
-    register(Blog, 'blog', 'blog [COMMAND]', 'Manage blog environment'.colorize(:grey))
+    register(Blog, 'blog', 'blog [COMMAND]', 'Manage static blog environment'.colorize(:grey))
   end
 end

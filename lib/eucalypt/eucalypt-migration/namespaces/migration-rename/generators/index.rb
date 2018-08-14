@@ -21,7 +21,7 @@ module Eucalypt
           new_name = Inflect.resource_keep_inflection(new_name.to_s)
 
           sleep 1
-          migration_name = "rename_#{old_name}_index_on_#{table}"
+          migration_name = "rename_#{old_name}_on_#{table}"
           migration = Eucalypt::Helpers::Migration[title: migration_name, template: 'migration_base.tt']
           return unless migration.create_anyway? if migration.exists?
           config = {migration_class_name: migration_name.camelize}

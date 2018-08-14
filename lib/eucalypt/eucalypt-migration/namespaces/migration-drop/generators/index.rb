@@ -15,7 +15,7 @@ module Eucalypt
           File.join File.dirname(File.dirname(File.dirname __dir__))
         end
 
-        def generate(table:, columns: [], name: 'index')
+        def generate(table:, columns: [], name:)
           table = Inflect.resource_keep_inflection(table.to_s)
           name = Inflect.resource_keep_inflection(name.to_s)
 
@@ -29,13 +29,13 @@ module Eucalypt
           insert_into_file migration.file_path, :after => "def change\n" do
             String.build do |s|
               s << "    remove_index :#{table}"
-              unless name.empty?
+              unless name.empty? || name == 'index'
                 s << ", name: :#{name}"
               else
                 unless columns.empty?
                   columns.map!(&:to_sym)
                   s << ", column: "
-                  s << (columns.size == 1 ? ":#{columns.first}" : "#{columns.inspect}")
+                  s << (columns.size == 1 ? ":#{columns.first}" : "%i[#{columns*' '}]")
                 end
               end
               s << "\n"

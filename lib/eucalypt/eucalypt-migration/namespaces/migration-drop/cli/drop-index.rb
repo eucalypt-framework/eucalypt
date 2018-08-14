@@ -14,7 +14,7 @@ module Eucalypt
       if Eucalypt.app? directory
         migration = Eucalypt::Generators::Drop::Index.new
         migration.destination_root = directory
-        migration.generate(table: table, columns: columns, name: options[:name])
+        migration.generate(table: table, columns: columns, name: options[:name]||'index')
       else
         Eucalypt::Error.wrong_directory
       end

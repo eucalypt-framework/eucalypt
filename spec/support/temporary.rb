@@ -19,7 +19,7 @@ module Temporary
 
   def delete(file)
     raise 'Must be in tmp directory' unless File.basename(Dir.pwd) == 'tmp'
-    FileUtils.rm file
+    FileUtils.rm(file) if File.file? file
   end
 
   def execute_many(silent: true)
