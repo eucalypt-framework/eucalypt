@@ -40,10 +40,6 @@ module Eucalypt
           <<~END
             validates :username, presence: true, uniqueness: true
               validates :encrypted_password, presence: true
-              validate :confirm_password
-
-              attr_reader :password
-              attr_accessor :password_confirmation
 
               include BCrypt
 
@@ -56,20 +52,41 @@ module Eucalypt
                 self.encrypted_password = @password
               end
 
-              def with_confirm_password
-                @with_confirm_password = true
-                self
-              end
+              def with_confirm(*fields)
+                return if fields.empty?
+                fields.map(&:to_sym).each {|field| instance_variable_set "@with_confirm_\#{field}", true }
+                class_eval do
+                  attr_accessor *fields.map {|field| "\#{field}_confirmation".to_sym }
+                  attr_reader *fields.map {|field| field.to_sym }.reject {|field| field != :password}
+                end
 
-              private
+                fields.each do |field|
+                  confirm = "confirm_\#{field}".to_sym
+                  define_singleton_method confirm do
+                    if instance_variable_get "@with_\#{confirm}"
+                      case field
+                      when :password
+                        return if @password.nil?
+                        unless authenticate @password_confirmation
+                          errors.add :password_confirmation, "Passwords don't match"
+                        end
+                      else
+                        actual = self.send field
+                        return if actual.nil?
+                        confirmation = instance_variable_get "@\#{field}_confirmation"
+                        unless actual == confirmation
+                          errors.add "\#{field}_confirmation", "\#{field.to_s.pluralize.capitalize} don't match"
+                        end
+                      end
+                    end
+                  end
 
-              def confirm_password
-                if @with_confirm_password
-                  return if @password.nil?
-                  unless authenticate(@password_confirmation)
-                    errors.add :password_confirmation, "Passwords don't match"
+                  class_eval do
+                    private confirm
+                    validate confirm
                   end
                 end
+                self
               end
           END
         )

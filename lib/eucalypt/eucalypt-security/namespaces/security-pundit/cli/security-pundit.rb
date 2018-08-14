@@ -58,7 +58,7 @@ module Eucalypt
           inject_into_class(user_model_file, 'User', "#{insert}\n") unless contents.include? insert
           insert = "  after_save :create_role"
           inject_into_class(user_model_file, 'User', "#{insert}\n") unless contents.include? insert
-          insert = "\n  def create_role() self.role = Role.new end\n"
+          insert = "\n  private \\\n  def create_role() self.role = Role.new end\n"
           inject_into_file(user_model_file, insert, before: /^end/) unless contents.include? insert
         end
 
