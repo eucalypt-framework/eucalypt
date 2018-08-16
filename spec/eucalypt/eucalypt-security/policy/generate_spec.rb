@@ -2,22 +2,21 @@ require 'spec_helper'
 
 describe Eucalypt do
   describe SecurityPolicy do
-    before :all do
-      Temporary.create_app
-      tmp do
-        execute_many do |t|
-          t << 'security warden setup --no-controller'
-          t << 'security pundit setup'
-          t << 'security policy generate test'
+    context 'Generate' do
+      before :all do
+        Temporary.create_app
+        tmp do
+          execute_many do |t|
+            t << 'security warden setup --no-controller'
+            t << 'security pundit setup'
+            t << 'security policy generate test'
+          end
         end
       end
-    end
-    after(:all) { Temporary.clear }
+      after(:all) { Temporary.clear }
 
-    context 'Generate' do
       subject do
         {
-          user_model: File.join('app', 'models', 'user.rb'),
           policy: File.join('app', 'policies', 'test_policy.rb'),
           role_model: File.join('app', 'models', 'test_role.rb'),
           role_migration: tmp { find_migration('create_test_roles') },
