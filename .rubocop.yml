@@ -1,0 +1,135 @@
+require: rubocop-rspec
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/EmptyElse:
+  Enabled: false
+
+Style/CaseEquality:
+  Enabled: false
+
+Style/FormatString:
+  EnforcedStyle: percent
+
+Style/SignalException:
+  EnforcedStyle: semantic
+
+Style/ParallelAssignment:
+  Enabled: false
+
+Style/AndOr:
+  EnforcedStyle: conditionals
+
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
+
+Style/EmptyCaseCondition:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: "{}"
+    "%w": "[]"
+    "%i": "[]"
+
+Style/TrailingCommaInArguments:
+  Enabled: false
+
+Style/TrailingCommaInLiteral:
+  Enabled: false
+
+Style/ModuleFunction:
+  Enabled: true
+
+Style/MultilineBlockChain:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 200
+  Exclude:
+    - 'spec/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+Metrics/PerceivedComplexity:
+  Max: 8
+  Exclude:
+    - 'spec/**/*'
+
+Metrics/AbcSize:
+  # Max: 27
+  Exclude:
+    - 'spec/**/*'
+
+Metrics/ClassLength:
+  Max: 131
+
+Metrics/CyclomaticComplexity:
+  Max: 14
+
+Metrics/MethodLength:
+  Max: 30
+
+Metrics/ModuleLength:
+  Max: 200
+  Exclude:
+    - 'spec/**/*'
+
+Style/BlockDelimiters:
+  Enabled: false
+
+Style/UnneededPercentQ:
+  Exclude:
+    - 'spec/**/*'
+
+Style/FormatStringToken:
+  Enabled: false
+
+# Specs
+RSpec/LeadingSubject:
+  Enabled: false
+
+RSpec/EmptyExampleGroup:
+  Enabled: false
+
+RSpec/DescribeClass:
+  Enabled: true
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: true
+
+RSpec/ContextWording:
+  Enabled: true
+
+RSpec/BeforeAfterAll:
+  Enabled: true
+
+RSpec/InstanceVariable:
+  Enabled: true
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/ExampleWording:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: true
+
+RSpec/DescribeSymbol:
+  Enabled: false
