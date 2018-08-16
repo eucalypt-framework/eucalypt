@@ -17,7 +17,7 @@ module Eucalypt
       File.join File.dirname(__dir__), 'templates'
     end
 
-    option :controller, type: :boolean, aliases: '-c', default: true, desc: "Include an authentication controller"
+    option :controller, type: :boolean, default: true, desc: "Include an authentication controller"
     desc "setup", "Set up Warden authentication".colorize(:grey)
     def setup
       directory = File.expand_path('.')

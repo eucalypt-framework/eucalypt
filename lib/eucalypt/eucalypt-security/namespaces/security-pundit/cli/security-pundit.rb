@@ -51,7 +51,7 @@ module Eucalypt
           inject_into_class(role_model_file, 'Role', "#{insert}\n") unless f.read.include? insert
         end
 
-        # Add has_one to User model
+        # Add relationship to User model
         File.open(user_model_file) do |f|
           contents = f.read
           insert = "  has_one :role, dependent: :destroy\n"
