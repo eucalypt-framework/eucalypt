@@ -33,7 +33,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "rerun", "~> 0.13"
 
   spec.metadata = {
-    "documentation_uri" => "https://eucalypt.gitbook.io/eucalypt/",
+  #  "documentation_uri" => "https://eucalypt.gitbook.io/eucalypt/",
     "source_code_uri"   => "https://github.com/eucalypt/eucalypt/"
   }
 end
