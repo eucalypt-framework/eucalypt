@@ -1,7 +1,7 @@
 [![Ruby Version](https://img.shields.io/badge/ruby-~%3E%202.5-red.svg)](https://github.com/eonu/eucalypt/blob/0c509a4e22fd97ec52b6f638af21de783f3aafc8/eucalypt.gemspec#L19)
 [![Gem](https://img.shields.io/gem/v/eucalypt.svg)](https://rubygems.org/gems/eucalypt)
-[![Build Status](https://travis-ci.org/eonu/eucalypt.svg?branch=master)]
-[![License](https://img.shields.io/github/license/eonu/eucalypt.svg)]
+![Build Status](https://travis-ci.org/eonu/eucalypt.svg?branch=master)
+![License](https://img.shields.io/github/license/eonu/eucalypt.svg)
 
 # Eucalypt
 
@@ -23,7 +23,7 @@ Initialize a new application with:
 $ eucalypt init my-new-app
 ```
 
-> Once the setup is complete, make sure the required gems have been installed (without any errors). This is indicated by the presence of a `Gemfile.lock` file. 
+> Once the setup is complete, make sure the required gems have been installed (without any errors). This is indicated by the presence of a `Gemfile.lock` file.
 >
 > This should have been done automatically unless you used the `--no-bundle` flag during initialization.
 
@@ -44,7 +44,7 @@ Some of these features are pretty set in stone, but it may be possible to change
 | Core/DSL             | [Sinatra](http://sinatrarb.com/)                             |
 | Web server           | [Thin](https://github.com/macournoyer/thin)                  |
 | ORM                  | [ActiveRecord](https://github.com/rails/rails/tree/master/activerecord) |
-| ORDBMS               | [PostgreSQL](https://www.postgresql.org/) (production), [SQLite3](https://www.sqlite.org/) (test + development) |
+| ORDBMS               | [PostgreSQL](https://www.postgresql.org/) (prod) + [SQLite3](https://www.sqlite.org/) (test, dev) |
 | Asset pipeline       | [Sprockets](https://github.com/rails/sprockets)              |
 | Templating engine    | [ERB](https://ruby-doc.org/stdlib-2.5.0/libdoc/erb/rdoc/ERB.html) |
 | Markdown processor   | [RDiscount](https://github.com/davidfstr/rdiscount)          |

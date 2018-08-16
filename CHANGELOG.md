@@ -19,6 +19,7 @@
 - Add further information to the `README` file about initialization (particularly about making sure gem dependencies have been installed), the top-level `eucalypt` command and in-progress documentation.
 - Add features table to `README`.
 - Comment out `homepage` metadata in `eucalypt.gemspec` until documentation is ready.
+- Fix badge links in `README`.
 
 # 0.1.0
 
