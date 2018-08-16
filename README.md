@@ -5,7 +5,7 @@
 
 # Eucalypt
 
-Micro-framework and CLI for the generation and maintenance of structured Sinatra web applications.
+Micro-framework and CLI wrapped around the Sinatra DSL, for the generation and maintenance of structured web applications.
 
 ## Installation
 
@@ -23,4 +23,38 @@ Initialize a new application with:
 $ eucalypt init my-new-app
 ```
 
-And you're ready to go!
+> Once the setup is complete, make sure the required gems have been installed (without any errors). This is indicated by the presence of a `Gemfile.lock` file. 
+>
+> This should have been done automatically unless you used the `--no-bundle` flag during initialization.
+
+Move into your new application's directory and run the top-level `eucalypt` command to display a list of all available commands.
+
+## Documentation and help
+
+The writing of full documentation is currently in progress and will be available in the form of a [GitBook](https://www.gitbook.com/).
+
+---
+
+## Features
+
+Some of these features are pretty set in stone, but it may be possible to change some of them around with a little bit of work.
+
+| Type                 | Feature                                                      |
+| -------------------- | ------------------------------------------------------------ |
+| Core/DSL             | [Sinatra](http://sinatrarb.com/)                             |
+| Web server           | [Thin](https://github.com/macournoyer/thin)                  |
+| ORM                  | [ActiveRecord](https://github.com/rails/rails/tree/master/activerecord) |
+| ORDBMS               | [PostgreSQL](https://www.postgresql.org/) (production), [SQLite3](https://www.sqlite.org/) (test + development) |
+| Asset pipeline       | [Sprockets](https://github.com/rails/sprockets)              |
+| Templating engine    | [ERB](https://ruby-doc.org/stdlib-2.5.0/libdoc/erb/rdoc/ERB.html) |
+| Markdown processor   | [RDiscount](https://github.com/davidfstr/rdiscount)          |
+| Front matter parsing | [FrontMatterParser](https://github.com/waiting-for-dev/front_matter_parser) |
+| HTML helpers         | [Hanami](https://github.com/hanami/helpers)                  |
+| CSS preprocessing    | [SCSS](http://sass-lang.com/)                                |
+| JS compressing       | [Uglifier](https://github.com/lautis/uglifier)               |
+| Logging              | [Lumberjack](https://github.com/bdurand/lumberjack)          |
+| Specs                | [RSpec](http://rspec.info/) + [Rack-Test](https://github.com/rack-test/rack-test) + [Shoulda-Matchers](http://matchers.shoulda.io/) |
+| Encryption           | [BCrypt](https://github.com/codahale/bcrypt-ruby)            |
+| Authentication       | [Warden](https://github.com/wardencommunity/warden)          |
+| Authorization        | [Pundit](https://github.com/varvet/pundit)                   |
+
