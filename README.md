@@ -2,6 +2,7 @@
 [![Gem](https://img.shields.io/gem/v/eucalypt.svg)](https://rubygems.org/gems/eucalypt)
 [![Build Status](https://travis-ci.org/eonu/eucalypt.svg?branch=master)](https://travis-ci.org/eonu/eucalypt)
 [![License](https://img.shields.io/github/license/eonu/eucalypt.svg)](https://github.com/eonu/eucalypt/blob/master/LICENSE)
+[![Documentation](https://img.shields.io/badge/docs-gitbook-blue.svg)](https://gum.gitbook.io/eucalypt)
 
 # Eucalypt
 
