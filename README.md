@@ -2,7 +2,7 @@
 [![Gem](https://img.shields.io/gem/v/eucalypt.svg)](https://rubygems.org/gems/eucalypt)
 [![Build Status](https://travis-ci.org/eucalypt-framework/eucalypt.svg?branch=master)](https://travis-ci.org/eucalypt-framework/eucalypt)
 [![License](https://img.shields.io/github/license/eucalypt-framework/eucalypt.svg)](https://github.com/eucalypt-framework/eucalypt/blob/master/LICENSE)
-[![Documentation](https://img.shields.io/badge/docs-gitbook-blue.svg)](https://gum.gitbook.io/eucalypt)
+[![Documentation](https://img.shields.io/badge/docs-gitbook-blue.svg)](https://eucalypt.gitbook.io/eucalypt)
 
 # Eucalypt
 
@@ -32,7 +32,7 @@ Move into your new application's directory and run the top-level `eucalypt` comm
 
 ## Documentation and help
 
-The full documentation can be found [here](https://gum.gitbook.io/eucalypt).
+The full documentation can be found [here](https://eucalypt.gitbook.io/eucalypt).
 
 ---
 
