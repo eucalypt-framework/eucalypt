@@ -43,6 +43,7 @@ Some of these features are pretty set in stone, but it may be possible to change
 | Type                 | Feature                                                      |
 | -------------------- | ------------------------------------------------------------ |
 | Core/DSL             | [Sinatra](http://sinatrarb.com/)                             |
+| CLI builder          | [Thor](https://github.com/erikhuda/thor)                     |
 | Web server           | [Thin](https://github.com/macournoyer/thin)                  |
 | ORM                  | [ActiveRecord](https://github.com/rails/rails/tree/master/activerecord) |
 | ORDBMS               | [PostgreSQL](https://www.postgresql.org/) + [SQLite3](https://www.sqlite.org/) |
@@ -58,4 +59,3 @@ Some of these features are pretty set in stone, but it may be possible to change
 | Encryption           | [BCrypt](https://github.com/codahale/bcrypt-ruby)            |
 | Authentication       | [Warden](https://github.com/wardencommunity/warden)          |
 | Authorization        | [Pundit](https://github.com/varvet/pundit)                   |
-| CLI builder          | [Thor](https://github.com/erikhuda/thor)                     |
