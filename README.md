@@ -32,7 +32,7 @@ Move into your new application's directory and run the top-level `eucalypt` comm
 
 ## Documentation and help
 
-The full documentation can be found [here](https://gum.gitbook.io).
+The full documentation can be found [here](https://gum.gitbook.io/eucalypt).
 
 ---
 
