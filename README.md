@@ -44,7 +44,7 @@ Some of these features are pretty set in stone, but it may be possible to change
 | Core/DSL             | [Sinatra](http://sinatrarb.com/)                             |
 | Web server           | [Thin](https://github.com/macournoyer/thin)                  |
 | ORM                  | [ActiveRecord](https://github.com/rails/rails/tree/master/activerecord) |
-| ORDBMS               | [PostgreSQL](https://www.postgresql.org/) (prod) + [SQLite3](https://www.sqlite.org/) (test, dev) |
+| ORDBMS               | [PostgreSQL](https://www.postgresql.org/) + [SQLite3](https://www.sqlite.org/) |
 | Asset pipeline       | [Sprockets](https://github.com/rails/sprockets)              |
 | Templating engine    | [ERB](https://ruby-doc.org/stdlib-2.5.0/libdoc/erb/rdoc/ERB.html) |
 | Markdown processor   | [RDiscount](https://github.com/davidfstr/rdiscount)          |
@@ -57,4 +57,4 @@ Some of these features are pretty set in stone, but it may be possible to change
 | Encryption           | [BCrypt](https://github.com/codahale/bcrypt-ruby)            |
 | Authentication       | [Warden](https://github.com/wardencommunity/warden)          |
 | Authorization        | [Pundit](https://github.com/varvet/pundit)                   |
-
+| CLI builder          | [Thor](https://github.com/erikhuda/thor)                     |
