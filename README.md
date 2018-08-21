@@ -6,7 +6,7 @@
 
 # Eucalypt
 
-Micro-framework and CLI wrapped around the Sinatra DSL, for the generation and maintenance of structured web applications.
+Micro-framework and CLI wrapped around the Sinatra DSL.
 
 ## Installation
 
