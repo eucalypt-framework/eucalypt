@@ -1,3 +1,23 @@
+# 0.1.3
+
+#### Major changes
+
+- Transfer repository (along with documentation) to [eucalypt-framework](https://github.com/eucalypt-framework) organisation.
+
+  This meant changing a bunch of repository links, README badges (on the `eucalypt` and `eucalypt-book` repositories) and `gemspec` information.
+
+- Change framework description from:
+
+  > Micro-framework and CLI wrapped around the Sinatra DSL, for the generation and maintenance of structured web applications.
+
+  To:
+
+  > Micro-framework and CLI wrapped around the Sinatra DSL.
+
+#### Minor changes
+
+- Rename GitBook from `gum.gitbook.io` to `eucalypt.gitbook.io`.
+
 # 0.1.2
 
 #### Major changes
