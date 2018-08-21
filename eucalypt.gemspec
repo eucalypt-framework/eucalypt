@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["edwinonuonga@gmail.com"]
 
   spec.summary       = %q{Micro-framework and CLI wrapped around the Sinatra DSL, for the generation and maintenance of structured web applications.}
-  # spec.homepage      = "https://eucalypt.gitbook.io/eucalypt/"
+  spec.homepage      = "https://gum.gitbook.io/eucalypt"
   spec.license       = "MIT"
   spec.files         = Dir.glob('lib/**/*', File::FNM_DOTMATCH) + %w[Gemfile LICENSE README.md Rakefile eucalypt.gemspec bin/eucalypt]
   spec.bindir        = "bin"
@@ -33,7 +33,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "rerun", "~> 0.13"
 
   spec.metadata = {
-  #  "documentation_uri" => "https://eucalypt.gitbook.io/eucalypt/",
+    "documentation_uri" => "https://gum.gitbook.io/eucalypt",
     "source_code_uri"   => "https://github.com/eucalypt/eucalypt/"
   }
 end

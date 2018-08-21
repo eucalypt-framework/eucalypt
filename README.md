@@ -31,7 +31,7 @@ Move into your new application's directory and run the top-level `eucalypt` comm
 
 ## Documentation and help
 
-The writing of full documentation is currently in progress and will be available in the form of a [GitBook](https://www.gitbook.com/).
+The full documentation can be found [here](https://gum.gitbook.io).
 
 ---
 
