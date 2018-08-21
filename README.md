@@ -34,8 +34,6 @@ Move into your new application's directory and run the top-level `eucalypt` comm
 
 The full documentation can be found [here](https://eucalypt.gitbook.io/eucalypt).
 
----
-
 ## Features
 
 Some of these features are pretty set in stone, but it may be possible to change some of them around with a little bit of work.
