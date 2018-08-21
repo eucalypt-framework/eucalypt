@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Edwin Onuonga"]
   spec.email         = ["edwinonuonga@gmail.com"]
 
-  spec.summary       = %q{Micro-framework and CLI wrapped around the Sinatra DSL, for the generation and maintenance of structured web applications.}
+  spec.summary       = %q{Micro-framework and CLI wrapped around the Sinatra DSL.}
   spec.homepage      = "https://gum.gitbook.io/eucalypt"
   spec.license       = "MIT"
   spec.files         = Dir.glob('lib/**/*', File::FNM_DOTMATCH) + %w[Gemfile LICENSE README.md Rakefile eucalypt.gemspec bin/eucalypt]
@@ -34,6 +34,6 @@ Gem::Specification.new do |spec|
 
   spec.metadata = {
     "documentation_uri" => "https://gum.gitbook.io/eucalypt",
-    "source_code_uri"   => "https://github.com/eucalypt/eucalypt/"
+    "source_code_uri"   => "https://github.com/eucalypt-framework/eucalypt/"
   }
 end
