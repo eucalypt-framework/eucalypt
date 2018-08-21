@@ -1,21 +1,19 @@
 class ApplicationController < Sinatra::Base
-  configure :development do
-    set :logger, Lumberjack::Logger.new
-  end
-
-  configure :test do
-    set :logger, Lumberjack::Logger.new
-  end
+  set :logger, Lumberjack::Logger.new
 
   configure :production do
-    log_name = Time.now.strftime("server-start_%Y-%m-%dT%H-%M-%S_%z").sub(/_\+/,'_p').sub(/_\-/,'_m')
-    log_file_path = Eucalypt.path 'log', "#{log_name}.log"
-    set :logger, Lumberjack::Logger.new
     use Rack::CommonLogger, $stdout
-    log = File.new log_file_path, "a+"
-    $stdout.reopen log
-    $stderr.reopen log
+
+    log_name = Time.now.strftime("%Y-%m-%dT%H-%M-%S_%z").sub(/_\+/,'_p').sub(/_\-/,'_m')
+
+    # STDERR logger
+    stderr_log = File.new Eucalypt.path('log', "#{log_name}.stderr.log"), 'a+'
+    $stderr.reopen stderr_log
     $stderr.sync = true
+
+    # STDOUT logger
+    stdout_log = File.new Eucalypt.path('log', "#{log_name}.stdout.log"), 'a+'
+    $stdout.reopen stdout_log
     $stdout.sync = true
   end
 
