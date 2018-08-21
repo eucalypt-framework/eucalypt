@@ -32,12 +32,14 @@ module Eucalypt
       end
     end
 
-    def map_env(env)
-      case env
-      when ?p then 'production'
-      when ?d then 'development'
-      when ?t then 'test'
-      else env
+    no_tasks do
+      def map_env(env)
+        case env
+        when ?p then 'production'
+        when ?d then 'development'
+        when ?t then 'test'
+        else env
+        end
       end
     end
   end
