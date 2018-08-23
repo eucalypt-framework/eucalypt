@@ -2,7 +2,7 @@ class ApplicationController < Sinatra::Base
   set :logger, Lumberjack::Logger.new
 
   require 'fileutils'
-  %i[production test] do |environment|
+  %i[production test].each do |environment|
     configure environment do
       use Rack::CommonLogger, $stdout
 
