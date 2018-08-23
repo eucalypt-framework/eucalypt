@@ -10,6 +10,7 @@ module Eucalypt
     option :no, aliases: '-n', type: :array, default: [], enum: %w[m ms c cs h hs], desc: "Omit specified scaffold files"
     option :rest, aliases: '-r', type: :boolean, default: false,  desc: "Generate REST routes for the controller"
     option :policy, aliases: '-p', type: :boolean, default: false, desc: "Generate a policy with the scaffold"
+    option :headless, type: :boolean, aliases: '-H', default: false, desc: "Policy with no associated model"
     option :table, type: :boolean, default: true, desc: "Generate a table migration"
     desc "scaffold [NAME] *[COLUMN∶TYPE]", "Generates a scaffold".colorize(:grey)
     def scaffold(name, *columns)
