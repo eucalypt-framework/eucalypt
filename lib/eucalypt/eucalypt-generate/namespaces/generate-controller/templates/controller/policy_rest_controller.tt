@@ -9,13 +9,17 @@ class <%= config[:class_name] %> < Eucalypt::Controller(route: '<%= config[:rout
   # These are useful for conditional displays to users with the correct permissions.
   # - e.g. Showing a form for editing <%= config[:resources] %>
 
-  # Pundit authorization helpers are used in the following way:
+  <% if config[:headless] %>
+  # Authorization helpers are used in the following way (if using headless policies):
+  # - `authorized?(:<%= config[:resource] %>, :add?)`
+  # - `authorized?(:<%= config[:resource] %>, :edit?)`
+  # - `authorized?(:<%= config[:resource] %>, :delete?)`
+  <% else %>
+  # Authorization helpers are used in the following way:
   # - `authorized?(<%= config[:constant] %>, :add?)`
   # - `authorized?(<%= config[:constant] %>, :edit?)`
   # - `authorized?(<%= config[:constant] %>, :delete?)`
-
-  # If using a headless policy (no model), simply pass a symbol instead of a model constant:
-  # - e.g. `authorized?(:<%= config[:resource] %>, :add?)`
+  <% end %>
 
   # GET - Browse
   get '/' do
