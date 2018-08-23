@@ -3,9 +3,9 @@ module Eucalypt
   class CLI < Thor
     using Colorize
     include Eucalypt::Helpers::Messages
-    method_option :port, type: :numeric, aliases: '-p', desc: 'Port to serve the application on'
-    method_option :rerun, type: :boolean, aliases: '-r', desc: 'Rerun (watch for file changes and restart server)'
-    method_option :quiet, type: :boolean, aliases: '-q', desc: 'Silences rerun (runs less verbosely)'
+    option :port, type: :numeric, aliases: '-p', desc: 'Port to serve the application on'
+    option :rerun, type: :boolean, aliases: '-r', desc: 'Rerun (watch for file changes and restart server)'
+    option :quiet, type: :boolean, aliases: '-q', desc: 'Silences rerun (runs less verbosely)'
     desc "launch [ENV]", "Launches your application".colorize(:grey)
     def launch(env = ENV['RACK_ENV']||'development')
       directory = File.expand_path('.')

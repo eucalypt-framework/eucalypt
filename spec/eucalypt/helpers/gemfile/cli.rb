@@ -5,7 +5,7 @@ class GemfileCLI < Thor
   include Eucalypt::Helpers::Gemfile
 
   desc '', ''
-  method_option :gems, type: :hash, aliases: '-g'
+  option :gems, type: :hash, aliases: '-g'
   def add(description, directory)
     gems = {}
     options[:gems].each do |gem, version|

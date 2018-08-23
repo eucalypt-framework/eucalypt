@@ -11,8 +11,8 @@ module Eucalypt
     include Eucalypt::Helpers
     using Colorize
 
-    method_option :headless, type: :boolean, aliases: '-H', default: false, desc: "Policy with no associated model"
-    method_option :permissions, type: :array, aliases: '-p', default: [], desc: "Permissions to generate along with the policy"
+    option :headless, type: :boolean, aliases: '-H', default: false, desc: "Policy with no associated model"
+    option :permissions, type: :array, aliases: '-p', default: [], desc: "Permissions to generate along with the policy"
     desc "generate [NAME]", "Create a new Pundit policy".colorize(:grey)
     def generate(name)
       directory = File.expand_path('.')

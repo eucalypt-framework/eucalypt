@@ -5,13 +5,13 @@ module Eucalypt
     include Eucalypt::Helpers::Messages
     using String::Builder
     using Colorize
-    method_option :git, type: :boolean, default: true, desc: 'Initialize a Git repository'
-    method_option :bundle, type: :boolean, default: true, desc: 'Install gems after application generation'
-    method_option :blog, type: :boolean, default: false, aliases: '-b', desc: 'Set up the blog environment'
-    method_option :route, type: :string, default: 'blog', aliases: '-r', desc: 'Specify a route for the blog application'
-    method_option :silence, type: :boolean, default: false, aliases: '-s', desc: 'Silence `git init` and `bundle install` commands'
-    method_option :warden, type: :boolean, default: false, aliases: '-w', desc: 'Set up Warden authentication'
-    method_option :pundit, type: :boolean, default: false, aliases: '-p', desc: 'Set up Pundit authorization'
+    option :git, type: :boolean, default: true, desc: 'Initialize a Git repository'
+    option :bundle, type: :boolean, default: true, desc: 'Install gems after application generation'
+    option :blog, type: :boolean, default: false, aliases: '-b', desc: 'Set up the blog environment'
+    option :route, type: :string, default: 'blog', aliases: '-r', desc: 'Specify a route for the blog application'
+    option :silence, type: :boolean, default: false, aliases: '-s', desc: 'Silence `git init` and `bundle install` commands'
+    option :warden, type: :boolean, default: false, aliases: '-w', desc: 'Set up Warden authentication'
+    option :pundit, type: :boolean, default: false, aliases: '-p', desc: 'Set up Pundit authorization'
     desc "init [NAME]", "Sets up your application".colorize(:grey)
     def init(name)
       current_directory = File.expand_path ?.
