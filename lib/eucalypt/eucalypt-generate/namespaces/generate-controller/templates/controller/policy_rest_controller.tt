@@ -5,7 +5,7 @@ class <%= config[:class_name] %> < Eucalypt::Controller(route: '<%= config[:rout
   # `current_user` - The User model object for the current user.
   # `authenticated?` (alias `logged_in?`) - Whether or not a user is logged in.
 
-  # You can also use authorization helpers provided by Pundit in your views:
+  # You can also use authorization helpers in your views:
   # These are useful for conditional displays to users with the correct permissions.
   # - e.g. Showing a form for editing <%= config[:resources] %>
 
