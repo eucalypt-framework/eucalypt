@@ -1,4 +1,4 @@
-class <%= config[:class_name] %>
+class <%= config[:class_name] %><%= " < Struct.new(:user, :#{config[:resource]})" if config[:headless] %>
   attr_reader :user, :<%= config[:resource] %>
 
   def initialize(user, <%= config[:resource] %>)
