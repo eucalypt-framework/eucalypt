@@ -1,4 +1,10 @@
 class ApplicationController < Sinatra::Base
   # Include Pundit for authorization
   include Pundit
+
+  helpers do
+    def authorized?(policy, permission)
+      policy(policy).send "#{permission}?"
+    end
+  end
 end
