@@ -10,9 +10,12 @@ class <%= config[:class_name] %> < Eucalypt::Controller(route: '<%= config[:rout
   # - e.g. Showing a form for editing <%= config[:resources] %>
 
   # Pundit authorization helpers are used in the following way:
-  # - `policy(<%= config[:constant] %>).add?`
-  # - `policy(<%= config[:constant] %>).edit?`
-  # - `policy(<%= config[:constant] %>).delete?`
+  # - `authorized?(<%= config[:constant] %>, :add?)`
+  # - `authorized?(<%= config[:constant] %>, :edit?)`
+  # - `authorized?(<%= config[:constant] %>, :delete?)`
+
+  # If using a headless policy (no model), simply pass a symbol instead of a model constant:
+  # - e.g. `authorized?(:<%= config[:resource] %>, :add?)`
 
   # GET - Browse
   get '/' do
