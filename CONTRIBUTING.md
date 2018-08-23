@@ -29,3 +29,7 @@ Please try to answer the following questions (in as much detail as possible):
 
 - **Uncluttered commit history**: If you had to make multiple intermediate commits while
   developing, please squash them before making your pull request.
+
+## License
+
+By contributing, you agree that your contributions will be licensed under the same [MIT License that covers this repository](/LICENSE).
