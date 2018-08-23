@@ -8,7 +8,6 @@ class <%= config[:class_name] %> < Eucalypt::Controller(route: '<%= config[:rout
   # You can also use authorization helpers in your views:
   # These are useful for conditional displays to users with the correct permissions.
   # - e.g. Showing a form for editing <%= config[:resources] %>
-
   <% if config[:headless] %>
   # Authorization helpers are used in the following way (if using headless policies):
   # - `authorized?(:<%= config[:resource] %>, :add?)`
@@ -20,7 +19,6 @@ class <%= config[:class_name] %> < Eucalypt::Controller(route: '<%= config[:rout
   # - `authorized?(<%= config[:constant] %>, :edit?)`
   # - `authorized?(<%= config[:constant] %>, :delete?)`
   <% end %>
-
   # GET - Browse
   get '/' do
     @<%= config[:resources] %> = <%= config[:constant] %>.all
