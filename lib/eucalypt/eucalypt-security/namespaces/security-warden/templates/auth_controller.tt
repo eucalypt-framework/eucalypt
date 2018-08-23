@@ -2,12 +2,12 @@ class AuthenticationController < Eucalypt::Controller(route: '/auth')
   helpers AuthenticationHelper if defined? AuthenticationHelper
 
   get '/login' do
-    redirect '/' if current_user
+    redirect '/' if authenticated?
     erb :'authentication/login', layout: false
   end
 
   post '/login' do
-    redirect '/' if current_user
+    redirect '/' if authenticated?
     authenticate
     redirect session[:return_to] || '/'
   end

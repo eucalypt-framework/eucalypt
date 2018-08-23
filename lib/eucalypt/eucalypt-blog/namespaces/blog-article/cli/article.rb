@@ -13,12 +13,12 @@ module Eucalypt
     include Eucalypt::Blog::Helpers
     using Colorize
 
-    method_option :descending, type: :boolean, aliases: '-d', default: true, desc: 'Descending chronological order'
-    method_option :ascending, type: :boolean, aliases: '-a', default: false, desc: 'Ascending chronological order'
-    method_option :tag, type: :string, aliases: '-t', default: String.new, desc: 'Search by blog article tag'
-    method_option :year, type: :string, aliases: '-Y', desc: 'Search articles by year'
-    method_option :month, type: :string, aliases: '-M', desc: 'Search articles by month'
-    method_option :day, type: :string, aliases: '-D', desc: 'Search articles by day'
+    option :descending, type: :boolean, aliases: '-d', default: true, desc: 'Descending chronological order'
+    option :ascending, type: :boolean, aliases: '-a', default: false, desc: 'Ascending chronological order'
+    option :tag, type: :string, aliases: '-t', default: String.new, desc: 'Search by blog article tag'
+    option :year, type: :string, aliases: '-Y', desc: 'Search articles by year'
+    option :month, type: :string, aliases: '-M', desc: 'Search articles by month'
+    option :day, type: :string, aliases: '-D', desc: 'Search articles by day'
     desc "list", "Display the metadata of blog articles".colorize(:grey)
     def list
       directory = File.expand_path('.')

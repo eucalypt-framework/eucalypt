@@ -28,8 +28,14 @@ class ApplicationController < Sinatra::Base
       env['warden'].user
     end
 
+    def authenticated?
+      !!current_user
+    end
+
     def authenticate
       env['warden'].authenticate!
     end
+
+    alias_method :logged_in?, :authenticated?
   end
 end

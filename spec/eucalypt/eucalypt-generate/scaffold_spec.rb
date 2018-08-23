@@ -1808,8 +1808,15 @@ describe Eucalypt do
           end
           after(:all) { Temporary.clear }
 
-          it 'should generate a policy file' do
-            expect(tmp { File.file? subject[:policy].file_path }).to be true
+          context 'policy file' do
+            it 'should exist' do
+              expect(tmp { File.file? subject[:policy].file_path }).to be true
+            end
+
+            it "shouldn't be headless" do
+              contents = tmp { File.open subject[:policy].file_path, &:read }
+              expect(contents).not_to include 'Struct.new'
+            end
           end
 
           it 'should generate a controller' do
@@ -1826,7 +1833,25 @@ describe Eucalypt do
           end
 
           it 'should not contain any Pundit authorization' do
-            expect(tmp { File.open subject[:controller].file_path, &:read }).not_to include 'Pundit authorization'
+            expect(tmp { File.open subject[:controller].file_path, &:read }).not_to include 'Authorization helpers'
+          end
+        end
+        context '--pundit --headless, -pH' do
+          before(:all) do
+            Temporary.create_app '-wp'
+            tmp { execute "generate scaffold #{@name} -pH --no-table" }
+          end
+          after(:all) { Temporary.clear }
+
+          context 'policy file' do
+            it 'should exist' do
+              expect(tmp { File.file? subject[:policy].file_path }).to be true
+            end
+
+            it 'should be headless' do
+              contents = tmp { File.open subject[:policy].file_path, &:read }
+              expect(contents).to include 'Struct.new'
+            end
           end
         end
         context '--rest --policy, -rp' do
@@ -1855,7 +1880,7 @@ describe Eucalypt do
           end
 
           it 'should contain Pundit authorization' do
-            expect(tmp { File.open subject[:controller].file_path, &:read }).to include 'Pundit authorization'
+            expect(tmp { File.open subject[:controller].file_path, &:read }).to include 'Authorization helpers'
           end
         end
         context '--no-table' do

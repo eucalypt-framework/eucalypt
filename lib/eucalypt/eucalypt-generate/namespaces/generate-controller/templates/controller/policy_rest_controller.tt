@@ -1,17 +1,24 @@
 class <%= config[:class_name] %> < Eucalypt::Controller(route: '<%= config[:route] %>')
   helpers <%= config[:helper_class_name] %> if defined? <%= config[:helper_class_name] %>
 
-  # You can use the `current_user` helper provided by Warden in your views.
+  # You can use the following authentication helper methods in your views:
+  # `current_user` - The User model object for the current user.
+  # `authenticated?` (alias `logged_in?`) - Whether or not a user is logged in.
 
-  # You can also use authorization helpers provided by Pundit in your views.
+  # You can also use authorization helpers in your views.
   # These are useful for conditional displays to users with the correct permissions.
   # - e.g. Showing a form for editing <%= config[:resources] %>
-
-  # Pundit authorization helpers are used in the following way:
-  # - `policy(<%= config[:constant] %>).add?`
-  # - `policy(<%= config[:constant] %>).edit?`
-  # - `policy(<%= config[:constant] %>).delete?`
-
+  <% if config[:headless] %>
+  # Authorization helpers are used in the following way (if using headless policies):
+  # - `authorized?(:<%= config[:resource] %>, :add?)`
+  # - `authorized?(:<%= config[:resource] %>, :edit?)`
+  # - `authorized?(:<%= config[:resource] %>, :delete?)`
+  <% else %>
+  # Authorization helpers are used in the following way:
+  # - `authorized?(<%= config[:constant] %>, :add?)`
+  # - `authorized?(<%= config[:constant] %>, :edit?)`
+  # - `authorized?(<%= config[:constant] %>, :delete?)`
+  <% end %>
   # GET - Browse
   get '/' do
     @<%= config[:resources] %> = <%= config[:constant] %>.all

@@ -13,9 +13,9 @@ module Eucalypt
         File.join File.dirname(__dir__), 'templates'
       end
 
-      def generate(name:)
+      def generate(headless:, name:)
         policy = Inflect.new(:policy, name)
-        config = {class_name: policy.class_name, resource: policy.resource, constant: policy.constant}
+        config = {class_name: policy.class_name, resource: policy.resource, constant: policy.constant, headless: headless}
         template('policy.tt', policy.file_path, config)
       end
 
