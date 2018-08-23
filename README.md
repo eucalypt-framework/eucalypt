@@ -30,9 +30,9 @@ $ eucalypt init my-new-app
 
 Move into your new application's directory and run the top-level `eucalypt` command to display a list of all available commands.
 
-## Documentation and help
+## Documentation
 
-The full documentation can be found [here](https://eucalypt.gitbook.io/eucalypt).
+The full documentation of the CLI and micro-framework can be found [here](https://eucalypt.gitbook.io/eucalypt).
 
 ## Features
 
