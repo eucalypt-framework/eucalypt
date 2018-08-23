@@ -1826,7 +1826,7 @@ describe Eucalypt do
           end
 
           it 'should not contain any Pundit authorization' do
-            expect(tmp { File.open subject[:controller].file_path, &:read }).not_to include 'Pundit authorization'
+            expect(tmp { File.open subject[:controller].file_path, &:read }).not_to include 'Authorization helpers'
           end
         end
         context '--rest --policy, -rp' do
@@ -1855,7 +1855,7 @@ describe Eucalypt do
           end
 
           it 'should contain Pundit authorization' do
-            expect(tmp { File.open subject[:controller].file_path, &:read }).to include 'Pundit authorization'
+            expect(tmp { File.open subject[:controller].file_path, &:read }).to include 'Authorization helpers'
           end
         end
         context '--no-table' do
