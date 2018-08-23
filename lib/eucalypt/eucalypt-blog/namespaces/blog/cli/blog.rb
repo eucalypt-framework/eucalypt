@@ -12,7 +12,7 @@ module Eucalypt
     using Colorize
 
     option :route, type: :string, aliases: '-r', default: 'blog', desc: "The route at which the blog lies"
-    desc "setup", "Sets up the blog-aware environment".colorize(:grey)
+    desc "setup", "Sets up the blog environment".colorize(:grey)
     def setup
       directory = File.expand_path('.')
       if Eucalypt.app? directory
