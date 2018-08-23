@@ -4,6 +4,7 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     def authorized?(policy, permission)
+      return false unless authenticated?
       policy(policy).send permission
     end
   end
