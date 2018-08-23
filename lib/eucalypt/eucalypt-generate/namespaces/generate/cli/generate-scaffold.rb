@@ -40,16 +40,19 @@ module Eucalypt
           controller = Eucalypt::Generators::Controller.new
           controller.destination_root = directory
           policy = options[:rest] && options[:policy]
+          headless = options[:policy] && options[:headless]
           controller.generate(
             name: name,
             spec: controller_spec,
             rest: options[:rest],
-            policy: policy
+            policy: policy,
+            headless: headless
           )
         end
 
         if options[:policy]
           args = ['security', 'policy', 'generate', name]
+          args << '--headless' if options[:headless]
           args << %w[-p add edit delete] if options[:rest]
           args.flatten!
           Eucalypt::CLI.start(args)

@@ -19,7 +19,8 @@ module Eucalypt
           name: name,
           spec: options[:spec],
           rest: options[:rest],
-          policy: false
+          policy: false,
+          headless: false
         )
       else
         Eucalypt::Error.wrong_directory
