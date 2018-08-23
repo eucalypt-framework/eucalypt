@@ -1,7 +1,7 @@
 require './app'
 Bundler.require :test
 
-ENV['RACK_ENV'] = 'test'
+ENV['APP_ENV'] = 'test'
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|

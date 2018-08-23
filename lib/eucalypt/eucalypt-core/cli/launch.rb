@@ -7,7 +7,7 @@ module Eucalypt
     option :rerun, type: :boolean, aliases: '-r', desc: 'Rerun (watch for file changes and restart server)'
     option :quiet, type: :boolean, aliases: '-q', desc: 'Silences rerun (runs less verbosely)'
     desc "launch [ENV]", "Launches your application".colorize(:grey)
-    def launch(env = ENV['RACK_ENV']||'development')
+    def launch(env = ENV['APP_ENV']||'development')
       directory = File.expand_path('.')
       if Eucalypt.app? directory
         unless %w[p production d development t test].include? env
@@ -26,7 +26,7 @@ module Eucalypt
 
         puts "Running command: #{cmd.colorize(:bold)}"
         puts "Rack environment: #{env.colorize(:bold)}"
-        exec "env RACK_ENV=#{env} #{cmd}"
+        exec "env APP_ENV=#{env} #{cmd}"
       else
         Eucalypt::Error.wrong_directory
       end
