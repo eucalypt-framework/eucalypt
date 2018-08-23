@@ -1,3 +1,51 @@
+# 0.2.0
+
+#### Major changes
+
+- Add support for the generation of headless security policies (along with generating them through scaffolding). A headless policy can be specified with the `-H` option in the `generate scaffold` and `security generate policy` commands.
+- Add `authenticated?` method (alias `logged_in?`) to `config/warden.rb` for returning an explicit boolean value indicating whether or not there is a currently authenticated user.
+- Add `authorized?` method to `config/pundit.rb` for returning an explicit boolean value indicating whether or not the currently authenticated user is authorized to perform a given action on a given policy.
+
+  The `authorized?` method supports security policies with models, and also headless security policies.
+
+  ```ruby
+  # Old authorization check
+  policy(Product).edit?  # With a model
+  policy(:product).edit? # Without a model (headless)
+
+  # New authorization check
+  authorized? Product, :edit?  # With a model
+  authorized? :product, :edit? # Without a model (headless)
+  ```
+
+  In addition to wrapping over Pundit's policy authorization methods, the `authorized?` method first checks that there is a currently authenticated user. If not, then the method returns false. This cleans up views by allowing conditionals like:
+
+  ```ruby
+  if authorized? Product, :edit?
+    # ...
+  end
+  ```
+
+  Instead of:
+
+  ```ruby
+  if authenticated? && policy(Product).edit?
+    # ...
+  end
+  ```
+
+- Configure test environment to log output to a log file.
+- Change log file names to include the current environment. Example:
+
+  > - STDOUT log file: `production.stdout.log`
+  > - STDERR log file: `production.stderr.log`
+
+
+#### Minor changes
+
+- Change `method_option` occurrences to `option` for CLI command option declarations (for consistency).
+- Change `RACK_ENV` references to `APP_ENV` to reflect changes described in [sinatra/sinatra#984](https://github.com/sinatra/sinatra/pull/984).
+
 # 0.1.3
 
 #### Major changes
