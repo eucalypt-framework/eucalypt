@@ -8,7 +8,7 @@ module Eucalypt
     include Eucalypt::Helpers
     using Colorize
     option :name, aliases: '-n', type: :string, desc: "Index name"
-    desc "index [TABLE] [*COLUMNS]", "Removes an index from a table".colorize(:grey)
+    desc "index [TABLE] *[COLUMNS]", "Removes an index from a table".colorize(:grey)
     def index(table, *columns)
       directory = File.expand_path('.')
       if Eucalypt.app? directory

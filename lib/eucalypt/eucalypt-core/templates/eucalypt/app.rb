@@ -1,17 +1,6 @@
 require 'bundler'
 Bundler.require :default
-
-Eucalypt::ROOT = __dir__.freeze
-
-module Eucalypt
-  class << self
-    def root() ROOT end
-    def path(*args) File.join(ROOT, *args) end
-    def glob(*args, &block) Dir.glob(self.path(*args), &block) end
-  end
-end
-
-Eucalypt.glob 'config', 'initializers', '*.rb', &method(:require)
+Eucalypt.set_root __dir__
 
 Static = Eucalypt::Static.new(Eucalypt.path('app', 'static'), symbolize: true).freeze
 
@@ -31,12 +20,12 @@ class ApplicationController < Sinatra::Base
   # Set default ERB template
   set :erb, layout: :'layouts/main'
 
-  # Set Hanami asset helpers
+  # Set Hanami HTML and asset helpers
   helpers Hanami::Helpers, Hanami::Assets::Helpers
 end
 
-require Eucalypt.path 'config', 'logging'
-Eucalypt.glob 'config', '*.rb', &method(:require)
-Eucalypt.glob 'app', 'helpers', '{application_helper.rb}', &method(:require)
-require Eucalypt.path 'app', 'controllers', 'application_controller'
-Eucalypt.glob 'app', '{models,policies,helpers,controllers}', '*.rb', &method(:require)
+Eucalypt.require 'config', '*.rb'
+Eucalypt.require 'config', 'initializers', '*.rb'
+Eucalypt.require 'app', 'helpers', '{application_helper.rb}'
+Eucalypt.require 'app', 'controllers', 'application_controller.rb'
+Eucalypt.require 'app', '{models,policies,helpers,controllers}', '*.rb'
