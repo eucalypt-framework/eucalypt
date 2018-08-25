@@ -1,3 +1,17 @@
+# 0.2.1
+
+#### Major changes
+
+- Move `root`, `path` and `glob` class methods to `eucalypt/root.rb`.
+- Add `require` class method for requiring files relative to root.
+
+The above features allowed `app.rb` to be cleaned up a bit.
+
+#### Minor changes
+
+- Change `Procfile` process type to use `eucalypt launch production` instead of `bundle exec bin rackup`.
+- Change `:environment` setting for Sprockets to `:assets` to avoid having the same name as the default `:environment` setting that indicates the current application environment (this also allowed all configuration files to be required with one directive instead of requiring logging first, then the rest of the configuration files).
+
 # 0.2.0
 
 #### Major changes

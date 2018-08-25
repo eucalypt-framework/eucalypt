@@ -8,6 +8,7 @@ require 'eucalypt/eucalypt-migration/namespaces/migration/cli/migration'
 require 'eucalypt/static'
 require 'eucalypt/controller'
 require 'eucalypt/app'
+require 'eucalypt/root'
 
 module Eucalypt
   class CLI < Thor

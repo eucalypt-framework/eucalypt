@@ -33,13 +33,13 @@ module Eucalypt
         asset_pipeline_file = File.join(directory, 'config', 'asset_pipeline.rb')
 
         File.open(asset_pipeline_file) do |f|
-          return if f.read.include? "environment.append_path Eucalypt.path 'app', 'assets', 'blog'"
+          return if f.read.include? "assets.append_path Eucalypt.path 'app', 'assets', 'blog'"
         end
 
         insert_into_file(
           asset_pipeline_file,
-          "\tenvironment.append_path Eucalypt.path 'app', 'assets', 'blog'\n",
-          after: "set :environment, Sprockets::Environment.new\n"
+          "\tassets.append_path Eucalypt.path 'app', 'assets', 'blog'\n",
+          after: "set :assets, Sprockets::Environment.new\n"
         )
       else
         Eucalypt::Error.wrong_directory
