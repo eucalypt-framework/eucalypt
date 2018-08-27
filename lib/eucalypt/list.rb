@@ -7,17 +7,17 @@ module Eucalypt
     include Eucalypt::Helpers
     using Colorize
 
-    INDENT = 2.freeze
-
     def help(shell, subcommand = false)
       list = printable_commands(true, subcommand)
       Thor::Util.thor_classes_in(self).each do |klass|
         list += klass.printable_commands(false)
       end
 
+      indent = 2.freeze
+
       list.reject! do |l|
         cmd = l.first
-        cmd.include?('help') || cmd.include?('-H')
+        (/.*help.*/.match?(cmd) && /^(?!.*(helper))/.match?(cmd)) || cmd.include?('-H')
       end
       list.map {|l| l.last.sub!(?#, '·'.colorize(:pale_blue, :bold)+'›')}
 
@@ -28,7 +28,7 @@ module Eucalypt
         shell.say "#{"Commands".colorize(:bold)}:"
       end
 
-      shell.print_table(list, indent: INDENT, truncate: false)
+      shell.print_table(list, indent: indent, truncate: false)
       shell.say
       class_options_help(shell)
 
