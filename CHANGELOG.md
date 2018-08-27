@@ -1,3 +1,38 @@
+# 0.2.2
+
+#### Major changes
+
+- Unhide `helper` CLI tasks from command list. The `generate helper` and `destroy helper` commands were being hidden
+  due to the code that hides the `help` tasks using the following condition to find `help` tasks:
+
+  ```ruby
+  cmd.include?('help')
+  ```
+
+  Which would obviously include the `helper` tasks as well. This was changed to the following to unhide the helper tasks:
+
+  ```ruby
+  (/.*help.*/.match?(cmd) && /^(?!.*(helper))/.match?(cmd))
+  ```
+
+#### Minor changes
+
+- Change default TODO spec example titles from:
+
+  ```ruby
+  it "should expect true to be true" do
+    expect(true).to be false
+  end
+  ```
+
+  to:
+
+  ```ruby
+  it "should expect true to be false" do
+    expect(true).to be false
+  end
+  ```
+
 # 0.2.1
 
 #### Major changes
