@@ -1,9 +1,22 @@
+# 0.3.0
+
+#### Major changes
+
+- Change namespace directory names from `eucalypt-<namespace>` to just `eucalypt`.
+- Move Warden middleware to `config.ru`. This fixed a major bug with authentication where some POST routes in the `AuthenticationController` seemed to be undefined.
+- Remove `authorize` method from `config/pundit.rb`, since Pundit already comes with its own `authorize` method.
+- Fix `authorized?` method.
+
+#### Minor changes
+
+- Delete `static/readme.yml`.
+- Move and rename `user_confirm.rb` file to `confirm.rb`.
+
 # 0.2.2
 
 #### Major changes
 
-- Unhide `helper` CLI tasks from command list. The `generate helper` and `destroy helper` commands were being hidden
-  due to the code that hides the `help` tasks using the following condition to find `help` tasks:
+- Unhide `helper` CLI tasks from command list. The `generate helper` and `destroy helper` commands were being hidden due to the code that hides the `help` tasks using the following condition to find `help` tasks:
 
   ```ruby
   cmd.include?('help')
