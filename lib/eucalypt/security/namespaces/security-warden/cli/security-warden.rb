@@ -1,8 +1,8 @@
 require 'thor'
 require 'eucalypt/helpers'
-require 'eucalypt/eucalypt-security/helpers'
-require 'eucalypt/eucalypt-security/namespaces/security-warden/generators/user'
-require 'eucalypt/eucalypt-security/namespaces/security-warden/generators/auth_controller'
+require 'eucalypt/security/helpers'
+require 'eucalypt/security/namespaces/security-warden/generators/user'
+require 'eucalypt/security/namespaces/security-warden/generators/auth_controller'
 
 module Eucalypt
   class SecurityWarden < Thor

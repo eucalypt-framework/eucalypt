@@ -1,7 +1,7 @@
 require 'thor'
 require 'eucalypt/helpers'
-require 'eucalypt/eucalypt-security/helpers'
-require 'eucalypt/eucalypt-security/namespaces/security-pundit/generators/role'
+require 'eucalypt/security/helpers'
+require 'eucalypt/security/namespaces/security-pundit/generators/role'
 
 module Eucalypt
   class SecurityPundit < Thor

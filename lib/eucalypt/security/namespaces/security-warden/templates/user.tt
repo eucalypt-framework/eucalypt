@@ -1,4 +1,4 @@
-require 'eucalypt/eucalypt-security/confirm'
+require 'eucalypt/security/confirm'
 class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
   validates :encrypted_password, presence: true

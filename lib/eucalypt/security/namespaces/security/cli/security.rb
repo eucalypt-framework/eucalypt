@@ -1,7 +1,7 @@
 require 'eucalypt/errors'
-require 'eucalypt/eucalypt-security/namespaces/security-warden/cli/security-warden'
-require 'eucalypt/eucalypt-security/namespaces/security-pundit/cli/security-pundit'
-require 'eucalypt/eucalypt-security/namespaces/security-policy/cli/security-policy'
+require 'eucalypt/security/namespaces/security-warden/cli/security-warden'
+require 'eucalypt/security/namespaces/security-pundit/cli/security-pundit'
+require 'eucalypt/security/namespaces/security-policy/cli/security-policy'
 require 'eucalypt/helpers'
 
 module Eucalypt

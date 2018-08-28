@@ -1,9 +1,9 @@
 require 'thor'
 require 'eucalypt/errors'
 require 'eucalypt/helpers'
-require 'eucalypt/eucalypt-security/namespaces/security-policy/generators/policy'
-require 'eucalypt/eucalypt-security/namespaces/security-policy-permission/cli/security-policy-permission'
-require 'eucalypt/eucalypt-security/namespaces/security-policy-role/cli/security-policy-role'
+require 'eucalypt/security/namespaces/security-policy/generators/policy'
+require 'eucalypt/security/namespaces/security-policy-permission/cli/security-policy-permission'
+require 'eucalypt/security/namespaces/security-policy-role/cli/security-policy-role'
 
 module Eucalypt
   class SecurityPolicy < Thor

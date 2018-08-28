@@ -1,7 +1,7 @@
 require 'thor'
 require 'eucalypt/errors'
 require 'eucalypt/helpers'
-require 'eucalypt/eucalypt-security/namespaces/security-policy-permission/generators/policy-permission'
+require 'eucalypt/security/namespaces/security-policy-permission/generators/policy-permission'
 
 module Eucalypt
   class SecurityPolicyPermission < Thor
