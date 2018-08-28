@@ -2,7 +2,7 @@ require 'active_support'
 require 'active_support/core_ext'
 require 'thor'
 require 'eucalypt/helpers'
-require 'eucalypt/eucalypt-generate/namespaces/generate/cli/generate'
+require 'eucalypt/generate/namespaces/generate/cli/generate'
 
 module Eucalypt
   class Security < Thor

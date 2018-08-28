@@ -1,7 +1,7 @@
 require 'eucalypt/version'
 require 'eucalypt/core/cli/core'
 require 'eucalypt/blog/namespaces/blog/cli/blog'
-require 'eucalypt/eucalypt-generate/namespaces/generate/cli/generate'
+require 'eucalypt/generate/namespaces/generate/cli/generate'
 require 'eucalypt/destroy/namespaces/destroy/cli/destroy'
 require 'eucalypt/eucalypt-security/namespaces/security/cli/security'
 require 'eucalypt/eucalypt-migration/namespaces/migration/cli/migration'

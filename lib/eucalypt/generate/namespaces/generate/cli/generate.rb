@@ -1,6 +1,6 @@
-require 'eucalypt/eucalypt-generate/namespaces/generate-controller/cli/generate-controller'
-require 'eucalypt/eucalypt-generate/namespaces/generate-helper/cli/generate-helper'
-require 'eucalypt/eucalypt-generate/namespaces/generate-model/cli/generate-model'
+require 'eucalypt/generate/namespaces/generate-controller/cli/generate-controller'
+require 'eucalypt/generate/namespaces/generate-helper/cli/generate-helper'
+require 'eucalypt/generate/namespaces/generate-model/cli/generate-model'
 require_relative 'generate-scaffold'
 require 'eucalypt/helpers'
 

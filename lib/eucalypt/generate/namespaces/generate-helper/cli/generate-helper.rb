@@ -1,4 +1,4 @@
-require 'eucalypt/eucalypt-generate/namespaces/generate-helper/generators/helper'
+require 'eucalypt/generate/namespaces/generate-helper/generators/helper'
 require 'eucalypt/app'
 require 'eucalypt/errors'
 require 'eucalypt/helpers'
