@@ -12,6 +12,7 @@ module Eucalypt
     include Eucalypt::Helpers::Gemfile
     include Eucalypt::Security::Helpers
     using Colorize
+    using String::Builder
 
     def self.source_root
       File.join File.dirname(__dir__), 'templates'
@@ -29,6 +30,23 @@ module Eucalypt
 
         # Create Warden config file
         create_config_file(:warden, directory)
+
+        # Add middleware to config.ru
+        middleware = String.build do |s|
+          s << "\nuse Warden::Manager do |config|\n"
+          s << "  config.serialize_into_session{|user| user.id}\n"
+          s << "  config.serialize_from_session{|id| User.find(id)}\n"
+          s << "  config.scope_defaults :default, strategies: [:password], action: 'auth/invalid'\n"
+          s << "  config.failure_app = self\n"
+          s << "end\n"
+        end
+
+        config_ru = File.join(directory, 'config.ru')
+
+        File.open config_ru do |f|
+          contents = f.read
+          inject_into_file(config_ru, middleware, after: /require_relative 'app'\n/) unless contents.include? 'use Warden::Manager'
+        end
 
         user = Eucalypt::Generators::User.new
 

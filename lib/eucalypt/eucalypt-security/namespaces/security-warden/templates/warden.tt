@@ -2,14 +2,8 @@ class ApplicationController < Sinatra::Base
   # Configure Warden for authentication
   enable :sessions
 
-  use Warden::Manager do |config|
-    config.serialize_into_session{|user| user.id}
-    config.serialize_from_session{|id| User.find(id)}
-    config.scope_defaults :default, strategies: [:password], action: 'auth/invalid'
-    config.failure_app = self
-  end
-
   Warden::Manager.before_failure {|env,opts| env['REQUEST_METHOD'] = 'POST'}
+
   Warden::Strategies.add(:password) do
     def valid?
       params['user'] && params['user']['username'] && params['user']['password']
