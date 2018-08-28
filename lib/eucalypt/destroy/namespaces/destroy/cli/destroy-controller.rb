@@ -1,4 +1,4 @@
-require 'eucalypt/eucalypt-destroy/helpers'
+require 'eucalypt/destroy/helpers'
 require 'eucalypt/helpers'
 
 module Eucalypt

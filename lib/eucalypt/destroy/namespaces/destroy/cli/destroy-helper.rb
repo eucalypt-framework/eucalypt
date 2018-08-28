@@ -1,4 +1,4 @@
-require 'eucalypt/eucalypt-destroy/helpers'
+require 'eucalypt/destroy/helpers'
 require 'eucalypt/helpers'
 
 module Eucalypt
@@ -8,9 +8,9 @@ module Eucalypt
     include Eucalypt::Destroy::Helpers
     using Colorize
 
-    desc "model [NAME]", "Destroys a model".colorize(:grey)
-    def model(name = nil)
-      delete_mvc(:model, name)
+    desc "helper [NAME]", "Destroys a helper".colorize(:grey)
+    def helper(name = nil)
+      delete_mvc(:helper, name)
     end
   end
 end
