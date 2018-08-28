@@ -3,9 +3,16 @@ class ApplicationController < Sinatra::Base
   include Pundit
 
   helpers do
-    def authorized?(policy, permission)
+    def authorize(object, permission)
+      policy(object).send permission
+    end
+
+    def authorized?(object, permission)
       return false unless authenticated?
-      policy(policy).send permission
+      authorize object, permission
+      true
+    rescue Pundit::NotAuthorizedError
+      false
     end
   end
 end
