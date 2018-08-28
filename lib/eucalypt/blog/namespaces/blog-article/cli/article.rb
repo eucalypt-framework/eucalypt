@@ -1,9 +1,9 @@
 require 'eucalypt/errors'
 require 'eucalypt/helpers'
-require 'eucalypt/eucalypt-blog/helpers'
-require 'eucalypt/eucalypt-blog/namespaces/blog/__require__'
-require 'eucalypt/eucalypt-blog/namespaces/blog-article-edit/cli/edit-datetime'
-require 'eucalypt/eucalypt-blog/namespaces/blog-article-edit/cli/edit-urltitle'
+require 'eucalypt/blog/helpers'
+require 'eucalypt/blog/namespaces/blog/__require__'
+require 'eucalypt/blog/namespaces/blog-article-edit/cli/edit-datetime'
+require 'eucalypt/blog/namespaces/blog-article-edit/cli/edit-urltitle'
 
 module Eucalypt
   class BlogArticle < Thor

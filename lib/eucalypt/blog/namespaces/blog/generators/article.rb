@@ -1,4 +1,4 @@
-require 'eucalypt/eucalypt-blog/namespaces/blog/__base__'
+require 'eucalypt/blog/namespaces/blog/__base__'
 
 module Eucalypt
   module Generators

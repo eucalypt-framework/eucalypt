@@ -5,7 +5,7 @@ require 'active_support'
 require 'active_support/core_ext'
 
 require 'eucalypt/helpers'
-require 'eucalypt/eucalypt-blog/helpers'
+require 'eucalypt/blog/helpers'
 
 module Eucalypt
   module Generators

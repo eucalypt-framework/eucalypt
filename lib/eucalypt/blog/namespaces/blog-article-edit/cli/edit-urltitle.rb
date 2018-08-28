@@ -4,7 +4,7 @@ require 'active_support/core_ext'
 
 require 'eucalypt/errors'
 require 'eucalypt/helpers'
-require 'eucalypt/eucalypt-blog/helpers'
+require 'eucalypt/blog/helpers'
 
 module Eucalypt
   class BlogArticleEdit < Thor

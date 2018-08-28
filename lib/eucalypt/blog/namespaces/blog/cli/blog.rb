@@ -1,7 +1,7 @@
 require 'eucalypt/errors'
 require 'eucalypt/helpers'
-require 'eucalypt/eucalypt-blog/namespaces/blog/__require__'
-require 'eucalypt/eucalypt-blog/namespaces/blog-article/cli/article'
+require 'eucalypt/blog/namespaces/blog/__require__'
+require 'eucalypt/blog/namespaces/blog-article/cli/article'
 
 module Eucalypt
   class Blog < Thor

@@ -1,7 +1,7 @@
 require 'thor'
 require 'eucalypt/errors'
 require 'eucalypt/helpers'
-require 'eucalypt/eucalypt-blog/helpers'
+require 'eucalypt/blog/helpers'
 
 module Eucalypt
   class BlogArticleEdit < Thor
