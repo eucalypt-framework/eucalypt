@@ -1,5 +1,5 @@
 require 'eucalypt/version'
-require 'eucalypt/eucalypt-core/cli/core'
+require 'eucalypt/core/cli/core'
 require 'eucalypt/blog/namespaces/blog/cli/blog'
 require 'eucalypt/eucalypt-generate/namespaces/generate/cli/generate'
 require 'eucalypt/eucalypt-destroy/namespaces/destroy/cli/destroy'
