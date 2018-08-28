@@ -1,0 +1,11 @@
+class ApplicationController < Sinatra::Base
+  # Include Pundit for authorization
+  include Pundit
+
+  helpers do
+    def authorized?(object, permission)
+      return false unless authenticated?
+      policy(object).send permission
+    end
+  end
+end
