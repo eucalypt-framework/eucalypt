@@ -2,12 +2,14 @@ require 'thor'
 require 'eucalypt/errors'
 require 'eucalypt/helpers'
 require 'eucalypt/security/namespaces/security-policy-permission/generators/policy-permission'
+require 'eucalypt/list'
 
 module Eucalypt
   class SecurityPolicyPermission < Thor
     include Thor::Actions
     include Eucalypt::Helpers
     using Colorize
+    extend Eucalypt::List
 
     desc "generate [POLICY] [PERMISSION]", "Create a new Pundit policy permission".colorize(:grey)
     def generate(name, permission)
@@ -51,12 +53,8 @@ module Eucalypt
     # def destroy()
     # end
 
-    class << self
-      require 'eucalypt/list'
-      include Eucalypt::List
-      def banner(task, namespace = false, subcommand = true)
-        "#{basename} security policy #{task.formatted_usage(self, true, subcommand).split(':').join(' ')}"
-      end
+    def self.banner(task, namespace = false, subcommand = true)
+      "#{basename} security policy #{task.formatted_usage(self, true, subcommand).split(':').join(' ')}"
     end
   end
 end

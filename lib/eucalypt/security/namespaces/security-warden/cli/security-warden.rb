@@ -3,6 +3,7 @@ require 'eucalypt/helpers'
 require 'eucalypt/security/helpers'
 require 'eucalypt/security/namespaces/security-warden/generators/user'
 require 'eucalypt/security/namespaces/security-warden/generators/auth_controller'
+require 'eucalypt/list'
 
 module Eucalypt
   class SecurityWarden < Thor
@@ -13,6 +14,7 @@ module Eucalypt
     include Eucalypt::Security::Helpers
     using Colorize
     using String::Builder
+    extend Eucalypt::List
 
     def self.source_root
       File.join File.dirname(__dir__), 'templates'
@@ -68,12 +70,8 @@ module Eucalypt
       end
     end
 
-    class << self
-      require 'eucalypt/list'
-      include Eucalypt::List
-      def banner(task, namespace = false, subcommand = true)
-        "#{basename} security #{task.formatted_usage(self, true, subcommand).split(':').join(' ')}"
-      end
+    def self.banner(task, namespace = false, subcommand = true)
+      "#{basename} security #{task.formatted_usage(self, true, subcommand).split(':').join(' ')}"
     end
   end
 end

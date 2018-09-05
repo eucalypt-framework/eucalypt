@@ -1,12 +1,14 @@
 require 'thor'
 require 'eucalypt/errors'
 require 'eucalypt/helpers'
+require 'eucalypt/list'
 
 module Eucalypt
   class SecurityPolicyRole < Thor
     include Thor::Actions
     include Eucalypt::Helpers
     using Colorize
+    extend Eucalypt::List
 
     desc "generate [POLICY] [ROLE]", "Create a new Pundit policy role".colorize(:grey)
     def generate(name, role)
@@ -55,12 +57,8 @@ module Eucalypt
     # def destroy()
     # end
 
-    class << self
-      require 'eucalypt/list'
-      include Eucalypt::List
-      def banner(task, namespace = false, subcommand = true)
-        "#{basename} security policy #{task.formatted_usage(self, true, subcommand).split(':').join(' ')}"
-      end
+    def self.banner(task, namespace = false, subcommand = true)
+      "#{basename} security policy #{task.formatted_usage(self, true, subcommand).split(':').join(' ')}"
     end
   end
 end

@@ -2,6 +2,7 @@ require 'thor'
 require 'eucalypt/helpers'
 require 'eucalypt/security/helpers'
 require 'eucalypt/security/namespaces/security-pundit/generators/role'
+require 'eucalypt/list'
 
 module Eucalypt
   class SecurityPundit < Thor
@@ -11,6 +12,7 @@ module Eucalypt
     include Eucalypt::Helpers::Gemfile
     include Eucalypt::Security::Helpers
     using Colorize
+    extend Eucalypt::List
 
     def self.source_root
       File.join File.dirname(__dir__), 'templates'
@@ -68,12 +70,8 @@ module Eucalypt
       end
     end
 
-    class << self
-      require 'eucalypt/list'
-      include Eucalypt::List
-      def banner(task, namespace = false, subcommand = true)
-        "#{basename} security #{task.formatted_usage(self, true, subcommand).split(':').join(' ')}"
-      end
+    def self.banner(task, namespace = false, subcommand = true)
+      "#{basename} security #{task.formatted_usage(self, true, subcommand).split(':').join(' ')}"
     end
   end
 end

@@ -1,9 +1,9 @@
 require 'eucalypt/errors'
 require 'eucalypt/helpers'
+require 'eucalypt/list'
 require 'eucalypt/blog/helpers'
 require 'eucalypt/blog/namespaces/blog/__require__'
-require 'eucalypt/blog/namespaces/blog-article-edit/cli/edit-datetime'
-require 'eucalypt/blog/namespaces/blog-article-edit/cli/edit-urltitle'
+require 'eucalypt/blog/namespaces/blog-article-edit/cli/edit'
 
 module Eucalypt
   class BlogArticle < Thor
@@ -12,6 +12,7 @@ module Eucalypt
     include Eucalypt::Helpers::Messages
     include Eucalypt::Blog::Helpers
     using Colorize
+    extend Eucalypt::List
 
     option :descending, type: :boolean, aliases: '-d', default: true, desc: 'Descending chronological order'
     option :ascending, type: :boolean, aliases: '-a', default: false, desc: 'Ascending chronological order'
@@ -97,22 +98,8 @@ module Eucalypt
       end
     end
 
-    class << self
-      require 'eucalypt/list'
-      include Eucalypt::List
-      def banner(task, namespace = false, subcommand = true)
-        "#{basename} blog #{task.formatted_usage(self, true, subcommand).split(':').join(' ')}"
-      end
-    end
-
-    class Eucalypt::BlogArticleEdit < Thor
-      class << self
-        require 'eucalypt/list'
-        include Eucalypt::List
-        def banner(task, namespace = false, subcommand = true)
-          "#{basename} blog article #{task.formatted_usage(self, true, subcommand).split(':').join(' ')}"
-        end
-      end
+    def self.banner(task, namespace = false, subcommand = true)
+      "#{basename} blog #{task.formatted_usage(self, true, subcommand).split(':').join(' ')}"
     end
 
     register(Eucalypt::BlogArticleEdit, 'edit', 'edit [COMMAND]', 'Edit blog articles'.colorize(:grey))
