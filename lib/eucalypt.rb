@@ -9,12 +9,6 @@ require 'eucalypt/static'
 require 'eucalypt/controller'
 require 'eucalypt/app'
 require 'eucalypt/root'
+require 'eucalypt/list'
 
-module Eucalypt
-  class CLI < Thor
-    class << self
-      require 'eucalypt/list'
-      include Eucalypt::List
-    end
-  end
-end
+Eucalypt::CLI.extend Eucalypt::List

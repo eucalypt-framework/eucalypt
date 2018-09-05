@@ -3,19 +3,17 @@ require 'eucalypt/security/namespaces/security-warden/cli/security-warden'
 require 'eucalypt/security/namespaces/security-pundit/cli/security-pundit'
 require 'eucalypt/security/namespaces/security-policy/cli/security-policy'
 require 'eucalypt/helpers'
+require 'eucalypt/list'
 
 module Eucalypt
   class Security < Thor
     include Thor::Actions
     include Eucalypt::Helpers
     using Colorize
+    extend Eucalypt::List
 
-    class << self
-      require 'eucalypt/list'
-      include Eucalypt::List
-      def banner(task, namespace = false, subcommand = true)
-        basename + ' ' + task.formatted_usage(self, true, subcommand).split(':').join(' ')
-      end
+    def self.banner(task, namespace = false, subcommand = true)
+      basename + ' ' + task.formatted_usage(self, true, subcommand).split(':').join(' ')
     end
 
     register(Eucalypt::SecurityWarden, 'warden', 'warden [COMMAND]', 'Configure Warden authentication'.colorize(:grey))

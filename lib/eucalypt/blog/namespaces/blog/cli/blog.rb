@@ -1,5 +1,6 @@
 require 'eucalypt/errors'
 require 'eucalypt/helpers'
+require 'eucalypt/list'
 require 'eucalypt/blog/namespaces/blog/__require__'
 require 'eucalypt/blog/namespaces/blog-article/cli/article'
 
@@ -10,6 +11,7 @@ module Eucalypt
     include Eucalypt::Helpers::Messages
     include Eucalypt::Helpers::Gemfile
     using Colorize
+    extend Eucalypt::List
 
     option :route, type: :string, aliases: '-r', default: 'blog', desc: "The route at which the blog lies"
     desc "setup", "Sets up the blog environment".colorize(:grey)
@@ -46,12 +48,8 @@ module Eucalypt
       end
     end
 
-    class << self
-      require 'eucalypt/list'
-      include Eucalypt::List
-      def banner(task, namespace = false, subcommand = true)
-        basename + ' ' + task.formatted_usage(self, true, subcommand).split(':').join(' ')
-      end
+    def self.banner(task, namespace = false, subcommand = true)
+      basename + ' ' + task.formatted_usage(self, true, subcommand).split(':').join(' ')
     end
 
     register(Eucalypt::BlogArticle, 'article', 'article [COMMAND]', 'Create, edit and destroy blog articles'.colorize(:grey))

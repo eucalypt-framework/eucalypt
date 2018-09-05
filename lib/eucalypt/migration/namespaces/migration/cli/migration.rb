@@ -5,24 +5,22 @@ require 'eucalypt/migration/namespaces/migration-rename/cli/rename'
 require 'eucalypt/migration/namespaces/migration-change/cli/change'
 require 'eucalypt/migration/namespaces/migration-blank/cli/blank'
 require 'eucalypt/helpers'
+require 'eucalypt/list'
 
 module Eucalypt
   class Migration < Thor
     include Thor::Actions
     include Eucalypt::Helpers
     using Colorize
+    extend Eucalypt::List
 
     desc "types", "Display permitted column types".colorize(:grey)
     def types
       puts Eucalypt::Helpers::Migration::Validation::COLUMN_TYPES.inspect
     end
 
-    class << self
-      require 'eucalypt/list'
-      include Eucalypt::List
-      def banner(task, namespace = false, subcommand = true)
-        basename + ' ' + task.formatted_usage(self, true, subcommand).split(':').join(' ')
-      end
+    def self.banner(task, namespace = false, subcommand = true)
+      basename + ' ' + task.formatted_usage(self, true, subcommand).split(':').join(' ')
     end
 
     register(Eucalypt::MigrationCreate, 'create', 'create [COMMAND]', 'Create tables'.colorize(:grey))

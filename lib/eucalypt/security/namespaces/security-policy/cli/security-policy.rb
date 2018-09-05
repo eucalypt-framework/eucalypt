@@ -4,12 +4,14 @@ require 'eucalypt/helpers'
 require 'eucalypt/security/namespaces/security-policy/generators/policy'
 require 'eucalypt/security/namespaces/security-policy-permission/cli/security-policy-permission'
 require 'eucalypt/security/namespaces/security-policy-role/cli/security-policy-role'
+require 'eucalypt/list'
 
 module Eucalypt
   class SecurityPolicy < Thor
     include Thor::Actions
     include Eucalypt::Helpers
     using Colorize
+    extend Eucalypt::List
 
     option :headless, type: :boolean, aliases: '-H', default: false, desc: "Policy with no associated model"
     option :permissions, type: :array, aliases: '-p', default: [], desc: "Permissions to generate along with the policy"
@@ -78,12 +80,8 @@ module Eucalypt
     #def destroy()
     #end
 
-    class << self
-      require 'eucalypt/list'
-      include Eucalypt::List
-      def banner(task, namespace = false, subcommand = true)
-        "#{basename} security #{task.formatted_usage(self, true, subcommand).split(':').join(' ')}"
-      end
+    def self.banner(task, namespace = false, subcommand = true)
+      "#{basename} security #{task.formatted_usage(self, true, subcommand).split(':').join(' ')}"
     end
 
     register(Eucalypt::SecurityPolicyPermission, 'permission', 'permission [COMMAND]', 'Pundit policy permission commands'.colorize(:grey))
