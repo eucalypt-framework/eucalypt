@@ -1,3 +1,9 @@
+# 0.3.2
+
+#### Major changes
+
+- Change `Eucalypt::List` to CLI metaclass extension.
+
 # 0.3.1
 
 #### Major changes
