@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Bundler
 gem 'bundler', '~> 1.16'
 # Sinatra DSL
-gem 'sinatra', '~> 2.0', require: 'sinatra/base'
+gem 'sinatra', '~> 2.0', '>= 2.0.4', require: 'sinatra/base'
 # Eucalypt CLI
 gem 'eucalypt', '<%= config[:version] %>'
 # Rake
