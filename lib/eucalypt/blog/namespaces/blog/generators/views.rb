@@ -4,7 +4,7 @@ module Eucalypt
   module Generators
     class Blog < Thor::Group
       def views
-        config = {erb: ["<%= application :css, :js %>","<%= yield %>"]}
+        config = {erb: ["<%= manifest :stylesheet, :script %>","<%= yield %>"]}
         template File.join('views','article_layout.erb'), File.join('app','views','layouts','blog','article.erb'), config
         template File.join('views','articles_layout.erb'), File.join('app','views','layouts','blog','articles.erb'), config
 
