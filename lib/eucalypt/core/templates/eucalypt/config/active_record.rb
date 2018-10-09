@@ -1,5 +1,6 @@
 class ApplicationController < Sinatra::Base
-  # Comment or remove the below lines for no logging
   ActiveRecord::Base.logger = Logger.new STDOUT
+
+  # Set the below assignment to false for quieter ActiveRecord logging
   ActiveRecord::Migration.verbose = true
 end
