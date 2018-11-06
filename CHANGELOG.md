@@ -1,4 +1,29 @@
-# 0.3.2
+# 0.3.3
+
+Bump version
+* e64826d Add eucalypt rake command
+* 025271f Revert gemfile group deletion + add eucalypt rake commetns
+* 66be044 Require active_support/core_ext/hash before sinatra
+* c3da842 Fix Gemfile groups
+* 496ac1e Remove active_record.rb
+* 7cc90af Add lower restriction to Sinatra version
+* 4ac0614 Spacing
+* 17ae919 Bump VERSION
+* cd4e5ec Delete manifest.rb from generated app
+* daf688f Tweak ActiveRecord logging
+* b9c7fdf Add partial helper method + rename application helper method to manifest
+
+#### Major changes
+
+- Add `eucalypt rake` command for running database migrations with the command `bundle exec rake db:migrate`.
+- Require `active_support/core_ext/hash` before `sinatra` gem in order to silece ActiveSupport warning (Read [sinatra#1476](https://github.com/sinatra/sinatra/issues/1476)).
+- Add `partial` helper method for rendering partials in views
+- Rename `application` manifest accessor method to `manifest`
+- Bump `sinatra` lower version restriction to `>= 2.0.4`, making the overall version requirement `~> 2.0, >= 2.0.4`.
+
+#### Minor changes
+
+- Delete `config/active_record.rb` and move ActiveRecord logging configuration to `config/logging.rb`.
 
 #### Major changes
 
