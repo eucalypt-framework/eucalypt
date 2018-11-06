@@ -1,4 +1,5 @@
 require 'bundler'
+require 'active_support/core_ext/hash'
 require 'sinatra'
 Bundler.require :default, settings.environment
 Eucalypt.set_root __dir__
