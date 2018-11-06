@@ -1,5 +1,7 @@
 require 'bundler'
-Bundler.require :default
+require 'active_support/core_ext/hash'
+require 'sinatra'
+Bundler.require :default, settings.environment
 Eucalypt.set_root __dir__
 
 Static = Eucalypt::Static.new(Eucalypt.path('app', 'static'), symbolize: true).freeze

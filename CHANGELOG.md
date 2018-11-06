@@ -1,4 +1,16 @@
-# 0.3.2
+# 0.3.3
+
+#### Major changes
+
+- Add `eucalypt rake` command for running database migrations with the command `bundle exec rake db:migrate`.
+- Require `active_support/core_ext/hash` before `sinatra` gem in order to silece ActiveSupport warning (Read [sinatra#1476](https://github.com/sinatra/sinatra/issues/1476)).
+- Add `partial` helper method for rendering partials in views
+- Rename `application` manifest accessor method to `manifest`
+- Bump `sinatra` lower version restriction to `>= 2.0.4`, making the overall version requirement `~> 2.0, >= 2.0.4`.
+
+#### Minor changes
+
+- Delete `config/active_record.rb` and move ActiveRecord logging configuration to `config/logging.rb`.
 
 #### Major changes
 

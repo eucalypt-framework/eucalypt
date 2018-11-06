@@ -3,8 +3,8 @@
  * All of these stylesheet files will be compiled into a single stylesheet.                     *
  * To use this combined stylesheet, include the following in the head section of your views:    *
  *                                                                                              *
- * <%= application :css %>           If including only application.css                          *
- * <%= application :css, :js %>      If including application.js as well                        *
+ * <%= manifest :stylesheet %>               If including only application.css                  *
+ * <%= manifest :stylesheet, :script %>      If including application.js as well                *
  *                                                                                              *
  * By default, every file in the /assets/stylesheets directory is required by `require_tree .`  *
  * However, you may remove the `require_tree .` directive and instead specify individual files. *

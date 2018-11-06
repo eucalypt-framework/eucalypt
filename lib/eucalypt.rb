@@ -10,5 +10,7 @@ require 'eucalypt/controller'
 require 'eucalypt/app'
 require 'eucalypt/root'
 require 'eucalypt/list'
+require 'eucalypt/core/helpers/manifest'
+require 'eucalypt/core/helpers/partial'
 
 Eucalypt::CLI.extend Eucalypt::List
