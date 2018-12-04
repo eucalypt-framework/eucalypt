@@ -27,7 +27,7 @@ module Eucalypt
       define_singleton_method Inflect.resource_keep_inflection(file_name) do
         hash = parse(file_type, file)
         hash = hash ? hash : {}
-        symbolize ? hash.deep_symbolize_keys : hash
+        symbolize ? symbolize_keys(hash) : hash
       end
     end
 
@@ -44,5 +44,43 @@ module Eucalypt
       when :json then JSON.parse(File.read file)
       end
     end
+
+    def symbolize_keys(obj)
+
+      case obj
+
+      when Array
+        obj.inject([]){|res, val|
+          res << case val
+          when Hash, Array
+            symbolize_keys(val)
+          else
+            val
+          end
+          res
+        }
+
+      when Hash
+        obj.inject({}){|res, (key, val)|
+          nkey = case key
+          when String
+            key.to_sym
+          else
+            key
+          end
+          nval = case val
+          when Hash, Array
+            symbolize_keys(val)
+          else
+            val
+          end
+          res[nkey] = nval
+          res
+        }
+      else
+        obj
+      end
+    end
+
   end
 end
