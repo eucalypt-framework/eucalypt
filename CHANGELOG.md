@@ -1,3 +1,14 @@
+# 0.3.4
+
+#### Major changes
+
+- Fix bundle errors when running `eucalypt test` (by prefixing the `rspec spec` commands with `bundle exec`).
+
+#### Minor changes
+
+- Fix top-level array issue with `Static` class.
+- Support both relative and absolute pathing for the `partial` helper method.
+
 # 0.3.3
 
 #### Major changes
