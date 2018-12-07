@@ -1,3 +1,14 @@
+# 0.3.5
+
+#### Major changes
+
+- Use clearer variable names in `config/logging.rb`
+- Remove comment about CSS reset in `application.scss`
+
+#### Minor changes
+
+- Add logo to README.md
+
 # 0.3.4
 
 #### Major changes
