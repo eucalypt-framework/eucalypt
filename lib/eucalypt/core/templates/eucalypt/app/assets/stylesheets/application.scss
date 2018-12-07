@@ -9,7 +9,7 @@
  * By default, every file in the /assets/stylesheets directory is required by `require_tree .`  *
  * However, you may remove the `require_tree .` directive and instead specify individual files. *
  *                                                                                              *
- * Any global styles can be included directly in this file (Below the CSS reset).               *
+ * Any global styles can be included directly in this file.                                     *
  * NOTE: Styles defined in this file will be overwritten by CSS written in other files.         *
  * -------------------------------------------------------------------------------------------- *
  *= require_self
