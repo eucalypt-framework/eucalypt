@@ -1,3 +1,10 @@
+# 0.3.5
+
+#### Major changes
+
+- Use clearer variable names in `config/logging.rb`
+- Remove comment about CSS reset in `application.scss`
+
 # 0.3.4
 
 #### Major changes
