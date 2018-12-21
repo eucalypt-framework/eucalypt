@@ -1,3 +1,16 @@
+# 0.3.6
+
+#### Major changes
+
+- Change default environment configuration for logging:
+  - [ ] Disabled in `test` environment
+  - [x] Enabled in `development` environment (displayed to STDOUT)
+  - [x] Enabled in `production` environment (displayed in log files)
+
+#### Minor changes
+
+- Change `spec/eucalypt` subdirectories name from old format `eucalypt-*` to just `*`.
+
 # 0.3.5
 
 #### Major changes

@@ -6,7 +6,7 @@ class ApplicationController < Sinatra::Base
   configure :test { disable :logging }
   configure :development { enable :logging }
 
-  # General logging
+  # Environments where STDOUT should be redirected to log file
   %i[production].each do |app_env|
     configure app_env do
       enable :logging
