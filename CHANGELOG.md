@@ -9,6 +9,7 @@
 
 #### Minor changes
 
+- Change gem destription
 - Clean up README
 - Change `spec/eucalypt` subdirectories name from old format `eucalypt-*` to just `*`
 
