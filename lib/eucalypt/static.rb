@@ -23,8 +23,7 @@ module Eucalypt
       extension = File.extname(file).sub /\A./, ''
       file_type = nil
       FILE_TYPES.each {|t, e| file_type = t if e.include? extension}
-      return if file_type.nil?
-      raise TypeError.new("Unsupported extension: .#{extension}") if file_type.nil? # Unnecessary
+      return if file_type.nil? # Unsupported extension
       define_singleton_method Inflect.resource_keep_inflection(file_name) do
         hash = parse(file_type, file)
         hash = hash ? hash : {}
