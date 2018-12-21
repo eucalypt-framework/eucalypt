@@ -8,7 +8,7 @@
 
 # Eucalypt
 
-Micro-framework and CLI wrapped around the Sinatra DSL.
+Micro-framework, application generator and CLI wrapped around the Sinatra DSL.
 
 ## Installation
 
@@ -26,19 +26,17 @@ Initialize a new application with:
 $ eucalypt init my-new-app
 ```
 
-> Once the setup is complete, make sure the required gems have been installed (without any errors). This is indicated by the presence of a `Gemfile.lock` file.
+> Once the setup is complete, make sure the required gems have been installed (without any errors).
 >
 > This should have been done automatically unless you used the `--no-bundle` flag during initialization.
 
-Move into your new application's directory and run the top-level `eucalypt` command to display a list of all available commands.
+Move into your new application's directory and run the top-level `$ eucalypt` command to display a list of all available commands.
 
 ## Documentation
 
-The full documentation of the CLI and micro-framework can be found [here](https://eucalypt.gitbook.io/eucalypt).
+Full documentation can be found in the form of a GitBook, [here](https://eucalypt.gitbook.io/eucalypt).
 
 ## Features
-
-Some of these features are pretty set in stone, but it may be possible to change some of them around with a little bit of work.
 
 | Type                 | Feature                                                      |
 | -------------------- | ------------------------------------------------------------ |
