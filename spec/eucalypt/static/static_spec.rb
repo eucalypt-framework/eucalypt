@@ -14,7 +14,6 @@ describe Eucalypt::Static do
       5.times do
         FileUtils.touch File.join invalid, "invalid.#{/7@_[A-Za-z0-9]{3}/.random_example}"
       end
-      FileUtils.touch File.join invalid, "valid.yaml"
       expect(static.methods(false).size).to eq 1
     end
   end
