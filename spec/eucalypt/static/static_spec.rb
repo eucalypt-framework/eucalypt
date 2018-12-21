@@ -8,9 +8,12 @@ describe Eucalypt::Static do
     let(:static) { Static.new invalid }
     after(:each) { Dir.glob File.join('**', 'invalid.*'), &File.method(:delete) }
 
-    it do
-      FileUtils.touch File.join invalid, "invalid.#{/7@_[A-Za-z0-9]{3}/.random_example}"
-      expect { static }.to raise_error TypeError
+    it 'should ignore invalid files' do
+      5.times do
+        FileUtils.touch File.join invalid, "invalid.#{/7@_[A-Za-z0-9]{3}/.random_example}"
+      end
+      FileUtils.touch File.join invalid, "valid.yaml"
+      expect(static.methods(false).size).to eq 1
     end
   end
   context 'when all file types are valid' do
