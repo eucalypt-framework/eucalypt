@@ -3,12 +3,16 @@ class ApplicationController < Sinatra::Base
   set :logger, Lumberjack::Logger.new
   helpers { def logger() settings.logger end }
 
+  configure :test { disable :logging }
+  configure :development { enable :logging }
+
   # General logging
-  %i[production test].each do |app_env|
+  %i[production].each do |app_env|
     configure app_env do
+      enable :logging
       use Rack::CommonLogger, $stdout
 
-      time = Time.now.strftime("%Y-%m-%dT%H-%M-%S_%z")
+      time = Time.now.strftime("%Y-%m-%d_%H-%M-%S")
       log_path = Eucalypt.path 'log', time.sub(/_\+/, ?p).sub(/_\-/, ?m)
       FileUtils.mkdir_p log_path
 
