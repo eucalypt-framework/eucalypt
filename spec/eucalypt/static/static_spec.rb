@@ -6,7 +6,9 @@ describe Eucalypt::Static do
   context 'when not all file types are valid' do
     let(:invalid) { File.join resources, 'invalid' }
     let(:static) { Static.new invalid }
-    after(:each) { Dir.glob File.join('**', 'invalid.*'), &File.method(:delete) }
+    after :each do
+      Dir.glob File.join(invalid, 'invalid.*'), &File.method(:delete)
+    end
 
     it 'should ignore invalid files' do
       5.times do
