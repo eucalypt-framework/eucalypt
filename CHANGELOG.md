@@ -7,6 +7,7 @@
   - [x] Enabled in `development` environment (displayed to `STDOUT`)
   - [x] Enabled in `production` environment (displayed in log file)
 - Allow static files to be served from the `static` directory
+- Change file name format for log files (to `YYYY-MM-DD_hh-mm-ss`)
 
 #### Minor changes
 
