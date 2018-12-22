@@ -1,4 +1,4 @@
-# 0.3.6
+# 0.4.0
 
 #### Major changes
 
@@ -6,12 +6,14 @@
   - [ ] Disabled in `test` environment
   - [x] Enabled in `development` environment (displayed to `STDOUT`)
   - [x] Enabled in `production` environment (displayed in log file)
+- Allow static files to be served from the `static` directory
 
 #### Minor changes
 
 - Change gem destription
 - Clean up README
 - Change `spec/eucalypt` subdirectories name from old format `eucalypt-*` to just `*`
+- Fix `spec_helper.rb` environment specification
 
 # 0.3.5
 
