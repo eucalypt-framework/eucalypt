@@ -1,3 +1,22 @@
+# 0.4.0
+
+#### Major changes
+
+- Change default environment configuration for logging:
+  - [ ] Disabled in `test` environment
+  - [x] Enabled in `development` environment (displayed to `STDOUT`)
+  - [x] Enabled in `production` environment (displayed in log file)
+- Allow static files to be served from the `static` directory
+- Change file name format for log files (to `YYYY-MM-DD_hh-mm-ss`)
+- Add file support for static XML files
+
+#### Minor changes
+
+- Change gem destription
+- Clean up README
+- Change `spec/eucalypt` subdirectories name from old format `eucalypt-*` to just `*`
+- Fix `spec_helper.rb` environment specification
+
 # 0.3.5
 
 #### Major changes
@@ -24,6 +43,7 @@
 
 #### Major changes
 
+- Change `Eucalypt::List` to CLI metaclass extension.
 - Add `eucalypt rake` command for running database migrations with the command `bundle exec rake db:migrate`.
 - Require `active_support/core_ext/hash` before `sinatra` gem in order to silece ActiveSupport warning (Read [sinatra#1476](https://github.com/sinatra/sinatra/issues/1476)).
 - Add `partial` helper method for rendering partials in views
@@ -33,10 +53,6 @@
 #### Minor changes
 
 - Delete `config/active_record.rb` and move ActiveRecord logging configuration to `config/logging.rb`.
-
-#### Major changes
-
-- Change `Eucalypt::List` to CLI metaclass extension.
 
 # 0.3.1
 

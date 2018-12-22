@@ -1,7 +1,5 @@
-require './app'
-Bundler.require :test
-
 ENV['APP_ENV'] = 'test'
+require './app'
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|

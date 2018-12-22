@@ -6,11 +6,15 @@ describe Eucalypt::Static do
   context 'when not all file types are valid' do
     let(:invalid) { File.join resources, 'invalid' }
     let(:static) { Static.new invalid }
-    after(:each) { Dir.glob File.join('**', 'invalid.*'), &File.method(:delete) }
+    after :each do
+      Dir.glob File.join(invalid, 'invalid.*'), &File.method(:delete)
+    end
 
-    it do
-      FileUtils.touch File.join invalid, "invalid.#{/7@_[A-Za-z0-9]{3}/.random_example}"
-      expect { static }.to raise_error TypeError
+    it 'should ignore invalid files' do
+      5.times do
+        FileUtils.touch File.join invalid, "invalid.#{/7@_[A-Za-z0-9]{3}/.random_example}"
+      end
+      expect(static.methods(false).size).to eq 1
     end
   end
   context 'when all file types are valid' do
@@ -55,6 +59,9 @@ describe Eucalypt::Static do
       context 'YAML' do
         it { expect(static.empty.yaml).to be_a Hash }
       end
+      context 'XML' do
+        it { expect(static.empty.xml).to be_a Hash }
+      end
     end
     context 'content' do
       context "unsymbolized keys" do
@@ -75,6 +82,17 @@ describe Eucalypt::Static do
             end
           end
         end
+        context 'XML' do
+          context 'top-level keys' do
+            it { expect(subject.content.xml.keys).to all be_a String }
+          end
+          context 'nested array keys' do
+            it { expect(subject.content.xml['catalog']['book'].map(&:keys).flatten).to all be_a String }
+          end
+          context 'nested hash keys' do
+            it { expect(subject.content.xml['catalog']['book'][1].keys).to all be_a String }
+          end
+        end
       end
       context "symbolized keys" do
         subject { Static.new valid, symbolize: true }
@@ -92,6 +110,17 @@ describe Eucalypt::Static do
                 expect(subject.content.send(type)[:hash][:'1'].keys).to all be_a Symbol
               }
             end
+          end
+        end
+        context 'XML' do
+          context 'top-level keys' do
+            it { expect(subject.content.xml.keys).to all be_a Symbol }
+          end
+          context 'nested array keys' do
+            it { expect(subject.content.xml[:catalog][:book].map(&:keys).flatten).to all be_a Symbol }
+          end
+          context 'nested hash keys' do
+            it { expect(subject.content.xml[:catalog][:book][1].keys).to all be_a Symbol }
           end
         end
       end

@@ -1,4 +1,5 @@
 require 'eucalypt/helpers/inflect'
+require 'active_support/core_ext/hash'
 require 'json'
 require 'yaml'
 
@@ -6,7 +7,7 @@ module Eucalypt
   class Static
     include Eucalypt::Helpers
 
-    FILE_TYPES = {yaml: %w[yml yaml], json: %w[json geojson]}
+    FILE_TYPES = {yaml: %w[yml yaml], json: %w[json geojson], xml: %w[xml]}
 
     def initialize(directory, symbolize: false)
       contents = Dir[File.join directory, '*']
@@ -23,7 +24,7 @@ module Eucalypt
       extension = File.extname(file).sub /\A./, ''
       file_type = nil
       FILE_TYPES.each {|t, e| file_type = t if e.include? extension}
-      raise TypeError.new("Unsupported extension: .#{extension}") if file_type.nil?
+      return if file_type.nil? # Unsupported extension
       define_singleton_method Inflect.resource_keep_inflection(file_name) do
         hash = parse(file_type, file)
         hash = hash ? hash : {}
@@ -42,6 +43,7 @@ module Eucalypt
       case file_type
       when :yaml then YAML.load_file(file)
       when :json then JSON.parse(File.read file)
+      when :xml then Hash.from_xml(File.read file)
       end
     end
 

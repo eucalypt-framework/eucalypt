@@ -4,8 +4,6 @@ require 'sinatra'
 Bundler.require :default, settings.environment
 Eucalypt.set_root __dir__
 
-Static = Eucalypt::Static.new(Eucalypt.path('app', 'static'), symbolize: true).freeze
-
 class ApplicationController < Sinatra::Base
   # Set server
   set :server, %w[thin webrick]
@@ -15,6 +13,13 @@ class ApplicationController < Sinatra::Base
 
   # Set application root directory
   set :root, Eucalypt.root
+
+  # Set public folder for static files
+  set :public_folder, Eucalypt.path('app', 'static')
+
+  # Allow static files to be served
+  set :static, true
+  ::Static = Eucalypt::Static.new(settings.public_folder, symbolize: true).freeze
 
   # Set views directory
   set :views, Eucalypt.path('app', 'views')
