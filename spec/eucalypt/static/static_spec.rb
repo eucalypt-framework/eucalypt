@@ -59,6 +59,9 @@ describe Eucalypt::Static do
       context 'YAML' do
         it { expect(static.empty.yaml).to be_a Hash }
       end
+      context 'XML' do
+        it { expect(static.empty.xml).to be_a Hash }
+      end
     end
     context 'content' do
       context "unsymbolized keys" do
@@ -79,6 +82,17 @@ describe Eucalypt::Static do
             end
           end
         end
+        context 'XML' do
+          context 'top-level keys' do
+            it { expect(subject.content.xml.keys).to all be_a String }
+          end
+          context 'nested array keys' do
+            it { expect(subject.content.xml['catalog']['book'].map(&:keys).flatten).to all be_a String }
+          end
+          context 'nested hash keys' do
+            it { expect(subject.content.xml['catalog']['book'][1].keys).to all be_a String }
+          end
+        end
       end
       context "symbolized keys" do
         subject { Static.new valid, symbolize: true }
@@ -96,6 +110,17 @@ describe Eucalypt::Static do
                 expect(subject.content.send(type)[:hash][:'1'].keys).to all be_a Symbol
               }
             end
+          end
+        end
+        context 'XML' do
+          context 'top-level keys' do
+            it { expect(subject.content.xml.keys).to all be_a Symbol }
+          end
+          context 'nested array keys' do
+            it { expect(subject.content.xml[:catalog][:book].map(&:keys).flatten).to all be_a Symbol }
+          end
+          context 'nested hash keys' do
+            it { expect(subject.content.xml[:catalog][:book][1].keys).to all be_a Symbol }
           end
         end
       end
