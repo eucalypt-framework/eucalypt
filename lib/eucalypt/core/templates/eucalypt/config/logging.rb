@@ -1,29 +1,24 @@
-require 'fileutils'
 class ApplicationController < Sinatra::Base
-  set :logger, Lumberjack::Logger.new
-  helpers { def logger() settings.logger end }
-
-  configure(:test) { disable :logging }
-  configure(:development) { enable :logging }
-
-  # Environments where STDOUT should be redirected to log file
-  %i[production].each do |app_env|
-    configure app_env do
-      enable :logging
-      use Rack::CommonLogger, $stdout
-
-      time = Time.now.strftime("%Y-%m-%d_%H-%M-%S")
-      log_path = Eucalypt.path 'log', time.sub(/_\+/, ?p).sub(/_\-/, ?m)
-      FileUtils.mkdir_p log_path
-
-      $stderr.reopen File.new(File.join(log_path, "#{app_env}.stderr.log"), 'a+')
-      $stderr.sync = true
-      $stdout.reopen File.new(File.join(log_path, "#{app_env}.stdout.log"), 'a+')
-      $stdout.sync = true
-    end
+  configure :test do
+    disable :logging
+    disable :log_file
   end
+
+  configure :development do
+    enable :logging
+    disable :log_file
+  end
+
+  configure :production do
+    set :logging, Lumberjack::Severity::UNKNOWN
+    enable :log_file
+  end
+
+  set :log_directory_format, "%Y-%m-%d_%H-%M-%S"
+
+  require 'eucalypt/core/helpers/logging'
 
   # ActiveRecord logging
   ActiveRecord::Base.logger = Logger.new STDOUT
-  ActiveRecord::Migration.verbose = true # Set to false for quieter logging
+  ActiveRecord::Migration.verbose = true
 end
