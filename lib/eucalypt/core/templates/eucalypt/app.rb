@@ -27,6 +27,10 @@ class ApplicationController < Sinatra::Base
   # Set default ERB template
   set :erb, layout: :'layouts/main'
 
+  # Toggle maintenance mode
+  disable :maintenance
+  require 'eucalypt/core/helpers/maintenance'
+
   # Set Hanami HTML and asset helpers
   helpers Hanami::Helpers, Hanami::Assets::Helpers
 end
