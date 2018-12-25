@@ -40,7 +40,7 @@ module Eucalypt
 
         insert_into_file(
           asset_pipeline_file,
-          "\tassets.append_path Eucalypt.path 'app', 'assets', 'blog'\n",
+          "  assets.append_path Eucalypt.path 'app', 'assets', 'blog'\n",
           after: "set :assets, Sprockets::Environment.new\n"
         )
       else
