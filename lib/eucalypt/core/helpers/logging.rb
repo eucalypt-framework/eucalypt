@@ -1,3 +1,4 @@
+require 'sinatra'
 class ApplicationController < Sinatra::Base
   LOGGER = if (settings.logging == !!settings.logging)
     Lumberjack::Logger.new $stdout

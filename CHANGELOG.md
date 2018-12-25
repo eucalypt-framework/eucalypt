@@ -1,3 +1,15 @@
+# 0.4.2
+
+#### Major changes
+
+- Add maintenance mode toggle from `app.rb` (in the form of a setting).
+  - `enable :maintenance` redirects all routes to `static/maintenance.html`
+  - `disable :maintenance` disables this feature
+
+#### Minor changes
+
+- Fix a minor whitespace issue in `config/asset_pipeline.rb` when blogging environment is setup.
+
 # 0.4.1
 
 #### Major changes
