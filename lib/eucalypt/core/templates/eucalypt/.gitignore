@@ -11,6 +11,7 @@
 /test/tmp/
 /test/version_tmp/
 /tmp/
+/logs/
 
 ## Logs, databases and sensitive files
 *.log

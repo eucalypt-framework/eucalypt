@@ -35,7 +35,7 @@ class ApplicationController < Sinatra::Base
 
   if settings.log_file
     time = Time.now.strftime settings.log_directory_format # Sanitize time!
-    path = Eucalypt.path('log', time)
+    path = Eucalypt.path('logs', time)
 
     require 'fileutils'
     FileUtils.mkdir_p path
