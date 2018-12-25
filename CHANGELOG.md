@@ -1,3 +1,16 @@
+# 0.4.1
+
+#### Major changes
+
+- **Improving the logging system**
+  - Rename `log` folder to `logs`
+  - Move logic out of `config/logging.rb` and into library file `eucalypt/core/helpers/logging.rb`
+  - Add settings for logging customisation:
+    - `:logging` - If `true`/`false`, indicates whether log messages will be seen, if a `Lumberjack::Severity`, then sets the severity of the logger
+    - `:log_file` - Specifies whether or not to redirect `STDOUT` to a log file
+    - `:log_directory_format` - Specifies the `DateTime` format for the name of the subdirectory in the `logs` folder where new logs are stored
+  - Allow different customisations to be made depending on the environment
+
 # 0.4.0
 
 #### Major changes
