@@ -8,7 +8,7 @@
 
 #### Minor changes
 
-- Fix a minor whitespace issue in `config/asset_pipeline.rb` when blogging environment is setup.
+- Fix a minor whitespace issue in `config/assets.rb` when blogging environment is setup.
 
 # 0.4.1
 

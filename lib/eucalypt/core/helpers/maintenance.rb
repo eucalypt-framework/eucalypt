@@ -1,4 +1,4 @@
 require 'sinatra'
 class ApplicationController < Sinatra::Base
-  get('*') { redirect '/maintenance.html' } if settings.maintenance
+  define_singleton_method(:maintenance) {|&block| get '*', &block}
 end
