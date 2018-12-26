@@ -56,7 +56,6 @@ end
 class ApplicationController < Sinatra::Base
   helpers do
     def whitelisted?
-      p settings.whitelist, settings.whitelist.class
       case settings.whitelist
       when Eucalypt::Whitelist then settings.whitelist.include?(request.ip)
       when FalseClass          then true
