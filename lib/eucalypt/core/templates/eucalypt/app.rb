@@ -24,14 +24,11 @@ class ApplicationController < Sinatra::Base
   # Set IP whitelist
   set :whitelist, Eucalypt::Whitelist.new(Eucalypt.path 'config', 'whitelist')
 
+  # Toggle maintenance mode
+  disable :maintenance
+
   # Set Hanami HTML and asset helpers
   helpers Hanami::Helpers, Hanami::Assets::Helpers
 
-  require 'eucalypt/load/config'
-  require 'eucalypt/load/helpers'
-
-  # Maintenance mode (uncomment below)
-  # maintenance { redirect '/maintenance.html' }
-
-  require 'eucalypt/load/files'
+  require 'eucalypt/load'
 end
