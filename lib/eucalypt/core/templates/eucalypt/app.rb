@@ -31,6 +31,9 @@ class ApplicationController < Sinatra::Base
   disable :maintenance
   require 'eucalypt/core/helpers/maintenance'
 
+  # Set IP whitelist
+  set :whitelist, Eucalypt::Whitelist.new(Eucalypt.path 'config', 'whitelist')
+
   # Set Hanami HTML and asset helpers
   helpers Hanami::Helpers, Hanami::Assets::Helpers
 end
