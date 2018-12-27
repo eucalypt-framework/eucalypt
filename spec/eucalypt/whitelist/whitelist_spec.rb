@@ -83,6 +83,8 @@ describe Eucalypt::Whitelist do
 
             it 'should not exist' do
               expect(whitelist.include? '::1').to be false
+              expect(whitelist.include? '0.0.0.0').to be true
+              expect(whitelist.include? '127.0.0.1').to be true
             end
           end
           context '(not present)' do
@@ -98,9 +100,9 @@ describe Eucalypt::Whitelist do
             before { whitelist.remove '::1', '0.0.0.0', '127.0.0.1' }
 
             it 'should not exist' do
-              ['::1', '0.0.0.0', '127.0.0.1'].each do |ip|
-                expect(whitelist.include? ip).to be false
-              end
+              expect(whitelist.include? '::1').to be false
+              expect(whitelist.include? '0.0.0.0').to be false
+              expect(whitelist.include? '127.0.0.1').to be false
             end
           end
           context '(not present)' do
@@ -131,9 +133,8 @@ describe Eucalypt::Whitelist do
           it 'should exist' do
             expect(whitelist.include? '255.255.255.255').to be true
           end
-          it 'should not have a leading newline character' do
-            expect(contents.first).not_to eq "\n"
-          end
+
+          it { expect(contents).not_to start_with "\n" }
         end
         context 'with multiple IPs' do
           before { whitelist.add '0.0.0.1', '0.0.0.2', '0.0.0.3' }
@@ -143,9 +144,8 @@ describe Eucalypt::Whitelist do
               expect(whitelist.include? ip).to be true
             end
           end
-          it 'should not have a leading newline character' do
-            expect(contents.first).not_to eq "\n"
-          end
+
+          it { expect(contents).not_to start_with "\n" }
         end
       end
       context '#remove' do
@@ -154,22 +154,87 @@ describe Eucalypt::Whitelist do
 
           it 'should not exist' do
             expect(whitelist.include? '::1').to be false
+            expect(whitelist.include? '0.0.0.0').to be true
+            expect(whitelist.include? '127.0.0.1').to be true
           end
-          it 'should not have a leading newline character' do
-            expect(contents.first).not_to eq "\n"
-          end
+
+          it { expect(contents).not_to start_with "\n" }
         end
         context 'with multiple IPs' do
           before { whitelist.remove '::1', '0.0.0.0' }
 
           it 'should not exist' do
-            ['::1', '0.0.0.0'].each do |ip|
-              expect(whitelist.include? ip).to be false
+            expect(whitelist.include? '::1').to be false
+            expect(whitelist.include? '0.0.0.0').to be false
+            expect(whitelist.include? '127.0.0.1').to be true
+          end
+
+          it { expect(contents).not_to start_with "\n" }
+        end
+        context 'with all IPs' do
+          before { whitelist.remove '::1', '0.0.0.0', '127.0.0.1' }
+
+          it 'should not exist' do
+            expect(whitelist.include? '::1').to be false
+            expect(whitelist.include? '0.0.0.0').to be false
+            expect(whitelist.include? '127.0.0.1').to be false
+          end
+
+          it { expect(contents).to start_with "\n" }
+        end
+      end
+    end
+    context 'and file contains multiple newline characters' do
+      before { prepare 'newlines' }
+      let(:contents) { File.open @file, &:read }
+
+      context '#initialize' do
+        it { expect(contents).to eq "\n\n\n\n" }
+      end
+      context '#add' do
+        context 'with one IP' do
+          before { whitelist.add '255.255.255.255' }
+
+          it 'should exist' do
+            expect(whitelist.include? '255.255.255.255').to be true
+          end
+
+          it { expect(contents).not_to start_with "\n\n\n\n" }
+        end
+        context 'with multiple IPs' do
+          before { whitelist.add '0.0.0.1', '0.0.0.2', '0.0.0.3' }
+
+          it 'should exist' do
+            ['0.0.0.1', '0.0.0.2', '0.0.0.3'].each do |ip|
+              expect(whitelist.include? ip).to be true
             end
           end
-          it 'should not have a leading newline character' do
-            expect(contents.first).not_to eq "\n"
+
+          it { expect(contents).not_to start_with "\n\n\n\n" }
+        end
+      end
+      context '#remove' do
+        context 'with one IP' do
+          before { whitelist.remove '::1' }
+
+          it 'should not exist' do
+            expect(whitelist.include? '::1').to be false
+            expect(whitelist.include? '0.0.0.0').to be true
+            expect(whitelist.include? '127.0.0.1').to be true
           end
+
+          it { expect(contents).not_to start_with "\n\n\n\n" }
+        end
+        context 'with multiple IPs' do
+          before { whitelist.remove '::1', '0.0.0.0' }
+
+          it 'should not exist' do
+            expect(whitelist.include? '::1').to be false
+            expect(whitelist.include? '0.0.0.0').to be false
+            expect(whitelist.include? '127.0.0.1').to be true
+          end
+
+          it { expect(contents).not_to start_with "\n\n\n\n" }
         end
         context 'with all IPs' do
           before { whitelist.remove '::1', '0.0.0.0', '127.0.0.1' }
@@ -179,20 +244,139 @@ describe Eucalypt::Whitelist do
               expect(whitelist.include? ip).to be false
             end
           end
-          it 'should have a leading newline character' do
-            expect(contents.first).to eq "\n"
-          end
+          it { expect(contents).not_to start_with "\n\n\n\n" }
         end
       end
     end
-    context 'and file contains multiple newline characters' do
-      before { prepare 'newlines' }
-    end
     context 'and file contains an unexpected character' do
       before { prepare 'unexpected' }
+
+      let(:contents) { File.open @file, &:read }
+
+      context '#initialize' do
+        it { expect(contents).to eq "a" }
+      end
+      context '#add' do
+        context 'with one IP' do
+          before { whitelist.add '255.255.255.255' }
+
+          it 'should exist' do
+            expect(whitelist.include? '255.255.255.255').to be true
+          end
+
+          it { expect(contents).to start_with "a" }
+        end
+        context 'with multiple IPs' do
+          before { whitelist.add '0.0.0.1', '0.0.0.2', '0.0.0.3' }
+
+          it 'should exist' do
+            ['0.0.0.1', '0.0.0.2', '0.0.0.3'].each do |ip|
+              expect(whitelist.include? ip).to be true
+            end
+          end
+
+          it { expect(contents).to start_with "a" }
+        end
+      end
+      context '#remove' do
+        context 'with one IP' do
+          before { whitelist.remove '::1' }
+
+          it 'should not exist' do
+            expect(whitelist.include? '::1').to be false
+            expect(whitelist.include? '0.0.0.0').to be true
+            expect(whitelist.include? '127.0.0.1').to be true
+          end
+
+          it { expect(contents).not_to start_with "a" }
+        end
+        context 'with multiple IPs' do
+          before { whitelist.remove '::1', '0.0.0.0' }
+
+          it 'should not exist' do
+            expect(whitelist.include? '::1').to be false
+            expect(whitelist.include? '0.0.0.0').to be false
+            expect(whitelist.include? '127.0.0.1').to be true
+          end
+
+          it { expect(contents).not_to start_with "a" }
+        end
+        context 'with all IPs' do
+          before { whitelist.remove '::1', '0.0.0.0', '127.0.0.1' }
+
+          it 'should not exist' do
+            expect(whitelist.include? '::1').to be false
+            expect(whitelist.include? '0.0.0.0').to be false
+            expect(whitelist.include? '127.0.0.1').to be false
+          end
+          it { expect(contents).not_to start_with "a" }
+        end
+      end
     end
     context 'and file contains multiple unexpected characters' do
       before { prepare 'unexpecteds' }
+
+      let(:contents) { File.open @file, &:read }
+
+      context '#initialize' do
+        it { expect(contents).to eq "a\nb\nc" }
+      end
+      context '#add' do
+        context 'with one IP' do
+          before { whitelist.add '255.255.255.255' }
+
+          it 'should exist' do
+            expect(whitelist.include? '255.255.255.255').to be true
+          end
+
+          it { expect(contents).to start_with "a\nb\nc" }
+        end
+        context 'with multiple IPs' do
+          before { whitelist.add '0.0.0.1', '0.0.0.2', '0.0.0.3' }
+
+          it 'should exist' do
+            ['0.0.0.1', '0.0.0.2', '0.0.0.3'].each do |ip|
+              expect(whitelist.include? ip).to be true
+            end
+          end
+
+          it { expect(contents).to start_with "a\nb\nc" }
+        end
+      end
+      context '#remove' do
+        context 'with one IP' do
+          before { whitelist.remove '::1' }
+
+          it 'should not exist' do
+            expect(whitelist.include? '::1').to be false
+            expect(whitelist.include? '0.0.0.0').to be true
+            expect(whitelist.include? '127.0.0.1').to be true
+          end
+
+          it { expect(contents).not_to start_with "a\nb\nc" }
+        end
+        context 'with multiple IPs' do
+          before { whitelist.remove '::1', '0.0.0.0' }
+
+          it 'should not exist' do
+            expect(whitelist.include? '::1').to be false
+            expect(whitelist.include? '0.0.0.0').to be false
+            expect(whitelist.include? '127.0.0.1').to be true
+          end
+
+          it { expect(contents).not_to start_with "a\nb\nc" }
+        end
+        context 'with all IPs' do
+          before { whitelist.remove '::1', '0.0.0.0', '127.0.0.1' }
+
+          it 'should not exist' do
+            expect(whitelist.include? '::1').to be false
+            expect(whitelist.include? '0.0.0.0').to be false
+            expect(whitelist.include? '127.0.0.1').to be false
+          end
+          it { expect(contents).not_to start_with "a\nb\nc" }
+        end
+      end
     end
   end
 end
