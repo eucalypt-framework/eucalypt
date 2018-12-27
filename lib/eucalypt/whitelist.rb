@@ -63,7 +63,7 @@ class ApplicationController < Sinatra::Base
       end
     end
 
-    def ipcheck()
+    def ip_check()
       raise Eucalypt::NotWhitelistedError.new(request.ip) unless whitelisted?
     end
   end
