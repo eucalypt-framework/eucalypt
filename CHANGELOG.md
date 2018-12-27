@@ -1,14 +1,36 @@
+# 0.5.0
+
+#### Major changes
+
+- Introduced IP whitelisting with the `Eucalypt::Whitelist` class, and IP-protected routes with the `ip_check` helper method
+- Rework maintenance mode to be defined with a special route in the `ApplicationController`:
+
+  ```ruby
+  maintenance do
+    static '/maintenance.html'
+  end
+  ```
+
+  This redirects every route to this one. This special route is enabled or disabled through the `:maintenance` setting in `app.rb`.
+
+#### Minor changes
+
+- Introduce `static` controller class method for redirecting to, or rendering static HTML files stored in the `app/static` directory (this is essentially just an alias for `redirect`)
+- Move `Eucalypt.require` directives to `eucalypt/load.rb` within the library rather than in the application
+- Remove unnecessary `root` and `server` settings from `app.rb`
+- Rename `config/asset_pipeline.rb` to `config/assets.rb`
+
 # 0.4.2
 
 #### Major changes
 
-- Add maintenance mode toggle from `app.rb` (in the form of a setting).
+- Add maintenance mode toggle from `app.rb` (in the form of a setting)
   - `enable :maintenance` redirects all routes to `static/maintenance.html`
   - `disable :maintenance` disables this feature
 
 #### Minor changes
 
-- Fix a minor whitespace issue in `config/asset_pipeline.rb` when blogging environment is setup.
+- Fix a minor whitespace issue in `config/assets.rb` when blogging environment is setup
 
 # 0.4.1
 
@@ -57,47 +79,47 @@
 
 #### Major changes
 
-- Fix bundle errors when running `eucalypt test` (by prefixing the `rspec spec` commands with `bundle exec`).
+- Fix bundle errors when running `eucalypt test` (by prefixing the `rspec spec` commands with `bundle exec`)
 
 #### Minor changes
 
 - Fix top-level array issue with `Static` class.
-- Support both relative and absolute pathing for the `partial` helper method.
+- Support both relative and absolute pathing for the `partial` helper method
 
 # 0.3.3
 
 #### Major changes
 
 - Change `Eucalypt::List` to CLI metaclass extension.
-- Add `eucalypt rake` command for running database migrations with the command `bundle exec rake db:migrate`.
-- Require `active_support/core_ext/hash` before `sinatra` gem in order to silece ActiveSupport warning (Read [sinatra#1476](https://github.com/sinatra/sinatra/issues/1476)).
+- Add `eucalypt rake` command for running database migrations with the command `bundle exec rake db:migrate`
+- Require `active_support/core_ext/hash` before `sinatra` gem in order to silece ActiveSupport warning (Read [sinatra#1476](https://github.com/sinatra/sinatra/issues/1476))
 - Add `partial` helper method for rendering partials in views
 - Rename `application` manifest accessor method to `manifest`
-- Bump `sinatra` lower version restriction to `>= 2.0.4`, making the overall version requirement `~> 2.0, >= 2.0.4`.
+- Bump `sinatra` lower version restriction to `>= 2.0.4`, making the overall version requirement `~> 2.0, >= 2.0.4`
 
 #### Minor changes
 
-- Delete `config/active_record.rb` and move ActiveRecord logging configuration to `config/logging.rb`.
+- Delete `config/active_record.rb` and move ActiveRecord logging configuration to `config/logging.rb`
 
 # 0.3.1
 
 #### Major changes
 
-- Remove unnecessary comment in `config/active_record.rb`.
+- Remove unnecessary comment in `config/active_record.rb`
 
 # 0.3.0
 
 #### Major changes
 
-- Change namespace directory names from `eucalypt-<namespace>` to just `eucalypt`.
-- Move Warden middleware to `config.ru`. This fixed a major bug with authentication where some POST routes in the `AuthenticationController` seemed to be undefined.
-- Remove `authorize` method from `config/pundit.rb`, since Pundit already comes with its own `authorize` method.
-- Fix `authorized?` method.
+- Change namespace directory names from `eucalypt-<namespace>` to just `eucalypt`
+- Move Warden middleware to `config.ru`. This fixed a major bug with authentication where some POST routes in the `AuthenticationController` seemed to be undefined
+- Remove `authorize` method from `config/pundit.rb`, since Pundit already comes with its own `authorize` method
+- Fix `authorized?` method
 
 #### Minor changes
 
-- Delete `static/readme.yml`.
-- Move and rename `user_confirm.rb` file to `confirm.rb`.
+- Delete `static/readme.yml`
+- Move and rename `user_confirm.rb` file to `confirm.rb`
 
 # 0.2.2
 
@@ -137,23 +159,23 @@
 
 #### Major changes
 
-- Move `root`, `path` and `glob` class methods to `eucalypt/root.rb`.
-- Add `require` class method for requiring files relative to root.
+- Move `root`, `path` and `glob` class methods to `eucalypt/root.rb`
+- Add `require` class method for requiring files relative to root
 
 The above features allowed `app.rb` to be cleaned up a bit.
 
 #### Minor changes
 
-- Change `Procfile` process type to use `eucalypt launch production` instead of `bundle exec bin rackup`.
-- Change `:environment` setting for Sprockets to `:assets` to avoid having the same name as the default `:environment` setting that indicates the current application environment (this also allowed all configuration files to be required with one directive instead of requiring logging first, then the rest of the configuration files).
+- Change `Procfile` process type to use `eucalypt launch production` instead of `bundle exec bin rackup`
+- Change `:environment` setting for Sprockets to `:assets` to avoid having the same name as the default `:environment` setting that indicates the current application environment (this also allowed all configuration files to be required with one directive instead of requiring logging first, then the rest of the configuration files)
 
 # 0.2.0
 
 #### Major changes
 
-- Add support for the generation of headless security policies (along with generating them through scaffolding). A headless policy can be specified with the `-H` option in the `generate scaffold` and `security generate policy` commands.
-- Add `authenticated?` method (alias `logged_in?`) to `config/warden.rb` for returning an explicit boolean value indicating whether or not there is a currently authenticated user.
-- Add `authorized?` method to `config/pundit.rb` for returning an explicit boolean value indicating whether or not the currently authenticated user is authorized to perform a given action on a given policy.
+- Add support for the generation of headless security policies (along with generating them through scaffolding). A headless policy can be specified with the `-H` option in the `generate scaffold` and `security generate policy` commands
+- Add `authenticated?` method (alias `logged_in?`) to `config/warden.rb` for returning an explicit boolean value indicating whether or not there is a currently authenticated user
+- Add `authorized?` method to `config/pundit.rb` for returning an explicit boolean value indicating whether or not the currently authenticated user is authorized to perform a given action on a given policy
 
   The `authorized?` method supports security policies with models, and also headless security policies.
 
@@ -183,7 +205,7 @@ The above features allowed `app.rb` to be cleaned up a bit.
   end
   ```
 
-- Configure test environment to log output to a log file.
+- Configure test environment to log output to a log file
 - Change log file names to include the current environment. Example:
 
   > - STDOUT log file: `production.stdout.log`
@@ -192,14 +214,14 @@ The above features allowed `app.rb` to be cleaned up a bit.
 
 #### Minor changes
 
-- Change `method_option` occurrences to `option` for CLI command option declarations (for consistency).
-- Change `RACK_ENV` references to `APP_ENV` to reflect changes described in [sinatra/sinatra#984](https://github.com/sinatra/sinatra/pull/984).
+- Change `method_option` occurrences to `option` for CLI command option declarations (for consistency)
+- Change `RACK_ENV` references to `APP_ENV` to reflect changes described in [sinatra/sinatra#984](https://github.com/sinatra/sinatra/pull/984)
 
 # 0.1.3
 
 #### Major changes
 
-- Transfer repository (along with documentation) to [eucalypt-framework](https://github.com/eucalypt-framework) organisation.
+- Transfer repository (along with documentation) to [eucalypt-framework](https://github.com/eucalypt-framework) organisation
 
   This meant changing a bunch of repository links, README badges (on the `eucalypt` and `eucalypt-book` repositories) and `gemspec` information.
 
@@ -213,13 +235,13 @@ The above features allowed `app.rb` to be cleaned up a bit.
 
 #### Minor changes
 
-- Rename GitBook from `gum.gitbook.io` to `eucalypt.gitbook.io`.
+- Rename GitBook from `gum.gitbook.io` to `eucalypt.gitbook.io`
 
 # 0.1.2
 
 #### Major changes
 
-- Change structure of the logging directory and functionality of loggers.
+- Change structure of the logging directory and functionality of loggers
 
   Logs are now split into `stdout.log` and `stderr.log` files, which reside under a newly created subdirectory (with each server start) in the `log` directory. For example:
 
@@ -233,7 +255,7 @@ The above features allowed `app.rb` to be cleaned up a bit.
       └── stdout.log
   ```
 
-- Add rack environment argument mapping for `eucalypt launch`.
+- Add rack environment argument mapping for `eucalypt launch`
 
   It is now possible to do:
 
@@ -244,14 +266,14 @@ The above features allowed `app.rb` to be cleaned up a bit.
 #### Minor changes
 
 - Add links to the GitBook documentation to `README`.
-- Add documentation badge to `README`.
-- Add `Thor` gem to the features list in `README`.
+- Add documentation badge to `README`
+- Add `Thor` gem to the features list in `README`
 
 # 0.1.1
 
 #### Major changes
 
-- Add `RSpec::Core` rake tasks to `Rakefile`, and make `spec` the default rake task.
+- Add `RSpec::Core` rake tasks to `Rakefile`, and make `spec` the default rake task
 
   (This fixed the issue with Travis CI not doing anything, since it was configured to use run with the `bundle exec rake` command)
 
@@ -265,10 +287,10 @@ The above features allowed `app.rb` to be cleaned up a bit.
 
 #### Minor changes
 
-- Add further information to the `README` file about initialization (particularly about making sure gem dependencies have been installed), the top-level `eucalypt` command and in-progress documentation.
-- Add features table to `README`.
-- Comment out `homepage` metadata in `eucalypt.gemspec` until documentation is ready.
-- Fix badge links in `README`.
+- Add further information to the `README` file about initialization (particularly about making sure gem dependencies have been installed), the top-level `eucalypt` command and in-progress documentation
+- Add features table to `README`
+- Comment out `homepage` metadata in `eucalypt.gemspec` until documentation is ready
+- Fix badge links in `README`
 
 # 0.1.0
 
