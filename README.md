@@ -30,7 +30,29 @@ $ eucalypt init my-new-app
 >
 > This should have been done automatically unless you used the `--no-bundle` flag during initialization.
 
-Move into your new application's directory and run the top-level `$ eucalypt` command to display a list of all available commands.
+### Commands
+
+Move into your new application's directory and run the top-level `eucalypt` command to display a list of all available commands:
+
+```bash
+$ eucalypt
+
+Commands:
+  eucalypt init [NAME]          ·› Sets up your application
+  eucalypt launch [ENV]         ·› Launches your application
+  eucalypt console              ·› Interactive console with all files loaded
+  eucalypt test                 ·› Run all application tests
+  eucalypt version              ·› Display installed Eucalypt version
+  eucalypt rake                 ·› Run all database migrations
+  eucalypt blog [COMMAND]       ·› Manage static blog environment
+  eucalypt generate [COMMAND]   ·› Generate individual MVC files or scaffolds
+  eucalypt destroy [COMMAND]    ·› Destroy individual MVC files or scaffolds
+  eucalypt security [COMMAND]   ·› Manage authentication and authorization
+  eucalypt migration [COMMAND]  ·› Generate ActiveRecord migrations
+
+For more information about a specific command, use eucalypt -H.
+Example: eucalypt -H generate scaffold
+```
 
 ## Documentation
 
