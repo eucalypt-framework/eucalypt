@@ -5,12 +5,4 @@ class <%= config[:class_name] %><%= " < Struct.new(:user, :#{config[:resource]})
     @user = user
     @<%= config[:resource] %> = <%= config[:resource] %>
   end
-
-  if ActiveRecord::Base.connection.table_exists?(:<%= config[:resource] %>_roles)
-    <%= config[:constant] %>Role.pluck(:permission).each do |permission|
-      define_method("#{permission}?") do
-        <%= config[:constant] %>Role.find_by(permission: permission).send(user.role.<%= config[:resource] %>)
-      end
-    end
-  end
 end
