@@ -46,16 +46,7 @@ module Eucalypt
         policy_generator.generate_policy_roles_migration(policy: policy.resource)
 
         # Create policy role model
-        Dir.chdir(directory) do
-          Eucalypt::CLI.start(['generate', 'model', "#{policy.resource}_role", '--no-spec', '--no-table'])
-        end
-
-        # Add validation to role model
-        role_model_file = File.join directory, 'app', 'models', "#{policy.resource}_role.rb"
-        File.open(role_model_file) do |f|
-          insert = "  validates :permission, uniqueness: true"
-          inject_into_class(role_model_file, "#{policy.resource}_role".camelize, "#{insert}\n") unless f.read.include? insert
-        end
+        policy_generator.generate_policy_role_model(policy: policy)
 
         # Add policy column to user roles table
         Dir.chdir(directory) do

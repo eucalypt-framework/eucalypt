@@ -34,7 +34,7 @@ module Eucalypt
 
         # Check for policy file and policy role model
         policy_file = File.join(directory, 'app', 'policies', policy.file_name)
-        policy_role_model = File.join(directory, 'app', 'models', "#{policy.resource}_role.rb")
+        policy_role_model = File.join(directory, 'app', 'models', 'roles', "#{policy.resource}_role.rb")
         unless File.exist?(policy_file) && File.exist?(policy_role_model)
           Eucalypt::Error.no_policy(policy.resource)
           return

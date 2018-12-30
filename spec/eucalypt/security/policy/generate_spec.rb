@@ -20,13 +20,13 @@ describe Eucalypt do
         {
           headless: {
             policy: File.join('app', 'policies', 'test_headless_policy.rb'),
-            role_model: File.join('app', 'models', 'test_headless_role.rb'),
+            role_model: File.join('app', 'models', 'roles', 'test_headless_role.rb'),
             role_migration: tmp { find_migration('create_test_headless_roles') },
             add_column_migration: tmp { find_migration('add_test_headless_to_roles') }
           },
           non_headless: {
             policy: File.join('app', 'policies', 'test_policy.rb'),
-            role_model: File.join('app', 'models', 'test_role.rb'),
+            role_model: File.join('app', 'models', 'roles', 'test_role.rb'),
             role_migration: tmp { find_migration('create_test_roles') },
             add_column_migration: tmp { find_migration('add_test_to_roles') }
           }

@@ -16,7 +16,17 @@ module Eucalypt
       def generate(headless:, name:)
         policy = Inflect.new(:policy, name)
         config = {class_name: policy.class_name, resource: policy.resource, constant: policy.constant, headless: headless}
-        template('policy.tt', policy.file_path, config)
+        template 'policy.tt', policy.file_path, config
+      end
+
+      def generate_policy_role_model(policy:)
+        roles_directory = File.join 'app', 'models', 'roles'
+        role_model_file = File.join roles_directory, "#{policy.resource}_role.rb"
+
+        empty_directory roles_directory unless File.directory? roles_directory
+
+        config = {constant: policy.constant}
+        template 'policy_role.tt', role_model_file, config
       end
 
       def generate_policy_roles_migration(policy:)
