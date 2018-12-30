@@ -27,8 +27,6 @@ $ eucalypt init my-new-app
 ```
 
 > Once the setup is complete, make sure the required gems have been installed (without any errors).
->
-> This should have been done automatically unless you used the `--no-bundle` flag during initialization.
 
 ### Commands
 
