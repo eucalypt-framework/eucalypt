@@ -20,5 +20,5 @@ class ApplicationController < Sinatra::Base
 
   # ActiveRecord logging
   ActiveRecord::Base.logger = Logger.new STDOUT
-  ActiveRecord::Migration.verbose = true
+  ActiveRecord::Migration.verbose = false
 end
