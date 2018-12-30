@@ -1,3 +1,14 @@
+# 0.5.1
+
+#### Major changes
+
+- Move policy role models from `app/models` to `app/models/roles` to avoid cluttering the `models` directory, preserving it for proper models such as `User`
+- Add `lib/eucalypt/security/permissions.rb` to dynamically define permission methods for each policy in `app/policies` to avoid cluttering the policy file.
+
+#### Minor changes
+
+- Change ActiveRecord default logging configuration to be less verbose
+
 # 0.5.0
 
 #### Major changes
