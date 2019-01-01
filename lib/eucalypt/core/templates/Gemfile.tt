@@ -28,3 +28,5 @@ gem 'uglifier', '~> 4.1'
 # Hanami HTML/asset helpers
 gem 'hanami-helpers', '~> 1.2', require: 'hanami/helpers'
 gem 'hanami-assets', '~> 1.2', require: ['hanami/assets','hanami/assets/helpers']
+# IP protection
+gem 'ipwatch', '0.1.0'

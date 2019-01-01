@@ -20,9 +20,6 @@ class ApplicationController < Sinatra::Base
   # Set default ERB template
   set :erb, layout: :'layouts/main'
 
-  # Set IP whitelist
-  set :whitelist, Eucalypt::Whitelist.new(Eucalypt.path 'config', 'whitelist')
-
   # Toggle maintenance mode
   disable :maintenance
 
