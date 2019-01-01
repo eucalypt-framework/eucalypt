@@ -31,18 +31,6 @@ module Eucalypt
         generator.helper
         generator.controller(route: options[:route])
         generator.views
-
-        assets_file = File.join(directory, 'config', 'assets.rb')
-
-        File.open(assets_file) do |f|
-          return if f.read.include? "assets.append_path Eucalypt.path 'app', 'assets', 'blog'"
-        end
-
-        insert_into_file(
-          assets_file,
-          "  assets.append_path Eucalypt.path 'app', 'assets', 'blog'\n",
-          after: "set :assets, Sprockets::Environment.new\n"
-        )
       else
         Eucalypt::Error.wrong_directory
       end

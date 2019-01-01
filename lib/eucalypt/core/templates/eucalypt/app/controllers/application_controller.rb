@@ -1,8 +1,10 @@
 class ApplicationController < Sinatra::Base
   helpers ApplicationHelper if defined? ApplicationHelper
 
+  static '/maintenance.html', aliases: %w[/maintenance]
+
   maintenance do
-    static '/maintenance.html'
+    redirect '/maintenance'
   end
 
   get '/' do

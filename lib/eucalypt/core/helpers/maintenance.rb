@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'bcrypt'
+require 'securerandom'
 class ApplicationController < Sinatra::Base
   if settings.methods(false).include?(:maintenance)
     if settings.maintenance
@@ -14,9 +14,9 @@ class ApplicationController < Sinatra::Base
         unlink '*', &block
       end
     else
-      define_singleton_method(:maintenance) {|&block| get "/#{BCrypt::Password.create(?1)}", &block}
+      define_singleton_method(:maintenance) {|&block| get "/#{SecureRandom.random_bytes 16}", &block}
     end
   else
-    define_singleton_method(:maintenance) {|&block| get "/#{BCrypt::Password.create(?1)}", &block}
+    define_singleton_method(:maintenance) {|&block| get "/#{SecureRandom.random_bytes 16}", &block}
   end
 end

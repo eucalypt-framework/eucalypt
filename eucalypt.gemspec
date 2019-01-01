@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
   spec.files         = Dir.glob('lib/**/*', File::FNM_DOTMATCH) + %w[Gemfile LICENSE README.md Rakefile eucalypt.gemspec bin/eucalypt]
   spec.bindir        = "bin"
-  spec.executables   = spec.files.grep(%r{^bin/}) {|f| File.basename(f)}
+  spec.executables   = "eucalypt"
   spec.require_paths = ["lib"]
 
   spec.required_ruby_version = "~> 2.5"
@@ -27,7 +27,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "string-builder", "~> 2.3"
   spec.add_runtime_dependency "activesupport", "~> 5.2"
   spec.add_runtime_dependency "activerecord", "~> 5.2"
-  spec.add_runtime_dependency "bcrypt", "~> 3.1"
   spec.add_runtime_dependency "front_matter_parser", "0.2.0"
   spec.add_runtime_dependency "thor", "~> 0.20"
   spec.add_runtime_dependency "sinatra", "~> 2.0", ">= 2.0.4"

@@ -1,9 +1,24 @@
+# 0.5.2
+
+#### Major changes
+
+- Remove IP whitelisting feature (remove `Eucalypt::Whitelist` and `eucalypt/whitelist.rb`)
+- (**`config/assets.rb`**): Change `assets.rb` to automatically append the paths of any directories under `app/assets` to the `Sprockets::Environment` object
+- Rework `static` method for serving static files
+- Revert static data accessor to be configured to `app/static` rather than the value of `settings.public_folder`
+- Change `settings.public_folder` to `app/static/public` (to differentiate between static files which are public, and static files which should remain internal to the application unless exposed at other endpoints)
+
+#### Minor changes
+
+- (**`Gemfile`**): Remove `:production` symbol from what should be the test environment for requiring the `rspec`, `rack-test` and `should-matchers` gems
+- (**`README.md`**): Remove `README.md` code highlighting, replace with screenshot of CLI
+
 # 0.5.1
 
 #### Major changes
 
 - Move policy role models from `app/models` to `app/models/roles` to avoid cluttering the `models` directory, preserving it for proper models such as `User`
-- Add `lib/eucalypt/security/permissions.rb` to dynamically define permission methods for each policy in `app/policies` to avoid cluttering the policy file.
+- Add `lib/eucalypt/security/permissions.rb` to dynamically define permission methods for each policy in `app/policies` to avoid cluttering the policy file
 
 #### Minor changes
 
@@ -13,7 +28,7 @@
 
 #### Major changes
 
-- Introduced IP whitelisting with the `Eucalypt::Whitelist` class, and IP-protected routes with the `ip_check` helper method
+- Introduce IP whitelisting with the `Eucalypt::Whitelist` class, and IP-protected routes with the `ip_check` helper method
 - Rework maintenance mode to be defined with a special route in the `ApplicationController`:
 
   ```ruby
@@ -41,7 +56,7 @@
 
 #### Minor changes
 
-- Fix a minor whitespace issue in `config/assets.rb` when blogging environment is setup
+- Fix a minor whitespace issue in `config/asset_pipeline.rb` when blogging environment is setup
 
 # 0.4.1
 
