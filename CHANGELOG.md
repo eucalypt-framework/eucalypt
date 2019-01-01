@@ -1,3 +1,15 @@
+# 0.5.2
+
+#### Major changes
+
+- Remove IP whitelisting feature (remove `Eucalypt::Whitelist` and `eucalypt/whitelist.rb`)
+- (**`config/assets.rb`**): Change `assets.rb` to automatically append the paths of any directories under `app/assets` to the `Sprockets::Environment` object.
+- Rework `static` method for serving static files
+
+#### Minor changes
+
+- (**`Gemfile`**): Remove `:production` symbol from what should be the test environment for requiring the `rspec`, `rack-test` and `should-matchers` gems.
+
 # 0.5.1
 
 #### Major changes
@@ -13,7 +25,7 @@
 
 #### Major changes
 
-- Introduced IP whitelisting with the `Eucalypt::Whitelist` class, and IP-protected routes with the `ip_check` helper method
+- Introduce IP whitelisting with the `Eucalypt::Whitelist` class, and IP-protected routes with the `ip_check` helper method
 - Rework maintenance mode to be defined with a special route in the `ApplicationController`:
 
   ```ruby
@@ -41,7 +53,7 @@
 
 #### Minor changes
 
-- Fix a minor whitespace issue in `config/assets.rb` when blogging environment is setup
+- Fix a minor whitespace issue in `config/asset_pipeline.rb` when blogging environment is setup
 
 # 0.4.1
 
