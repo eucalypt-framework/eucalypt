@@ -14,9 +14,9 @@ class ApplicationController < Sinatra::Base
         unlink '*', &block
       end
     else
-      define_singleton_method(:maintenance) {|&block| get "/#{SecureRandom.random_bytes 16}", &block}
+      define_singleton_method(:maintenance) {|&block| get 3.times.map{"/#{SecureRandom.hex 8}"}.join(), &block}
     end
   else
-    define_singleton_method(:maintenance) {|&block| get "/#{SecureRandom.random_bytes 16}", &block}
+    define_singleton_method(:maintenance) {|&block| get 3.times.map{"/#{SecureRandom.hex 8}"}.join(), &block}
   end
 end
