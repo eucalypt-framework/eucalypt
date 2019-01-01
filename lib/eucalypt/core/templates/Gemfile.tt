@@ -7,7 +7,7 @@ gem 'rake', '~> 12.3'
 gem 'thin', '~> 1.7'
 
 # Test environment
-group :test, :production do
+group :test do
   gem 'rack-test', '~> 1.0', require: 'rack/test'
   gem 'rspec', '~> 3.7'
   gem 'shoulda-matchers', '~> 3.1'
