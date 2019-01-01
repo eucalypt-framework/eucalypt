@@ -1,10 +1,7 @@
 class ApplicationController < Sinatra::Base
   helpers ApplicationHelper if defined? ApplicationHelper
 
-  static do |s|
-    s.route '/maintenance.html', aliases: %w[/maintenance]
-    s.route '/robots.txt'
-  end
+  static '/maintenance.html', aliases: %w[/maintenance]
 
   maintenance do
     redirect '/maintenance'
