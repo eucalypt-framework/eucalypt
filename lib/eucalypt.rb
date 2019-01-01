@@ -12,7 +12,6 @@ require 'eucalypt/root'
 require 'eucalypt/list'
 require 'eucalypt/core/helpers/manifest'
 require 'eucalypt/core/helpers/partial'
-require 'eucalypt/guard'
 
 Eucalypt::CLI.extend Eucalypt::List
 
