@@ -1,3 +1,9 @@
+# 0.5.3
+
+#### Major changes
+
+- (**`core/helpers/maintenance.rb`**): Change dummy route to use `SecureRandom.hex` instead of `SecureRandon.random_bytes`, which used to generate invalid URLs.
+
 # 0.5.2
 
 #### Major changes
