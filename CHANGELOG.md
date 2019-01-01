@@ -5,17 +5,20 @@
 - Remove IP whitelisting feature (remove `Eucalypt::Whitelist` and `eucalypt/whitelist.rb`)
 - (**`config/assets.rb`**): Change `assets.rb` to automatically append the paths of any directories under `app/assets` to the `Sprockets::Environment` object.
 - Rework `static` method for serving static files
+- Revert static data accessor to be configured to `app/static` rather than the value of `settings.public_folder`
+- Change `settings.public_folder` to `app/static/public` (to differentiate between static files which are public, and static files which should remain internal to the application unless exposed at other endpoints)
 
 #### Minor changes
 
-- (**`Gemfile`**): Remove `:production` symbol from what should be the test environment for requiring the `rspec`, `rack-test` and `should-matchers` gems.
+- (**`Gemfile`**): Remove `:production` symbol from what should be the test environment for requiring the `rspec`, `rack-test` and `should-matchers` gems
+- Change `README.md` code block highlighting
 
 # 0.5.1
 
 #### Major changes
 
 - Move policy role models from `app/models` to `app/models/roles` to avoid cluttering the `models` directory, preserving it for proper models such as `User`
-- Add `lib/eucalypt/security/permissions.rb` to dynamically define permission methods for each policy in `app/policies` to avoid cluttering the policy file.
+- Add `lib/eucalypt/security/permissions.rb` to dynamically define permission methods for each policy in `app/policies` to avoid cluttering the policy file
 
 #### Minor changes
 

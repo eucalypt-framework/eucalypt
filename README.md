@@ -32,7 +32,7 @@ $ eucalypt init my-new-app
 
 Move into your new application's directory and run the top-level `eucalypt` command to display a list of all available commands:
 
-```assembly
+```D
 $ eucalypt
 
 Commands:
