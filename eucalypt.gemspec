@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
   spec.files         = Dir.glob('lib/**/*', File::FNM_DOTMATCH) + %w[Gemfile LICENSE README.md Rakefile eucalypt.gemspec bin/eucalypt]
   spec.bindir        = "bin"
-  spec.executables   = spec.files.grep(%r{^bin/}) {|f| File.basename(f)}
+  spec.executables   = "eucalypt"
   spec.require_paths = ["lib"]
 
   spec.required_ruby_version = "~> 2.5"

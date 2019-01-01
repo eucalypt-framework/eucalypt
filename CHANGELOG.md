@@ -3,7 +3,7 @@
 #### Major changes
 
 - Remove IP whitelisting feature (remove `Eucalypt::Whitelist` and `eucalypt/whitelist.rb`)
-- (**`config/assets.rb`**): Change `assets.rb` to automatically append the paths of any directories under `app/assets` to the `Sprockets::Environment` object.
+- (**`config/assets.rb`**): Change `assets.rb` to automatically append the paths of any directories under `app/assets` to the `Sprockets::Environment` object
 - Rework `static` method for serving static files
 - Revert static data accessor to be configured to `app/static` rather than the value of `settings.public_folder`
 - Change `settings.public_folder` to `app/static/public` (to differentiate between static files which are public, and static files which should remain internal to the application unless exposed at other endpoints)
@@ -11,7 +11,7 @@
 #### Minor changes
 
 - (**`Gemfile`**): Remove `:production` symbol from what should be the test environment for requiring the `rspec`, `rack-test` and `should-matchers` gems
-- Change `README.md` code block highlighting
+- (**`README.md`**): Remove `README.md` code highlighting, replace with screenshot of CLI
 
 # 0.5.1
 
