@@ -16,8 +16,6 @@ module Eucalypt
       raise ArgumentError.new("Invalid keyword argument #{aliases} for 'aliases' - Expected Array of route names (preceded by /)") unless aliases.all?{|a| a.start_with? '/'}
       @routes << {file: file, aliases: aliases}
     end
-
-    alias_method :<<, :route
   end
 end
 
