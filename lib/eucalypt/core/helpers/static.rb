@@ -22,7 +22,7 @@ module Eucalypt
 end
 
 class ApplicationController < Sinatra::Base
-  set :static_router, ->{ Eucalypt::Static::Router.new settings.public_folder }
+  set :static_router, Eucalypt::Static::Router.new(settings.public_folder)
 
   def self.static(file = nil, aliases: [])
     if settings.static_router.is_a? Eucalypt::Static::Router
