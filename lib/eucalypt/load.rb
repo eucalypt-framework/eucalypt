@@ -3,8 +3,8 @@ class MainController < ApplicationController; end
 Eucalypt.require 'config', '*.rb'
 Eucalypt.require 'config', 'initializers', '*.rb'
 
-Eucalypt.require 'app', 'helpers', 'application_helper.rb'
-ApplicationController.helpers ApplicationHelper
+Eucalypt.require 'app', 'helpers', '{application_helper.rb}'
+ApplicationController.helpers ApplicationHelper if defined? ApplicationHelper
 
 Eucalypt.require 'app', 'helpers', '{main_helper.rb}'
 Eucalypt.require 'app', 'controllers', 'main_controller.rb'

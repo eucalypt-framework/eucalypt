@@ -13,7 +13,7 @@ module Eucalypt
         directory = File.expand_path('.')
         if Eucalypt.app? directory
           files = Dir[File.join directory, 'app', "#{mvc_file}s", '*.rb']
-          file_names = files.map{|c| File.basename(c).split(?_).first}.reject{|n| n=='application'}
+          file_names = files.map{|c| File.basename(c).split(?_).first}.reject{|n| n == 'main' }
 
           if files.empty?
             Eucalypt::Error.no_mvc(mvc_file)
@@ -34,7 +34,7 @@ module Eucalypt
             end
           else
             # If name not given
-            files = Dir[File.join directory, 'app', "#{mvc_file}s", "*.rb"].reject{|f| File.basename(f).include? 'application'}
+            files = Dir[File.join directory, 'app', "#{mvc_file}s", "*.rb"].reject{|f| File.basename(f).include? 'main'}
             if files.empty?
               Eucalypt::Error.no_mvc(mvc_file)
               return
