@@ -1,3 +1,13 @@
+# 0.5.4
+
+#### Major changes
+
+- (**`core/helpers/static.rb`**): Remove stabby lambda definition from `static_router` setting to prevent a new `Static::Router` object from being initialized every time the setting is called.
+
+#### Minor changes
+
+- (**`core/helpers/static.rb`**): Remove `:<<` alias method for `Static::Router#route` instance method.
+
 # 0.5.3
 
 #### Major changes

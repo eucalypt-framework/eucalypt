@@ -16,13 +16,11 @@ module Eucalypt
       raise ArgumentError.new("Invalid keyword argument #{aliases} for 'aliases' - Expected Array of route names (preceded by /)") unless aliases.all?{|a| a.start_with? '/'}
       @routes << {file: file, aliases: aliases}
     end
-
-    alias_method :<<, :route
   end
 end
 
 class ApplicationController < Sinatra::Base
-  set :static_router, ->{ Eucalypt::Static::Router.new settings.public_folder }
+  set :static_router, Eucalypt::Static::Router.new(settings.public_folder)
 
   def self.static(file = nil, aliases: [])
     if settings.static_router.is_a? Eucalypt::Static::Router
