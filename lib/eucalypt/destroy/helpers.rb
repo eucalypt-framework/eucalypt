@@ -34,7 +34,7 @@ module Eucalypt
             end
           else
             # If name not given
-            files = Dir[File.join directory, 'app', "#{mvc_file}s", "*.rb"].reject{|f| File.basename(f).include? 'main'}
+            files = Dir[File.join directory, 'app', "#{mvc_file}s", "*.rb"].reject{|f| File.basename(f) == 'main_controller.rb' }
             if files.empty?
               Eucalypt::Error.no_mvc(mvc_file)
               return
