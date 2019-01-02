@@ -15,5 +15,4 @@ require 'eucalypt/core/helpers/partial'
 
 Eucalypt::CLI.extend Eucalypt::List
 
-class ApplicationController < Sinatra::Base; end
 def app() ApplicationController end
