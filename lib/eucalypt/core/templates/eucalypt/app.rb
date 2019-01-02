@@ -20,11 +20,14 @@ class ApplicationController < Sinatra::Base
   # Set default ERB template
   set :erb, layout: :'layouts/main'
 
-  # Toggle maintenance mode
-  disable :maintenance
-
   # Set Hanami HTML and asset helpers
   helpers Hanami::Helpers, Hanami::Assets::Helpers
 
+  # Load controllers and other application files
   require 'eucalypt/load'
+
+  # Set maintenance route
+  maintenance enabled: false do
+    render_static '/maintenance.html'
+  end
 end

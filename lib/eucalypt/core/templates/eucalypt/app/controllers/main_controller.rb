@@ -1,5 +1,5 @@
-class ApplicationController < Sinatra::Base
-  helpers ApplicationHelper if defined? ApplicationHelper
+class MainController < ApplicationController
+  helpers MainHelper if defined? MainHelper
 
   static '/maintenance.html', aliases: %w[/maintenance]
 

@@ -44,4 +44,13 @@ class ApplicationController < Sinatra::Base
       end
     end
   end
+
+  helpers do
+    def render_static(file)
+      raise ArgumentError.new("Invalid argument #{file} for 'file' - Expected string (file path with preceding /)") unless file.is_a?(String) && file.start_with?('/')
+      location = File.join settings.public_folder, file.sub('/', '')
+      raise ArgumentError.new("Invalid argument #{file} for 'file' - File \"#{location}\" doesn't exist") unless File.file? location
+      send_file location
+    end
+  end
 end

@@ -1,12 +1,19 @@
+require 'eucalypt/core/helpers/static'
+
+class MainController < ApplicationController; end
+
 Eucalypt.require 'config', '*.rb'
 Eucalypt.require 'config', 'initializers', '*.rb'
 
-require 'eucalypt/core/helpers/maintenance'
-require 'eucalypt/core/helpers/static'
+Eucalypt.require 'app', 'helpers', 'application_helper.rb'
+ApplicationController.helpers ApplicationHelper
+MainController.helpers ApplicationHelper
 
-Eucalypt.require 'app', 'helpers', '{application_helper.rb}'
-Eucalypt.require 'app', 'controllers', 'application_controller.rb'
+Eucalypt.require 'app', 'helpers', '{main_helper.rb}'
+Eucalypt.require 'app', 'controllers', 'main_controller.rb'
 Eucalypt.require 'app', '{models}', '{roles}', '*.rb'
 Eucalypt.require 'app', '{models,policies,helpers,controllers}', '*.rb'
 
 require 'eucalypt/security/permissions'
+require 'eucalypt/core/helpers/default_index'
+require 'eucalypt/core/helpers/maintenance'

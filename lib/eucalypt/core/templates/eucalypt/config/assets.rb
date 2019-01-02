@@ -8,7 +8,7 @@ class ApplicationController < Sinatra::Base
     assets.append_path item if File.directory? item
   end
 
-  get '/assets/*' do
+  MainController.get '/assets/*' do
     env["PATH_INFO"].sub! '/assets', ''
     settings.assets.call env
   end
