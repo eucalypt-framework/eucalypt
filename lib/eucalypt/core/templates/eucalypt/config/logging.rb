@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
   end
 
   configure :production do
-    set :logging, Lumberjack::Severity::UNKNOWN
+    set :logging, Lumberjack::Severity::INFO
     enable :log_file
   end
 
