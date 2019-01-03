@@ -28,7 +28,7 @@ module Eucalypt
             file_name = mvc_file == :model ? "#{name}.rb" : "#{name}_#{mvc_file}.rb"
             spec_file_name = mvc_file == :model ? "#{name}_spec.rb" : "#{name}_#{mvc_file}_spec.rb"
 
-            unless file_names.include? file_name
+            unless file_names.include? name
               Eucalypt::Error.no_mvc(mvc_file)
               return
             end
