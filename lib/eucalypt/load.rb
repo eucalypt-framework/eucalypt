@@ -1,5 +1,6 @@
 class MainController < ApplicationController; end
 
+require 'eucalypt/core/helpers/assets'
 Eucalypt.require 'config', '*.rb'
 Eucalypt.require 'config', 'initializers', '*.rb'
 
