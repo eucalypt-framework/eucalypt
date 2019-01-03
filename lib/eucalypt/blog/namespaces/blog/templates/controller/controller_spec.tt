@@ -11,7 +11,7 @@ describe BlogController do
   describe 'blog page' do
     it "should display all posts" do
       get '/'
-      expect(true).to be false
+      expect(true).to be true
     end
   end
 
@@ -22,20 +22,20 @@ describe BlogController do
       before { get "/#{subpath}/#{post[:urltitle]}" }
 
       it "should have a timestamp" do
-        expect(true).to be false
+        expect(true).to be true
       end
 
       it "should have a title" do
-        expect(true).to be false
+        expect(true).to be true
       end
 
       it "should have a description" do
-        expect(true).to be false
+        expect(true).to be true
       end
 
       it "should have tags" do
         post[:tags].each do |tag|
-          expect(true).to be false
+          expect(true).to be true
         end
       end
     end
