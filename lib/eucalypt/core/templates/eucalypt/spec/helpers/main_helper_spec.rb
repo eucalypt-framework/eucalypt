@@ -1,7 +1,7 @@
 require_relative '../spec_helper'
 
-describe ApplicationHelper do
-  include ApplicationHelper
+describe MainHelper do
+  include MainHelper
 
   it 'works' do
     expect(true).to be true

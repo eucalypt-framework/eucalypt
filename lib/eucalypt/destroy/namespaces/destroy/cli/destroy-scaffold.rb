@@ -17,7 +17,7 @@ module Eucalypt
           File.basename(f).split(?_).first.split(?.).first
         end
 
-        scaffolds.reject!{|f|f == 'application'}
+        scaffolds.reject!{|f|f == 'main'}
         scaffolds.uniq!
 
         if scaffolds.empty?

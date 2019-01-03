@@ -5,12 +5,12 @@ class ApplicationController < Sinatra::Base
   end
 
   configure :development do
-    enable :logging
+    set :logging, Lumberjack::Severity::DEBUG
     disable :log_file
   end
 
   configure :production do
-    set :logging, Lumberjack::Severity::UNKNOWN
+    enable :logging
     enable :log_file
   end
 

@@ -1,1 +1,1 @@
-web: bundle exec eucalypt launch production -p $PORT
+web: eucalypt launch production -p $PORT

@@ -3,7 +3,7 @@ require_relative '../spec_helper'
 describe BlogHelper do
   include BlogHelper
 
-  it "should expect true to be false" do
-    expect(true).to be false
+  it 'works' do
+    expect(true).to be true
   end
 end

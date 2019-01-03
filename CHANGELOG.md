@@ -1,18 +1,47 @@
+# 0.6.0
+
+#### Major changes
+
+**These major changes were to address the issue of routes being inherited, or in response to this fix**
+
+- Remove `ApplicationController` from `app/controllers` directory to prevent routes being defined in it (since the main cause of route inheritance is from the fact that each controller subclasses `ApplicationController`)
+- Add `MainController` which now effectively works the same way as the old `app/controllers/application_controller.rb` - it is rooted at `/`
+- Add `MainHelper` which is the helper module for `MainController` only. `ApplicationHelper` still exists, and is still used for defining methods which should be available to all subclassing controllers
+- Change maintenance mode to use before filters to redirect to `MainController`'s `/maintenance` method. Additionally, maintenance mode and the maintenance route are now both configured in `app.rb`
+- Change asset pipeline setup to only define `/assets/*` at the root (`MainController`) rather than relative to each controller
+- Prevent `app/controllers/main_controller.rb` from being deleted through the CLI
+
+**Other major changes**
+
+- Add `render_static` method as an abstraction for `send_file`, to avoid having to type `send_file File.join(settings.public_folder, file)`
+- Change ordering of require directives in `eucalypt/load.rb`
+- Move asset pipeline configuration into the library (to avoid cluttering the application)
+
+#### Minor changes
+
+- Add a default index page if `/` is not defined in `MainController`
+- Change default logging configurations
+  - `Lumberjack::Severity::DEBUG` is now the default severity for the development environment
+  - Remove unnecessary `Lumberjack::Severity::INFO` specification for the production environment, since `set :logging` defaults to this severity anyway
+- Delete unused `eucalypt/guard.rb` file
+- Change default specs to all be true
+- Remove `bundle exec` from `Procfile` since the `eucalypt launch` command already executes `rackup` under `bundle exec`
+
 # 0.5.4
 
 #### Major changes
 
-- (**`core/helpers/static.rb`**): Remove stabby lambda definition from `static_router` setting to prevent a new `Static::Router` object from being initialized every time the setting is called.
+- (**`core/helpers/static.rb`**): Remove stabby lambda definition from `static_router` setting to prevent a new `Static::Router` object from being initialized every time the setting is called
 
 #### Minor changes
 
-- (**`core/helpers/static.rb`**): Remove `:<<` alias method for `Static::Router#route` instance method.
+- (**`core/helpers/static.rb`**): Remove `:<<` alias method for `Static::Router#route` instance method
 
 # 0.5.3
 
 #### Major changes
 
-- (**`core/helpers/maintenance.rb`**): Change dummy route to use `SecureRandom.hex` instead of `SecureRandon.random_bytes`, which used to generate invalid URLs.
+- (**`core/helpers/maintenance.rb`**): Change dummy route to use `SecureRandom.hex` instead of `SecureRandon.random_bytes`, which used to generate invalid URLs
 
 # 0.5.2
 

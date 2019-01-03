@@ -1,22 +1,14 @@
-require 'sinatra'
-require 'securerandom'
 class ApplicationController < Sinatra::Base
-  if settings.methods(false).include?(:maintenance)
-    if settings.maintenance
-      define_singleton_method(:maintenance) do |&block|
-        get '*', &block
-        post '*', &block
-        put '*', &block
-        patch '*', &block
-        delete '*', &block
-        options '*', &block
-        link '*', &block
-        unlink '*', &block
+  def self.maintenance(enabled:, &block)
+    if enabled
+      MainController.get '/maintenance', &block
+      Eucalypt.glob('app', 'controllers', '*.rb') do |file|
+        controller = File.basename(file,'.*').camelize.constantize
+        controller.before '*' do
+          splat = params[:splat].reject {|param| /\/assets\/.*/.match? param}
+          redirect '/maintenance' unless splat.include?('/maintenance') || splat.empty?
+        end
       end
-    else
-      define_singleton_method(:maintenance) {|&block| get 3.times.map{"/#{SecureRandom.hex 8}"}.join(), &block}
     end
-  else
-    define_singleton_method(:maintenance) {|&block| get 3.times.map{"/#{SecureRandom.hex 8}"}.join(), &block}
   end
 end
