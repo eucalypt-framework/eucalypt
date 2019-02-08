@@ -14,7 +14,7 @@ group :test do
 end
 
 # Database adapters
-gem 'sqlite3', '~> 1.3', group: [:development, :test]
+gem 'sqlite3', '~> 1.3.6', group: [:development, :test]
 gem 'pg', '~> 1.0', group: :production
 # ActiveRecord for models and records
 gem 'activerecord', '~> 5.2', require: ['active_support','active_support/core_ext']
