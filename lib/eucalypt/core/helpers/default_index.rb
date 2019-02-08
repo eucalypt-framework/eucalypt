@@ -5,7 +5,7 @@ class MainController < ApplicationController
   <html>
       <head>
           <style>
-              @import url('https://fonts.googleapis.com/css?family=Alegreya:400,500|Inconsolata:400,700');
+              @import url('https://fonts.googleapis.com/css?family=Signika|Inconsolata:400,700');
               body {
                   margin: 0;
                   height: 100vh;
@@ -27,7 +27,7 @@ class MainController < ApplicationController
                   display: inline-block;
               }
               #text h1 {
-                  font-family: 'Alegreya', serif;
+                  font-family: 'Signika', sans-serif;
                   font-size: 2.5em;
               }
               #text p {
@@ -49,7 +49,7 @@ class MainController < ApplicationController
           <div id="container">
               <img src="https://raw.githubusercontent.com/eucalypt-framework/eucalypt/master/gfx/eucalypt.png">
               <div id="text">
-                  <h1>It's alive!</h1>
+                  <h1>It's running!</h1>
                   <p><b>Eucalypt version</b> : <span>#{Eucalypt::VERSION}</span></p>
                   <p><b>Ruby version</b>     : <span>#{RUBY_VERSION}</span></p>
               </div>
