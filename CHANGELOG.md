@@ -1,3 +1,16 @@
+# 0.6.1
+
+#### Major changes
+
+- Fix LoadError originating from the use of the updated `sqlite3` gem version `1.4.0`, by changing the gem version specifier in the `Gemfile` to `~> 1.3.6`, making it more strict than the previous `~> 1.3` (#21)
+- Remove `rake db:migrate` as default rake task for `eucalypt rake` command (#23)
+- Add `task` argument to the `eucalypt rake` command for specifying rake tasks (#23)
+
+#### Minor changes
+
+- Changed font on default index page from Alegreya to Signika (#22)
+- Changed message on default index page from `It's alive!` to `It's running!` (#22)
+
 # 0.6.0
 
 #### Major changes
