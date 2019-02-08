@@ -64,7 +64,7 @@ module Eucalypt
           auth_controller.generate
         end
 
-        Out.info "Ensure you run `#{'eucalypt rake'.colorize(:bold)}` to create the necessary tables for Warden."
+        Out.info "Ensure you run `#{'eucalypt rake db:migrate'.colorize(:bold)}` to create the necessary tables for Warden."
       else
         Eucalypt::Error.wrong_directory
       end

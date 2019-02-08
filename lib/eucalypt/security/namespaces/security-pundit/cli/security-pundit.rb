@@ -64,7 +64,7 @@ module Eucalypt
           inject_into_file(user_model_file, insert, before: /^end/) unless contents.include? insert
         end
 
-        Out.info "Ensure you run `#{'eucalypt rake'.colorize(:bold)}` to create the necessary tables for Pundit."
+        Out.info "Ensure you run `#{'eucalypt rake db:migrate'.colorize(:bold)}` to create the necessary tables for Pundit."
       else
         Eucalypt::Error.wrong_directory
       end
