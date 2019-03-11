@@ -1,3 +1,13 @@
+# 0.6.2
+
+# Major changes
+
+- Only show the `init` task by default when the top-level `eucalypt` command is run outside a Eucalypt application directory.
+
+# Minor changes
+
+- Add a second CLI image showing the new `init` task when top-level `eucalypt` command is run outside a Eucalypt application directory.
+
 # 0.6.1
 
 #### Major changes
