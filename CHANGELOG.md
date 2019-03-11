@@ -1,25 +1,26 @@
 # 0.6.2
 
-# Major changes
+#### Major changes
 
-- Only show the `init` task by default when the top-level `eucalypt` command is run outside a Eucalypt application directory.
+- Only show the `init` task by default when the top-level `eucalypt` command is run outside a Eucalypt application directory. ([#26](https://github.com/eucalypt-framework/eucalypt/pull/26))
 
-# Minor changes
+#### Minor changes
 
-- Add a second CLI image showing the new `init` task when top-level `eucalypt` command is run outside a Eucalypt application directory.
+- Add a second CLI image showing the new `init` task when top-level `eucalypt` command is run outside a Eucalypt application directory. ([#26](https://github.com/eucalypt-framework/eucalypt/pull/26))
+- Update CLI screenshot in README.md ([#25](https://github.com/eucalypt-framework/eucalypt/pull/25))
 
 # 0.6.1
 
 #### Major changes
 
-- Fix LoadError originating from the use of the updated `sqlite3` gem version `1.4.0`, by changing the gem version specifier in the `Gemfile` to `~> 1.3.6`, making it more strict than the previous `~> 1.3` (#21)
-- Remove `rake db:migrate` as default rake task for `eucalypt rake` command (#23)
-- Add `task` argument to the `eucalypt rake` command for specifying rake tasks (#23)
+- Fix LoadError originating from the use of the updated `sqlite3` gem version `1.4.0`, by changing the gem version specifier in the `Gemfile` to `~> 1.3.6`, making it more strict than the previous `~> 1.3` ([#21](https://github.com/eucalypt-framework/eucalypt/pull/21))
+- Remove `rake db:migrate` as default rake task for `eucalypt rake` command ([#23](https://github.com/eucalypt-framework/eucalypt/pull/23))
+- Add `task` argument to the `eucalypt rake` command for specifying rake tasks ([#23](https://github.com/eucalypt-framework/eucalypt/pull/23))
 
 #### Minor changes
 
-- Changed font on default index page from Alegreya to Signika (#22)
-- Changed message on default index page from `It's alive!` to `It's running!` (#22)
+- Changed font on default index page from Alegreya to Signika ([#22](https://github.com/eucalypt-framework/eucalypt/pull/22))
+- Changed message on default index page from `It's alive!` to `It's running!` ([#22](https://github.com/eucalypt-framework/eucalypt/pull/22))
 
 # 0.6.0
 
