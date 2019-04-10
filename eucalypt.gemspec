@@ -18,12 +18,12 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = "~> 2.5"
 
-  spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 12.3"
   spec.add_development_dependency "rspec", "~> 3.7"
   spec.add_development_dependency "regexp-examples", "~> 1.4"
   spec.add_development_dependency "colorize", "~> 0.8"
 
+  spec.add_runtime_dependency "bundler", "~> 2.0"
   spec.add_runtime_dependency "string-builder", "~> 2.3"
   spec.add_runtime_dependency "activesupport", "~> 5.2"
   spec.add_runtime_dependency "activerecord", "~> 5.2"
