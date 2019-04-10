@@ -1,3 +1,16 @@
+# 0.7.0
+
+#### Major changes
+
+- Change `bundler` version specifier to `~> 2.0` in `eucalypt.gemspec` and generated application's `Gemfile`. ([#29](https://github.com/eucalypt-framework/eucalypt/pull/29))
+- Use `Regexp#match?` instead of `Object#=~` to suppress warnings when using Ruby `2.6.2`. ([#32](https://github.com/eucalypt-framework/eucalypt/pull/32))
+- Add `ruby-head` to Travis RVM rubies. ([#31](https://github.com/eucalypt-framework/eucalypt/pull/31))
+
+#### Minor changes
+
+- Update author email from `edwinonuonga@gmail.com` to `ed@eonu.net`. ([#30](https://github.com/eucalypt-framework/eucalypt/pull/30))
+- Add `.ruby-version` and `.ruby-gemset` to `.gitignore`. ([#28](https://github.com/eucalypt-framework/eucalypt/pull/28))
+
 # 0.6.2
 
 #### Major changes
