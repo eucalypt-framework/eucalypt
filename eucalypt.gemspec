@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name          = "eucalypt"
   spec.version       = Eucalypt::VERSION
   spec.authors       = ["Edwin Onuonga"]
-  spec.email         = ["edwinonuonga@gmail.com"]
+  spec.email         = ["ed@eonu.net"]
 
   spec.summary       = %q{Micro-framework, application generator and CLI wrapped around the Sinatra DSL.}
   spec.homepage      = "https://eucalypt.gitbook.io/eucalypt"
