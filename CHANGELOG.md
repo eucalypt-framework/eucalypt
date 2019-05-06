@@ -1,3 +1,9 @@
+# 0.7.1
+
+#### Major changes
+
+- Fixed the issue of IRB not being bundled in Ruby `>= 2.6`.<br>_See bundler/bundler#6929._
+
 # 0.7.0
 
 #### Major changes
