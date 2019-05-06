@@ -6,6 +6,11 @@ gem 'eucalypt', '<%= config[:version] %>'
 gem 'rake', '~> 12.3'
 gem 'thin', '~> 1.7'
 
+# IRB is not bundled in Ruby >= 2.6
+if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('2.6')
+  gem 'irb', require: false
+end
+
 # Test environment
 group :test do
   gem 'rack-test', '~> 1.0', require: 'rack/test'
