@@ -46,7 +46,7 @@ Full documentation can be found in the form of a GitBook, [here](https://eucalyp
 
 The structure of a generated application looks like the following:
 
-```scss
+```
 .
 ├── Gemfile
 ├── Gemfile.lock
