@@ -42,6 +42,50 @@ Move into your new application's directory and run the top-level `eucalypt` comm
 
 Full documentation can be found in the form of a GitBook, [here](https://eucalypt.gitbook.io/eucalypt).
 
+## Directory structure
+
+The structure of a generated application looks like the following:
+
+```scss
+.
+├── Gemfile
+├── Gemfile.lock
+├── Gumfile
+├── Procfile
+├── Rakefile
+├── app
+│   ├── assets
+│   │   ├── fonts
+│   │   ├── images
+│   │   ├── scripts
+│   │   │   └── application.js
+│   │   └── stylesheets
+│   │       └── application.scss
+│   ├── controllers
+│   ├── helpers
+│   ├── models
+│   ├── static
+│   │   └── public
+│   └── views
+│       ├── index.erb
+│       ├── layouts
+│       │   └── main.erb
+│       └── partials
+├── app.rb
+├── config
+│   ├── assets.rb
+│   ├── database.yml
+│   ├── initializers
+│   └── logging.rb
+├── config.ru
+├── logs
+└── spec
+    ├── controllers
+    ├── helpers
+    ├── models
+    └── spec_helper.rb
+```
+
 ## Features
 
 | Type                 | Feature                                                      |
@@ -63,3 +107,15 @@ Full documentation can be found in the form of a GitBook, [here](https://eucalyp
 | Encryption           | [BCrypt](https://github.com/codahale/bcrypt-ruby)            |
 | Authentication       | [Warden](https://github.com/wardencommunity/warden)          |
 | Authorization        | [Pundit](https://github.com/varvet/pundit)                   |
+
+## Acknowledgements
+
+<p align="center">
+  <b>Eucalypt</b> &copy; 2018-2020, Edwin Onuonga - Released under the <a href="http://mit-license.org/">MIT</a> License.<br/>
+  <em>Authored and maintained by Edwin Onuonga.</em>
+  <p align="center">
+    <a href="https://eonu.net">eonu.net</a>&nbsp;&middot;&nbsp;
+    GitHub: <a href="https://github.com/eonu">@eonu</a>&nbsp;&middot;&nbsp;
+    Email: <a href="mailto:ed@eonu.net">ed@eonu.net</a>
+  </p>
+</p>
