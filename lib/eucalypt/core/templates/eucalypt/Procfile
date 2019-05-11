@@ -1,1 +1,2 @@
 web: eucalypt launch production -p $PORT
+release: eucalypt rake db:migrate
