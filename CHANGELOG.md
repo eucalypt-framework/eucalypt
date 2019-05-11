@@ -1,3 +1,16 @@
+# 0.7.2
+
+#### Major changes
+
+- Remove `bundler` gem runtime dependency. ([#41](https://github.com/eucalypt-framework/eucalypt/pull/41))
+- Add Ruby version `2.6` to Travis CI build. ([#39](https://github.com/eucalypt-framework/eucalypt/pull/39))
+
+#### Minor changes
+
+- Add database migration command to `Procfile`. ([#40](https://github.com/eucalypt-framework/eucalypt/pull/40))
+- Add directory structure and acknowledgements to `README.md`. ([#38](https://github.com/eucalypt-framework/eucalypt/pull/38))
+- Remove `.codeclimate.yml` and `.rubocop.yml`. ([#42](https://github.com/eucalypt-framework/eucalypt/pull/42))
+
 # 0.7.1
 
 #### Major changes
