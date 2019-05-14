@@ -5,6 +5,8 @@ module Eucalypt
     File.exist? File.join(directory, APP_FILE)
   end
 
+  # @note Does not check for boolean variables.
+  #   Instead checks for presence.
   def self.console?
     !!ENV['CONSOLE']
   end
