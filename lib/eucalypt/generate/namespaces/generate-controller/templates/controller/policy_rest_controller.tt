@@ -10,27 +10,41 @@ class <%= config[:class_name] %> < Eucalypt::Controller(route: '<%= config[:rout
   # - e.g. Showing a form for editing <%= config[:resources] %>
   <% if config[:headless] %>
   # Authorization helpers are used in the following way (if using headless policies):
+  # - `authorized?(:<%= config[:resource] %>, :read?)`
   # - `authorized?(:<%= config[:resource] %>, :add?)`
   # - `authorized?(:<%= config[:resource] %>, :edit?)`
   # - `authorized?(:<%= config[:resource] %>, :delete?)`
   <% else %>
   # Authorization helpers are used in the following way:
+  # - `authorized?(<%= config[:constant] %>, :read?)`
   # - `authorized?(<%= config[:constant] %>, :add?)`
   # - `authorized?(<%= config[:constant] %>, :edit?)`
   # - `authorized?(<%= config[:constant] %>, :delete?)`
   <% end %>
   # GET - Browse
   get '/' do
+    # NOTE: To skip browse permission checks, comment out the `authenticate` and `authorize` lines.
+    authenticate
+    authorize <%= config[:constant] %>, :read?
     @<%= config[:resources] %> = <%= config[:constant] %>.all
     # Render a view here for displaying all <%= config[:resources] %>
+  rescue Pundit::NotAuthorizedError
+    status 401 # Unauthorized
+    redirect to '/'
   end
 
   # GET - Read
   get '/:id' do |id|
+    # NOTE: To skip read permission checks, comment out the `authenticate` and `authorize` lines.
+    authenticate
     @<%= config[:resource] %> = <%= config[:constant] %>.find id
+    authorize @<%= config[:resource] %>, :read?
     # Render a view here for displaying a single <%= config[:resource] %>
   rescue ActiveRecord::RecordNotFound
     status 404 # Resource not found
+    redirect to '/'
+  rescue Pundit::NotAuthorizedError
+    status 401 # Unauthorized
     redirect to '/'
   end
 
@@ -38,7 +52,7 @@ class <%= config[:class_name] %> < Eucalypt::Controller(route: '<%= config[:rout
   post '/:id/edit' do |id|
     authenticate
     <%= config[:resource] %> = <%= config[:constant] %>.find id
-    authorize <%= config[:resource]%>, :edit?
+    authorize <%= config[:resource] %>, :edit?
     <%= config[:resource] %>.update! params['<%= config[:resource] %>']
     redirect to "/#{id}"
   rescue ActiveRecord::RecordNotFound
@@ -65,7 +79,7 @@ class <%= config[:class_name] %> < Eucalypt::Controller(route: '<%= config[:rout
   post '/:id/delete' do |id|
     authenticate
     <%= config[:resource] %> = <%= config[:constant] %>.find id
-    authorize <%= config[:resource]%>, :delete?
+    authorize <%= config[:resource] %>, :delete?
     <%= config[:resource] %>.destroy!
     redirect to '/'
   rescue ActiveRecord::RecordNotFound
