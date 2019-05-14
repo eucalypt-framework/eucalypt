@@ -30,7 +30,7 @@ class <%= config[:class_name] %> < Eucalypt::Controller(route: '<%= config[:rout
     # Render a view here for displaying all <%= config[:resources] %>
   rescue Pundit::NotAuthorizedError
     status 401 # Unauthorized
-    redirect to '/'
+    redirect '/'
   end
 
   # GET - Read
