@@ -54,7 +54,7 @@ module Eucalypt
         if options[:policy]
           args = ['security', 'policy', 'generate', name]
           args << '--headless' if options[:headless]
-          args << %w[-p add edit delete] if options[:rest]
+          args << %w[-p read add edit delete] if options[:rest]
           args.flatten!
           Eucalypt::CLI.start(args)
         end

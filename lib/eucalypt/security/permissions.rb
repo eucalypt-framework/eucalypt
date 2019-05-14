@@ -10,10 +10,18 @@ Eucalypt.glob('app', '{policies}', '*.rb') do |file|
   role_constant      = role_constant_name.constantize
 
   if ActiveRecord::Base.connection.table_exists? roles_name
-    role_constant.pluck(:permission).each do |permission|
-      policy_constant.define_method "#{permission}?" do
-        role_constant.find_by(permission: permission).send(user.role.send resource_name)
+    level = ActiveRecord::Base.logger.level
+    begin
+      ActiveRecord::Base.logger.level = :unknown
+      role_constant.pluck(:permission).each do |permission|
+        policy_constant.define_method "#{permission}?" do
+          role_constant.find_by(permission: permission).send(user.role.send resource_name)
+        end
       end
+    rescue => exception
+      throw exception
+    ensure
+      ActiveRecord::Base.logger.level = level
     end
   end
 end
