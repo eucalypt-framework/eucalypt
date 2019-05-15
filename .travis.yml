@@ -1,6 +1,6 @@
 language: ruby
 before_install: gem update --system
-script: bundle exec rake
+script: bundle exec rspec spec
 rvm:
   - 2.5
   - 2.6
