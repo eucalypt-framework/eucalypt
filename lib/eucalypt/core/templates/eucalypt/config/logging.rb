@@ -11,7 +11,8 @@ class ApplicationController < Sinatra::Base
 
   configure :production do
     enable :logging
-    enable :log_file
+    # Output to log file except when running console
+    set :log_file, !Eucalypt.console?
   end
 
   set :log_directory_format, "%Y-%m-%d_%H-%M-%S"
