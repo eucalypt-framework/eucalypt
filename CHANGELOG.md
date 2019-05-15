@@ -1,4 +1,24 @@
-# 0.7.2
+# [0.8.0](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.8.0)
+
+#### Major changes
+
+- Remove `rspec` core rake tasks (top-level & application-level). ([#50](https://github.com/eucalypt-framework/eucalypt/pull/50))
+- Change CI script to implicit `rspec` call (top-level & application-level). ([#50](https://github.com/eucalypt-framework/eucalypt/pull/50))
+- Add environment options for `console` command. ([#47](https://github.com/eucalypt-framework/eucalypt/pull/47))
+- Add `Eucalypt.console?` to check whether the console is active. ([#47](https://github.com/eucalypt-framework/eucalypt/pull/47))
+- Redirect console output in production environment to STDOUT by default. ([#47](https://github.com/eucalypt-framework/eucalypt/pull/47))
+- Remove conditional `irb` require. ([#46](https://github.com/eucalypt-framework/eucalypt/pull/46))
+- Migrate to [travis-ci.com](https://travis-ci.com/). ([#44](https://github.com/eucalypt-framework/eucalypt/pull/44))
+
+#### Minor changes
+
+- Render REST policy controller resources as JSON. ([#55](https://github.com/eucalypt-framework/eucalypt/pull/55))
+- Add GitHub issue and pull request templates. ([#54](https://github.com/eucalypt-framework/eucalypt/pull/54))
+- Serve repository graphics externally. ([#53](https://github.com/eucalypt-framework/eucalypt/pull/53))
+- Add read permission to default scaffold policy roles. ([#45](https://github.com/eucalypt-framework/eucalypt/pull/45))
+- Silence policy role-plucking query. ([#45](https://github.com/eucalypt-framework/eucalypt/pull/45))
+
+# [0.7.2](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.7.2)
 
 #### Major changes
 
@@ -11,13 +31,13 @@
 - Add directory structure and acknowledgements to `README.md`. ([#38](https://github.com/eucalypt-framework/eucalypt/pull/38))
 - Remove `.codeclimate.yml` and `.rubocop.yml`. ([#42](https://github.com/eucalypt-framework/eucalypt/pull/42))
 
-# 0.7.1
+# [0.7.1](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.7.1)
 
 #### Major changes
 
 - Fixed the issue of IRB not being bundled in Ruby `>= 2.6`.<br>_See bundler/bundler#6929._
 
-# 0.7.0
+# [0.7.0](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.7.0)
 
 #### Major changes
 
@@ -30,7 +50,7 @@
 - Update author email from `edwinonuonga@gmail.com` to `ed@eonu.net`. ([#30](https://github.com/eucalypt-framework/eucalypt/pull/30))
 - Add `.ruby-version` and `.ruby-gemset` to `.gitignore`. ([#28](https://github.com/eucalypt-framework/eucalypt/pull/28))
 
-# 0.6.2
+# [0.6.2](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.6.2)
 
 #### Major changes
 
@@ -41,7 +61,7 @@
 - Add a second CLI image showing the new `init` task when top-level `eucalypt` command is run outside a Eucalypt application directory. ([#26](https://github.com/eucalypt-framework/eucalypt/pull/26))
 - Update CLI screenshot in README.md ([#25](https://github.com/eucalypt-framework/eucalypt/pull/25))
 
-# 0.6.1
+# [0.6.1](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.6.1)
 
 #### Major changes
 
@@ -54,7 +74,7 @@
 - Changed font on default index page from Alegreya to Signika ([#22](https://github.com/eucalypt-framework/eucalypt/pull/22))
 - Changed message on default index page from `It's alive!` to `It's running!` ([#22](https://github.com/eucalypt-framework/eucalypt/pull/22))
 
-# 0.6.0
+# [0.6.0](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.6.0)
 
 #### Major changes
 
@@ -83,7 +103,7 @@
 - Change default specs to all be true
 - Remove `bundle exec` from `Procfile` since the `eucalypt launch` command already executes `rackup` under `bundle exec`
 
-# 0.5.4
+# [0.5.4](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.5.4)
 
 #### Major changes
 
@@ -93,13 +113,13 @@
 
 - (**`core/helpers/static.rb`**): Remove `:<<` alias method for `Static::Router#route` instance method
 
-# 0.5.3
+# [0.5.3](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.5.3)
 
 #### Major changes
 
 - (**`core/helpers/maintenance.rb`**): Change dummy route to use `SecureRandom.hex` instead of `SecureRandon.random_bytes`, which used to generate invalid URLs
 
-# 0.5.2
+# [0.5.2](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.5.2)
 
 #### Major changes
 
@@ -114,7 +134,7 @@
 - (**`Gemfile`**): Remove `:production` symbol from what should be the test environment for requiring the `rspec`, `rack-test` and `should-matchers` gems
 - (**`README.md`**): Remove `README.md` code highlighting, replace with screenshot of CLI
 
-# 0.5.1
+# [0.5.1](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.5.1)
 
 #### Major changes
 
@@ -125,7 +145,7 @@
 
 - Change ActiveRecord default logging configuration to be less verbose
 
-# 0.5.0
+# [0.5.0](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.5.0)
 
 #### Major changes
 
@@ -147,7 +167,7 @@
 - Remove unnecessary `root` and `server` settings from `app.rb`
 - Rename `config/asset_pipeline.rb` to `config/assets.rb`
 
-# 0.4.2
+# [0.4.2](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.4.2)
 
 #### Major changes
 
@@ -159,7 +179,7 @@
 
 - Fix a minor whitespace issue in `config/asset_pipeline.rb` when blogging environment is setup
 
-# 0.4.1
+# [0.4.1](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.4.1)
 
 #### Major changes
 
@@ -172,7 +192,7 @@
     - `:log_directory_format` - Specifies the `DateTime` format for the name of the subdirectory in the `logs` folder where new logs are stored
   - Allow different customisations to be made depending on the environment
 
-# 0.4.0
+# [0.4.0](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.4.0)
 
 #### Major changes
 
@@ -191,7 +211,7 @@
 - Change `spec/eucalypt` subdirectories name from old format `eucalypt-*` to just `*`
 - Fix `spec_helper.rb` environment specification
 
-# 0.3.5
+# [0.3.5](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.3.5)
 
 #### Major changes
 
@@ -202,7 +222,7 @@
 
 - Add logo to README.md
 
-# 0.3.4
+# [0.3.4](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.3.4)
 
 #### Major changes
 
@@ -213,7 +233,7 @@
 - Fix top-level array issue with `Static` class.
 - Support both relative and absolute pathing for the `partial` helper method
 
-# 0.3.3
+# [0.3.3](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.3.3)
 
 #### Major changes
 
@@ -228,13 +248,13 @@
 
 - Delete `config/active_record.rb` and move ActiveRecord logging configuration to `config/logging.rb`
 
-# 0.3.1
+# [0.3.1](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.3.1)
 
 #### Major changes
 
 - Remove unnecessary comment in `config/active_record.rb`
 
-# 0.3.0
+# [0.3.0](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.3.0)
 
 #### Major changes
 
@@ -248,7 +268,7 @@
 - Delete `static/readme.yml`
 - Move and rename `user_confirm.rb` file to `confirm.rb`
 
-# 0.2.2
+# [0.2.2](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.2.2)
 
 #### Major changes
 
@@ -282,7 +302,7 @@
   end
   ```
 
-# 0.2.1
+# [0.2.1](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.2.1)
 
 #### Major changes
 
@@ -296,7 +316,7 @@ The above features allowed `app.rb` to be cleaned up a bit.
 - Change `Procfile` process type to use `eucalypt launch production` instead of `bundle exec bin rackup`
 - Change `:environment` setting for Sprockets to `:assets` to avoid having the same name as the default `:environment` setting that indicates the current application environment (this also allowed all configuration files to be required with one directive instead of requiring logging first, then the rest of the configuration files)
 
-# 0.2.0
+# [0.2.0](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.2.0)
 
 #### Major changes
 
@@ -344,7 +364,7 @@ The above features allowed `app.rb` to be cleaned up a bit.
 - Change `method_option` occurrences to `option` for CLI command option declarations (for consistency)
 - Change `RACK_ENV` references to `APP_ENV` to reflect changes described in [sinatra/sinatra#984](https://github.com/sinatra/sinatra/pull/984)
 
-# 0.1.3
+# [0.1.3](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.1.3)
 
 #### Major changes
 
@@ -364,7 +384,7 @@ The above features allowed `app.rb` to be cleaned up a bit.
 
 - Rename GitBook from `gum.gitbook.io` to `eucalypt.gitbook.io`
 
-# 0.1.2
+# [0.1.2](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.1.2)
 
 #### Major changes
 
@@ -396,7 +416,7 @@ The above features allowed `app.rb` to be cleaned up a bit.
 - Add documentation badge to `README`
 - Add `Thor` gem to the features list in `README`
 
-# 0.1.1
+# [0.1.1](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.1.1)
 
 #### Major changes
 
@@ -419,7 +439,7 @@ The above features allowed `app.rb` to be cleaned up a bit.
 - Comment out `homepage` metadata in `eucalypt.gemspec` until documentation is ready
 - Fix badge links in `README`
 
-# 0.1.0
+# [0.1.0](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.1.0)
 
 #### Major changes
 

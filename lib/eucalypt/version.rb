@@ -1,8 +1,8 @@
 module Eucalypt
   VERSION = {
     major: 0,
-    minor: 7,
-    patch: 2,
+    minor: 8,
+    patch: 0,
     meta: nil
   }.compact.values.join('.').freeze
 end
