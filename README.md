@@ -1,4 +1,4 @@
-<p align="center"><img width="75px" src="gfx/eucalypt.png"></p>
+<p align="center"><img width="75px" src="https://i.ibb.co/BKb7SxT/eucalypt.png"></p>
 
 [![Ruby Version](https://img.shields.io/badge/ruby-~%3E%202.5-red.svg)](https://github.com/eucalypt-framework/eucalypt/blob/0c509a4e22fd97ec52b6f638af21de783f3aafc8/eucalypt.gemspec#L19)
 [![Gem](https://img.shields.io/gem/v/eucalypt.svg)](https://rubygems.org/gems/eucalypt)
@@ -22,7 +22,7 @@ $ gem install eucalypt
 
 Running the top-level `eucalypt` command displays information about initializing a new application:
 
-<p align="center"><img width="70%" src="gfx/cli-1.png"></p>
+<p align="center"><img width="70%" src="https://i.ibb.co/4ZkqjS5/cli-1.png"></p>
 
 Initialize a new application with:
 
@@ -36,7 +36,7 @@ $ eucalypt init my-new-app
 
 Move into your new application's directory and run the top-level `eucalypt` command to display a list of all available commands:
 
-<p align="center"><img width="70%" src="gfx/cli-2.png"></p>
+<p align="center"><img width="70%" src="https://i.ibb.co/JsQkH8j/cli-2.png"></p>
 
 ## Documentation
 
