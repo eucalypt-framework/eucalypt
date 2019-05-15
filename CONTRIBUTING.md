@@ -1,3 +1,5 @@
+# Contribution guidelines
+
 ## Writing issues
 
 When writing issues, please make sure to include the following information:
