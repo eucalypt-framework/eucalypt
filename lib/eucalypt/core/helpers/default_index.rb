@@ -47,7 +47,7 @@ class MainController < ApplicationController
       </head>
       <body>
           <div id="container">
-              <img src="https://raw.githubusercontent.com/eucalypt-framework/eucalypt/master/gfx/eucalypt.png">
+              <img src="https://i.ibb.co/BKb7SxT/eucalypt.png">
               <div id="text">
                   <h1>It's running!</h1>
                   <p><b>Eucalypt version</b> : <span>#{Eucalypt::VERSION}</span></p>
