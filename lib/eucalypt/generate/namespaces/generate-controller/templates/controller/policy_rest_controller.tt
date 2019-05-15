@@ -27,7 +27,9 @@ class <%= config[:class_name] %> < Eucalypt::Controller(route: '<%= config[:rout
     authenticate
     authorize <%= config[:constant] %>, :read?
     @<%= config[:resources] %> = <%= config[:constant] %>.all
-    # Render a view here for displaying all <%= config[:resources] %>
+    # Render the <%= config[:resources] %> as JSON, or create a view
+    content_type :json
+    @<%= config[:resources] %>.to_json
   rescue Pundit::NotAuthorizedError
     status 401 # Unauthorized
     redirect '/'
@@ -39,7 +41,9 @@ class <%= config[:class_name] %> < Eucalypt::Controller(route: '<%= config[:rout
     authenticate
     @<%= config[:resource] %> = <%= config[:constant] %>.find id
     authorize @<%= config[:resource] %>, :read?
-    # Render a view here for displaying a single <%= config[:resource] %>
+    # Render the <%= config[:resource] %> as JSON, or create a view
+    content_type :json
+    @<%= config[:resource] %>.to_json
   rescue ActiveRecord::RecordNotFound
     status 404 # Resource not found
     redirect to '/'
