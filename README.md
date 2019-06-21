@@ -108,7 +108,33 @@ The structure of a generated application looks like the following:
 | Authentication       | [Warden](https://github.com/wardencommunity/warden)          |
 | Authorization        | [Pundit](https://github.com/varvet/pundit)                   |
 
-## Acknowledgements
+# Contributors
+
+<table>
+	<thead>
+		<tr>
+		  <th align="center">
+        <a href="https://github.com/eonu">
+        <img src="https://avatars0.githubusercontent.com/u/24795571?s=460&v=4" alt="Edwin Onuonga" width="60px">
+        <br/><sub><b>Edwin Onuonga</b></sub>
+        </a>
+        <br/>
+        <a href="mailto:ed@eonu.net">📧</a>
+        <a href="https://eonu.net">🌍</a>
+			</th>
+      <th align="center">
+        <a href="https://github.com/ahmgeek">
+        <img src="https://avatars3.githubusercontent.com/u/4132009?s=460&v=4" alt="Ahmad" width="60px">
+        <br/><sub><b>Ahmad</b></sub>
+        </a>
+        <br/>
+        <a href="mailto:ahmgeek@icloud.com">📧</a>
+        <a href="https://ahmgeek.com/">🌍</a>
+			</th>
+			<!-- Add more <th></th> blocks for more contributors -->
+		</tr>
+	</thead>
+</table>
 
 <p align="center">
   <b>Eucalypt</b> &copy; 2018-2020, Edwin Onuonga - Released under the <a href="http://mit-license.org/">MIT</a> License.<br/>
