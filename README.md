@@ -119,7 +119,7 @@ The structure of a generated application looks like the following:
         <br/><sub><b>Edwin Onuonga</b></sub>
         </a>
         <br/>
-        <a href="mailto:ed@eonu.net">📧</a>
+        <a href="mailto:ed@eonu.net">✉️</a>
         <a href="https://eonu.net">🌍</a>
 			</th>
       <th align="center">
@@ -128,7 +128,7 @@ The structure of a generated application looks like the following:
         <br/><sub><b>Ahmad</b></sub>
         </a>
         <br/>
-        <a href="mailto:ahmgeek@icloud.com">📧</a>
+        <a href="mailto:ahmgeek@icloud.com">✉️</a>
         <a href="https://ahmgeek.com/">🌍</a>
 			</th>
 			<!-- Add more <th></th> blocks for more contributors -->
