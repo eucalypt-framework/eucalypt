@@ -54,30 +54,6 @@ module Eucalypt
         puts " - Ensure you have run the setup command `#{command.colorize(:bold)}`."
       end
 
-      def no_user_model
-        Out.error "Couldn't find a user model."
-        puts
-        Out.info
-        command = 'eucalypt security warden setup'
-        puts " - Ensure you have run the setup command `#{command.colorize(:bold)}`."
-      end
-
-      def no_role_model
-        Out.error "Couldn't find a role model."
-        puts
-        Out.info
-        command = 'eucalypt security pundit setup'
-        puts " - Ensure you have run the setup command `#{command.colorize(:bold)}`."
-      end
-
-      def no_policy(policy_name)
-        Out.error "Couldn't find a #{policy_name} role model or policy file."
-        puts
-        Out.info
-        command = "eucalypt security policy g #{policy_name}"
-        puts " - Ensure you have run the setup command `#{command.colorize(:bold)}`."
-      end
-
       def invalid_columns(invalid_declarations, invalid_types)
         puts if invalid_declarations.any? || invalid_types.any?
         if invalid_declarations.any?

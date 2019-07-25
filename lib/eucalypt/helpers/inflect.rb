@@ -37,7 +37,7 @@ module Eucalypt
           resources(string).camelize
         end
 
-        %i[controller helper policy].each do |type|
+        %i[controller helper].each do |type|
           define_method type do |string|
             s = resource(string.singularize)
             if s.end_with? "_#{type}"

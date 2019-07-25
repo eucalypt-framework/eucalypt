@@ -8,8 +8,7 @@ describe Eucalypt do
         {
           controller: Inflect.new(:controller, @name),
           model: Inflect.new(:model, @name),
-          helper: Inflect.new(:helper, @name),
-          policy: Inflect.new(:policy, @name)
+          helper: Inflect.new(:helper, @name)
         }
       end
 
@@ -1799,88 +1798,6 @@ describe Eucalypt do
           it 'should contain all of the BREAD methods' do
             methods = ['GET - Browse', 'GET - Read', 'POST - Edit', 'POST - Add', 'POST - Delete']
             expect(tmp { File.open subject[:controller].file_path, &:read }).to include *methods
-          end
-        end
-        context '--policy, -p' do
-          before(:all) do
-            Temporary.create_app '-wp'
-            tmp { execute "generate scaffold #{@name} -p --no-table" }
-          end
-          after(:all) { Temporary.clear }
-
-          context 'policy file' do
-            it 'should exist' do
-              expect(tmp { File.file? subject[:policy].file_path }).to be true
-            end
-
-            it "shouldn't be headless" do
-              contents = tmp { File.open subject[:policy].file_path, &:read }
-              expect(contents).not_to include 'Struct.new'
-            end
-          end
-
-          it 'should generate a controller' do
-            expect(tmp { File.file? subject[:controller].file_path }).to be true
-          end
-
-          it 'should not pluralize the controller route' do
-            expect(tmp { File.open subject[:controller].file_path, &:read }).to include "route: '/#{@name}'"
-          end
-
-          it 'should not contain BREAD methods' do
-            methods = ['GET - Browse', 'GET - Read', 'POST - Edit', 'POST - Add', 'POST - Delete']
-            expect(tmp { File.open subject[:controller].file_path, &:read }).not_to include *methods
-          end
-
-          it 'should not contain any Pundit authorization' do
-            expect(tmp { File.open subject[:controller].file_path, &:read }).not_to include 'Authorization helpers'
-          end
-        end
-        context '--pundit --headless, -pH' do
-          before(:all) do
-            Temporary.create_app '-wp'
-            tmp { execute "generate scaffold #{@name} -pH --no-table" }
-          end
-          after(:all) { Temporary.clear }
-
-          context 'policy file' do
-            it 'should exist' do
-              expect(tmp { File.file? subject[:policy].file_path }).to be true
-            end
-
-            it 'should be headless' do
-              contents = tmp { File.open subject[:policy].file_path, &:read }
-              expect(contents).to include 'Struct.new'
-            end
-          end
-        end
-        context '--rest --policy, -rp' do
-          before(:all) do
-            Temporary.create_app '-wp'
-            tmp { execute "generate scaffold #{@name} -rp --no-table" }
-          end
-          after(:all) { Temporary.clear }
-
-          it 'should generate a policy file' do
-            expect(tmp { File.file? subject[:policy].file_path }).to be true
-          end
-
-          it 'should generate a controller' do
-            expect(tmp { File.file? subject[:controller].file_path }).to be true
-          end
-
-          it 'should pluralize the controller route' do
-            route = Inflect.route(subject[:controller].resources)
-            expect(tmp { File.open subject[:controller].file_path, &:read }).to include "route: '/#{route}'"
-          end
-
-          it 'should contain all of the BREAD methods' do
-            methods = ['GET - Browse', 'GET - Read', 'POST - Edit', 'POST - Add', 'POST - Delete']
-            expect(tmp { File.open subject[:controller].file_path, &:read }).to include *methods
-          end
-
-          it 'should contain Pundit authorization' do
-            expect(tmp { File.open subject[:controller].file_path, &:read }).to include 'Authorization helpers'
           end
         end
         context '--no-table' do

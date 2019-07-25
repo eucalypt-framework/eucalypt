@@ -104,9 +104,6 @@ The structure of a generated application looks like the following:
 | JS compressing       | [Uglifier](https://github.com/lautis/uglifier)               |
 | Logging              | [Lumberjack](https://github.com/bdurand/lumberjack)          |
 | Specs                | [RSpec](http://rspec.info/) + [Rack-Test](https://github.com/rack-test/rack-test) + [Shoulda-Matchers](http://matchers.shoulda.io/) |
-| Encryption           | [BCrypt](https://github.com/codahale/bcrypt-ruby)            |
-| Authentication       | [Warden](https://github.com/wardencommunity/warden)          |
-| Authorization        | [Pundit](https://github.com/varvet/pundit)                   |
 
 # Contributors
 

@@ -97,30 +97,6 @@ describe Eucalypt::CLI do
           end
         end
       end
-      context '--warden, -w' do
-        before { Temporary.create_app '-w' }
-        after { Temporary.clear }
-
-        it 'should set up Warden' do
-          expect(tmp { Helpers::Gemfile.include? %w[warden], '.' }).to be true
-        end
-      end
-      context '--pundit, -p' do
-        before { Temporary.create_app '-p' }
-        after { Temporary.clear }
-
-        it "shouldn't set up Pundit" do
-          expect(tmp { Helpers::Gemfile.include? %w[pundit], '.' }).to be false
-        end
-      end
-      context '--warden --pundit, -wp' do
-        before { Temporary.create_app '-wp' }
-        after { Temporary.clear }
-
-        it 'should set up Warden and Pundit' do
-          expect(tmp { Helpers::Gemfile.include? %w[warden pundit], '.' }).to be true
-        end
-      end
       context '--git' do
         after { Temporary.clear }
 

@@ -1,5 +1,0 @@
-class <%= config[:migration_title] %> < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
-  def change
-    <%= config[:policy_name].camelize %>Role.create permission: '<%= config[:permission] %>'
-  end
-end

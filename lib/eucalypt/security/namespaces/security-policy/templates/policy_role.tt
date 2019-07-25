@@ -1,3 +1,0 @@
-class <%= config[:constant] %>Role < ActiveRecord::Base
-  validates :permission, uniqueness: true
-end

@@ -14,13 +14,12 @@ module Eucalypt
         File.join File.dirname(__dir__), 'templates'
       end
 
-      def generate(spec: true, rest: false, policy: false, headless: false, name:)
+      def generate(spec: true, rest: false, name:)
         controller = Inflect.new(:controller, name)
 
         route = '/' << (rest ? controller.route_name.pluralize : controller.route_name)
 
         controller_file_name = String.build do |s|
-          s << 'policy_' if policy
           s << 'rest_' if rest
           s << 'controller.tt'
         end
@@ -34,8 +33,7 @@ module Eucalypt
           class_name: controller.class_name,
           helper_class_name: helper.class_name,
           resource: controller.resource,
-          resources: controller.resources,
-          headless: headless
+          resources: controller.resources
         }
 
         template(controller_template, controller.file_path, config)
