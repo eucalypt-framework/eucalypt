@@ -1,7 +1,0 @@
-class CreateRoles < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
-  def change
-    create_table :roles do |t|
-      t.references :user, foreign_key: true
-    end
-  end
-end

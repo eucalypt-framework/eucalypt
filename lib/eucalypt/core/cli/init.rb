@@ -10,8 +10,6 @@ module Eucalypt
     option :blog, type: :boolean, default: false, aliases: '-b', desc: 'Set up the blog environment'
     option :route, type: :string, default: 'blog', aliases: '-r', desc: 'Specify a route for the blog application'
     option :silence, type: :boolean, default: false, aliases: '-s', desc: 'Silence `git init` and `bundle install` commands'
-    option :warden, type: :boolean, default: false, aliases: '-w', desc: 'Set up Warden authentication'
-    option :pundit, type: :boolean, default: false, aliases: '-p', desc: 'Set up Pundit authorization'
     desc "init [NAME]", "Sets up your application".colorize(:grey)
     def init(name)
       current_directory = File.expand_path ?.
@@ -54,11 +52,6 @@ module Eucalypt
             args << '-r' << options[:route] if options[:route]
             Eucalypt::CLI.start(args)
           end
-        end
-
-        inside(root) do
-          Eucalypt::CLI.start %w[security warden setup] if options[:warden]
-          Eucalypt::CLI.start %w[security pundit setup] if options[:warden] && options[:pundit]
         end
 
         puts if options[:git] || options[:bundle]

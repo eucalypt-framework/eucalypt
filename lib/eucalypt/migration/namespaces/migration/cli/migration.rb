@@ -1,3 +1,4 @@
+require 'active_record'
 require 'eucalypt/migration/namespaces/migration-create/cli/create'
 require 'eucalypt/migration/namespaces/migration-add/cli/add'
 require 'eucalypt/migration/namespaces/migration-drop/cli/drop'
