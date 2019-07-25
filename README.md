@@ -36,7 +36,7 @@ $ eucalypt init my-new-app
 
 Move into your new application's directory and run the top-level `eucalypt` command to display a list of all available commands:
 
-<p align="center"><img width="70%" src="https://i.ibb.co/JsQkH8j/cli-2.png"></p>
+<p align="center"><img width="70%" src="https://i.ibb.co/ctM0T07/cli.png"></p>
 
 ## Documentation
 
