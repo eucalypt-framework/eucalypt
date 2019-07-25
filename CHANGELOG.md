@@ -1,3 +1,15 @@
+# [0.9.0](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.9.0)
+
+#### Major changes
+
+- Removes the security (authentication and authorization) commands due to their opinionated implementation as described in #60. ([#61](https://github.com/eucalypt-framework/eucalypt/pull/61))
+
+#### Minor changes
+
+- Add primary author email address to `LICENSE`. ([#62](https://github.com/eucalypt-framework/eucalypt/pull/62))
+- Add @ahmgeek as a contributor (for #37). ([#59](https://github.com/eucalypt-framework/eucalypt/pull/59))
+- Add CI ruby `2.7.0.preview1`. ([#58](https://github.com/eucalypt-framework/eucalypt/pull/58))
+
 # [0.8.0](https://github.com/eucalypt-framework/eucalypt/releases/tag/v0.8.0)
 
 #### Major changes
