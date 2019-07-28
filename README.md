@@ -23,7 +23,7 @@
     <br/>
     <br/>
     <b>Micro-framework, application generator and CLI wrapped around the Sinatra DSL.</b>
-  </p>
+  </span>
 <p>
 
 ## Installation
