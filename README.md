@@ -1,7 +1,6 @@
 <p align="center">
-  <img width="200px" src="https://i.ibb.co/TPDRwvK/banner-rounded.png">
+  <img width="250px" src="https://i.ibb.co/TPDRwvK/banner-rounded.png">
   <br/>
-  <hr/>
   <br/>
   <a href="https://github.com/eucalypt-framework/eucalypt/blob/0c509a4e22fd97ec52b6f638af21de783f3aafc8/eucalypt.gemspec#L19"><img src="https://img.shields.io/badge/ruby-~%3E%202.5-red.svg" alt="Ruby Version"/></a>
   <a href="https://rubygems.org/gems/eucalypt"><img src="https://img.shields.io/gem/v/eucalypt.svg" alt="Gem"/></a>
@@ -9,6 +8,8 @@
   <a href="https://github.com/eucalypt-framework/eucalypt/blob/master/LICENSE"><img src="https://img.shields.io/github/license/eucalypt-framework/eucalypt.svg" alt="License"/></a>
   <a href="https://eucalypt.gitbook.io/eucalypt"><img src="https://img.shields.io/badge/docs-gitbook-blue.svg" alt="Documentation"/></a>
 </p>
+
+<hr/>
 
 Micro-framework, application generator and CLI wrapped around the Sinatra DSL.
 
