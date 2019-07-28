@@ -7,11 +7,11 @@
   <a href="https://travis-ci.com/eucalypt-framework/eucalypt"><img src="https://travis-ci.com/eucalypt-framework/eucalypt.svg?branch=master" alt="Build Status"/></a>
   <a href="https://github.com/eucalypt-framework/eucalypt/blob/master/LICENSE"><img src="https://img.shields.io/github/license/eucalypt-framework/eucalypt.svg" alt="License"/></a>
   <a href="https://eucalypt.gitbook.io/eucalypt"><img src="https://img.shields.io/badge/docs-gitbook-blue.svg" alt="Documentation"/></a>
+  <br/>
+  <b>Micro-framework, application generator and CLI wrapped around the Sinatra DSL.</b>
 </p>
 
 <hr/>
-
-Micro-framework, application generator and CLI wrapped around the Sinatra DSL.
 
 ## Installation
 
