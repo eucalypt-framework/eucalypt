@@ -51,6 +51,7 @@ Full documentation can be found in the form of a GitBook, [here](https://eucalyp
     <i>Click here to see the structure of a generated application.</i>
   </summary>
   <p>
+
 ```
 .
 ├── Gemfile
@@ -90,6 +91,7 @@ Full documentation can be found in the form of a GitBook, [here](https://eucalyp
     ├── models
     └── spec_helper.rb
 ```
+
   </p>
 </details>
 
