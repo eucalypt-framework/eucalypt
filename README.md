@@ -1,14 +1,16 @@
-<p align="center"><img width="75px" src="https://i.ibb.co/BKb7SxT/eucalypt.png"></p>
-
-[![Ruby Version](https://img.shields.io/badge/ruby-~%3E%202.5-red.svg)](https://github.com/eucalypt-framework/eucalypt/blob/0c509a4e22fd97ec52b6f638af21de783f3aafc8/eucalypt.gemspec#L19)
-[![Gem](https://img.shields.io/gem/v/eucalypt.svg)](https://rubygems.org/gems/eucalypt)
-[![Build Status](https://travis-ci.com/eucalypt-framework/eucalypt.svg?branch=master)](https://travis-ci.com/eucalypt-framework/eucalypt)
-[![License](https://img.shields.io/github/license/eucalypt-framework/eucalypt.svg)](https://github.com/eucalypt-framework/eucalypt/blob/master/LICENSE)
-[![Documentation](https://img.shields.io/badge/docs-gitbook-blue.svg)](https://eucalypt.gitbook.io/eucalypt)
-
-# Eucalypt
-
-Micro-framework, application generator and CLI wrapped around the Sinatra DSL.
+<p align="center">
+  <img width="250px" src="https://i.ibb.co/TPDRwvK/banner-rounded.png">
+  <br/>
+  <br/>
+  <b>Micro-framework, application generator and CLI wrapped around the Sinatra DSL.</b>
+  <br/>
+  <br/>
+  <a href="https://github.com/eucalypt-framework/eucalypt/blob/0c509a4e22fd97ec52b6f638af21de783f3aafc8/eucalypt.gemspec#L19"><img src="https://img.shields.io/badge/ruby-~%3E%202.5-red.svg" alt="Ruby Version"/></a>
+  <a href="https://rubygems.org/gems/eucalypt"><img src="https://img.shields.io/gem/v/eucalypt.svg" alt="Gem"/></a>
+  <a href="https://travis-ci.com/eucalypt-framework/eucalypt"><img src="https://travis-ci.com/eucalypt-framework/eucalypt.svg?branch=master" alt="Build Status"/></a>
+  <a href="https://github.com/eucalypt-framework/eucalypt/blob/master/LICENSE"><img src="https://img.shields.io/github/license/eucalypt-framework/eucalypt.svg" alt="License"/></a>
+  <a href="https://eucalypt.gitbook.io/eucalypt"><img src="https://img.shields.io/badge/docs-gitbook-blue.svg" alt="Documentation"/></a>
+</p>
 
 ## Installation
 
@@ -44,7 +46,11 @@ Full documentation can be found in the form of a GitBook, [here](https://eucalyp
 
 ## Directory structure
 
-The structure of a generated application looks like the following:
+<details>
+  <summary>
+    <i>Click here to see the structure of a generated application.</i>
+  </summary>
+  <p>
 
 ```
 .
@@ -86,6 +92,9 @@ The structure of a generated application looks like the following:
     └── spec_helper.rb
 ```
 
+  </p>
+</details>
+
 ## Features
 
 | Type                 | Feature                                                      |
@@ -105,7 +114,7 @@ The structure of a generated application looks like the following:
 | Logging              | [Lumberjack](https://github.com/bdurand/lumberjack)          |
 | Specs                | [RSpec](http://rspec.info/) + [Rack-Test](https://github.com/rack-test/rack-test) + [Shoulda-Matchers](http://matchers.shoulda.io/) |
 
-# Contributors
+## Contributors
 
 <table>
 	<thead>
@@ -137,8 +146,8 @@ The structure of a generated application looks like the following:
   <b>Eucalypt</b> &copy; 2018-2020, Edwin Onuonga - Released under the <a href="http://mit-license.org/">MIT</a> License.<br/>
   <em>Authored and maintained by Edwin Onuonga.</em>
   <p align="center">
-    <a href="https://eonu.net">eonu.net</a>&nbsp;&middot;&nbsp;
-    GitHub: <a href="https://github.com/eonu">@eonu</a>&nbsp;&middot;&nbsp;
+    <a href="https://eonu.net">eonu.net</a> &nbsp;&middot;&nbsp;
+    GitHub: <a href="https://github.com/eonu">@eonu</a> &nbsp;&middot;&nbsp;
     Email: <a href="mailto:ed@eonu.net">ed@eonu.net</a>
   </p>
 </p>
