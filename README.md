@@ -12,7 +12,7 @@
   <b>Micro-framework, application generator and CLI wrapped around the Sinatra DSL.</b>
 </p>
 
-<img width="250px" src="https://i.ibb.co/TPDRwvK/banner-rounded.png" align="left">
+<img width="225px" src="https://i.ibb.co/TPDRwvK/banner-rounded.png" align="left">
 
 <p align="right">
   <a href="https://github.com/eucalypt-framework/eucalypt/blob/0c509a4e22fd97ec52b6f638af21de783f3aafc8/eucalypt.gemspec#L19"><img src="https://img.shields.io/badge/ruby-~%3E%202.5-red.svg" alt="Ruby Version"/></a>
