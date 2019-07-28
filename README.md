@@ -22,6 +22,9 @@
   <a href="https://eucalypt.gitbook.io/eucalypt"><img src="https://img.shields.io/badge/docs-gitbook-blue.svg" alt="Documentation"/></a>
 </p>
 
+<hr/>
+<b>Micro-framework, application generator and CLI wrapped around the Sinatra DSL.</b>
+
 ## Installation
 
 To install the CLI, run:
