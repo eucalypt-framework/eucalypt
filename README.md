@@ -8,10 +8,9 @@
   <a href="https://github.com/eucalypt-framework/eucalypt/blob/master/LICENSE"><img src="https://img.shields.io/github/license/eucalypt-framework/eucalypt.svg" alt="License"/></a>
   <a href="https://eucalypt.gitbook.io/eucalypt"><img src="https://img.shields.io/badge/docs-gitbook-blue.svg" alt="Documentation"/></a>
   <br/>
+  <br/>
   <b>Micro-framework, application generator and CLI wrapped around the Sinatra DSL.</b>
 </p>
-
-<hr/>
 
 ## Installation
 
