@@ -114,7 +114,7 @@ Full documentation can be found in the form of a GitBook, [here](https://eucalyp
 | Logging              | [Lumberjack](https://github.com/bdurand/lumberjack)          |
 | Specs                | [RSpec](http://rspec.info/) + [Rack-Test](https://github.com/rack-test/rack-test) + [Shoulda-Matchers](http://matchers.shoulda.io/) |
 
-# Contributors
+## Contributors
 
 <table>
 	<thead>
