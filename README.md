@@ -134,7 +134,7 @@ Full documentation can be found in the form of a GitBook, [here](https://eucalyp
       <th align="center">
         <a href="https://github.com/ahmgeek">
         <img src="https://avatars3.githubusercontent.com/u/4132009?s=460&v=4" alt="Ahmad" width="60px">
-        <br/><sub><b>Ahmad</b></sub>
+        <br/><sub><b>Mo Tolba</b></sub>
         </a>
         <br/>
         <a href="mailto:ahmgeek@icloud.com">✉️</a>
